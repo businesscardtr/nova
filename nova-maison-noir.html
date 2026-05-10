@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Noir — Hoş Geldiniz</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #080808;
+  --surface: #111111;
+  --surface2: #161616;
+  --gold: #c9a96e;
+  --gold2: #e8c99a;
+  --gold-dim: rgba(201,169,110,0.1);
+  --gold-border: rgba(201,169,110,0.2);
+  --white: #f0ece4;
+  --muted: #7a7672;
+  --danger: #e07070;
+  --success: #70c9a0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* GRAIN */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* HEADER */
+.hotel-header {
+  padding: 48px 28px 36px;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid var(--gold-border);
+}
+
+.hotel-header::before {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 50%;
+  transform: translateX(-50%);
+  width: 120px; height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.hotel-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  animation: fadeDown 0.8s ease both;
+}
+
+.hotel-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin-bottom: 6px;
+  animation: fadeDown 0.8s 0.1s ease both;
+}
+
+.hotel-sub {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  animation: fadeDown 0.8s 0.15s ease both;
+}
+
+/* YILDIZ BUTONU — HERO */
+.star-section {
+  padding: 28px 24px;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.star-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #1a1200, #2a1e00);
+  border: 1px solid var(--gold);
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.star-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,169,110,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.star-btn:hover::before, .star-btn:active::before { opacity: 1; }
+
+.star-btn:active { transform: scale(0.98); }
+
+.star-icon {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.star-text { flex: 1; }
+
+.star-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--gold2);
+  margin-bottom: 3px;
+}
+
+.star-desc {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.star-arrow {
+  color: var(--gold);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* BÖLÜM BAŞLIĞI */
+.section-title {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 24px 12px;
+}
+
+/* GRID KARTLAR */
+.grid-section {
+  padding: 0 24px 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.grid-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  transition: border-color 0.25s;
+}
+
+.grid-card:hover::after { border-color: var(--gold-border); }
+.grid-card:active { transform: scale(0.97); }
+
+.grid-card.wifi { background: linear-gradient(135deg, #0d1520, #111); }
+.grid-card.concierge { background: linear-gradient(135deg, #120d1a, #111); }
+.grid-card.menu { background: linear-gradient(135deg, #0d1a0f, #111); }
+.grid-card.checkout { background: linear-gradient(135deg, #1a0d0d, #111); }
+
+.card-emoji { font-size: 26px; line-height: 1; }
+
+.card-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.card-sub {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+/* BİLGİ PANELLER */
+.info-section {
+  padding: 8px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.info-row {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-left { }
+.info-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.info-value {
+  font-size: 15px;
+  color: var(--white);
+  font-weight: 400;
+}
+.info-badge {
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-weight: 500;
+}
+.badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+.badge-green { background: rgba(112,201,160,0.1); color: var(--success); border: 1px solid rgba(112,201,160,0.2); }
+
+/* INSTAGRAM KIT */
+.instagram-section {
+  padding: 8px 24px;
+  animation: fadeUp 0.8s 0.45s ease both;
+}
+
+.instagram-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #1a0d20, #111);
+  border: 1px solid rgba(180,100,220,0.25);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-align: left;
+}
+
+.instagram-btn:active { transform: scale(0.98); }
+
+.insta-icon { font-size: 28px; flex-shrink: 0; }
+.insta-text { flex: 1; }
+.insta-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
+.insta-desc { font-size: 11px; color: var(--muted); font-weight: 300; }
+.insta-arrow { color: var(--muted); font-size: 16px; }
+
+/* FOOTER */
+.nova-footer {
+  padding: 28px 24px 40px;
+  text-align: center;
+  animation: fadeUp 0.8s 0.5s ease both;
+}
+
+.nova-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.nova-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface2);
+  border: 1px solid var(--gold-border);
+  border-radius: 24px 24px 0 0;
+  padding: 32px 28px 48px;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+
+.modal-overlay.open .modal {
+  transform: translateY(0);
+}
+
+.modal-handle {
+  width: 40px; height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  margin: 0 auto 24px;
+}
+
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.modal-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 24px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* WİFİ MODAL */
+.wifi-box {
+  background: var(--surface);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.wifi-network {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.wifi-name {
+  font-size: 18px;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.wifi-password-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.wifi-password {
+  font-size: 22px;
+  color: var(--gold2);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modal-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.btn-gold { background: var(--gold); color: #080808; }
+.btn-gold:hover { background: var(--gold2); }
+.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: var(--white); }
+.btn-outline:hover { border-color: var(--gold-border); }
+
+/* YORUM MODAL */
+.star-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.star-big {
+  font-size: 36px;
+  cursor: pointer;
+  transition: transform 0.15s;
+  filter: grayscale(1);
+  opacity: 0.4;
+}
+
+.star-big.active {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* ANIMATIONS */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulse on star button */
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,169,110,0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(201,169,110,0); }
+}
+
+.star-btn { animation: pulse-gold 2.5s 1.5s ease infinite; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hotel-header">
+  <div class="hotel-eyebrow">Nova · Akıllı Otel Kartı</div>
+  <div class="hotel-name">Maison Noir</div>
+  <div class="hotel-sub">Karaköy, İstanbul · Oda 207</div>
+</div>
+
+<!-- YILDIZ BUTONU -->
+<div class="star-section">
+  <button class="star-btn" onclick="openModal('review')">
+    <div class="star-icon">⭐</div>
+    <div class="star-text">
+      <div class="star-title">Deneyiminizi 5 Yıldızla Taçlandırın</div>
+      <div class="star-desc">Google'da yorumunuz bizim için çok değerli</div>
+    </div>
+    <div class="star-arrow">›</div>
+  </button>
+</div>
+
+<!-- HIZMETLER -->
+<div class="section-title">Otel Hizmetleri</div>
+<div class="grid-section">
+  <div class="grid-card wifi" onclick="openModal('wifi')">
+    <div class="card-emoji">📶</div>
+    <div>
+      <div class="card-label">Wi-Fi Bağlan</div>
+      <div class="card-sub">Tek tıkla şifre</div>
+    </div>
+  </div>
+  <div class="grid-card concierge" onclick="openModal('concierge')">
+    <div class="card-emoji">💬</div>
+    <div>
+      <div class="card-label">Resepsiyona Yaz</div>
+      <div class="card-sub">WhatsApp ile anında</div>
+    </div>
+  </div>
+  <div class="grid-card menu" onclick="openModal('menu')">
+    <div class="card-emoji">🍽️</div>
+    <div>
+      <div class="card-label">Oda Servisi</div>
+      <div class="card-sub">Menüyü görüntüle</div>
+    </div>
+  </div>
+  <div class="grid-card checkout" onclick="openModal('checkout')">
+    <div class="card-emoji">🔑</div>
+    <div>
+      <div class="card-label">Check-Out</div>
+      <div class="card-sub">Hızlı ayrılış</div>
+    </div>
+  </div>
+</div>
+
+<!-- BİLGİ PANELİ -->
+<div class="info-section" style="margin-top:16px;">
+  <div class="section-title" style="padding:0 0 12px;">Güncel Bilgiler</div>
+  <div class="info-row">
+    <div class="info-left">
+      <div class="info-label">Kahvaltı</div>
+      <div class="info-value">07:00 — 10:30</div>
+    </div>
+    <span class="info-badge badge-gold">Açık</span>
+  </div>
+  <div class="info-row">
+    <div class="info-left">
+      <div class="info-label">Havuz & Spa</div>
+      <div class="info-value">09:00 — 22:00</div>
+    </div>
+    <span class="info-badge badge-green">Uygun</span>
+  </div>
+  <div class="info-row">
+    <div class="info-left">
+      <div class="info-label">Check-Out</div>
+      <div class="info-value">12:00'ye kadar</div>
+    </div>
+    <span class="info-badge badge-gold">Bugün</span>
+  </div>
+</div>
+
+<!-- INSTAGRAM -->
+<div class="instagram-section" style="margin-top:8px;">
+  <div class="instagram-btn" onclick="openModal('instagram')">
+    <div class="insta-icon">📸</div>
+    <div class="insta-text">
+      <div class="insta-title">Instagram'da Paylaş</div>
+      <div class="insta-desc">Oteli hikayende etiketle</div>
+    </div>
+    <div class="insta-arrow">›</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="nova-footer">
+  <div class="nova-badge">
+    <div class="nova-dot"></div>
+    Nova ile güçlendirildi
+  </div>
+</div>
+
+<!-- MODALLER -->
+<div class="modal-overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-handle"></div>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+const HOTEL = {
+  name: 'Maison Noir',
+  wifi_name: 'MaisonNoir_Guest',
+  wifi_pass: '12345',
+  whatsapp: '+905468916913',
+  google_review: 'https://g.page/r/DEMO_LINK/review',
+  instagram: 'maisonnoiristanbul',
+  room: '207'
+};
+
+const modals = {
+  wifi: `
+    <div class="modal-title">📶 Wi-Fi Bağlantısı</div>
+    <div class="modal-desc">Şifreyi kopyalayıp Wi-Fi ayarlarından bağlanabilirsiniz.</div>
+    <div class="wifi-box">
+      <div class="wifi-network">Ağ Adı</div>
+      <div class="wifi-name">${HOTEL.wifi_name}</div>
+      <div class="wifi-password-label">Şifre</div>
+      <div class="wifi-password">${HOTEL.wifi_pass}</div>
+    </div>
+    <button class="modal-btn btn-gold" onclick="copyWifi()">📋 Şifreyi Kopyala</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Kapat</button>
+  `,
+  review: `
+    <div class="modal-title">⭐ Deneyiminizi Paylaşın</div>
+    <div class="modal-desc">Konaklamanızdan memnun kaldınız mı? Google'da birkaç kelime bırakın, bizim için çok değerli.</div>
+    <div class="star-row" id="starRow">
+      <span class="star-big" onclick="rateStar(1)">⭐</span>
+      <span class="star-big" onclick="rateStar(2)">⭐</span>
+      <span class="star-big" onclick="rateStar(3)">⭐</span>
+      <span class="star-big" onclick="rateStar(4)">⭐</span>
+      <span class="star-big" onclick="rateStar(5)">⭐</span>
+    </div>
+    <button class="modal-btn btn-gold" onclick="goReview()">Google'da Yorum Yaz →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Daha Sonra</button>
+  `,
+  concierge: `
+    <div class="modal-title">💬 Resepsiyona Yaz</div>
+    <div class="modal-desc">WhatsApp üzerinden resepsiyonumuza anında ulaşın. 7/24 hizmetinizdeyiz.</div>
+    <button class="modal-btn btn-gold" onclick="goWhatsApp()">WhatsApp'ı Aç →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Kapat</button>
+  `,
+  menu: `
+    <div class="modal-title">🍽️ Oda Servisi</div>
+    <div class="modal-desc">İstediğiniz ürünleri seçin, siparişiniz WhatsApp üzerinden iletilecek.</div>
+    <div id="menuList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+      ${[
+        {emoji:'🥐', name:'Kahvaltı Tabağı', price:'280₺'},
+        {emoji:'🥗', name:'Mevsim Salatası', price:'180₺'},
+        {emoji:'🍝', name:'Paket Makarna', price:'220₺'},
+        {emoji:'🍔', name:'Gurme Burger', price:'260₺'},
+        {emoji:'🍰', name:'Günün Tatlısı', price:'120₺'},
+        {emoji:'☕', name:'Türk Kahvesi', price:'60₺'},
+        {emoji:'🧃', name:'Taze Meyve Suyu', price:'80₺'},
+      ].map((item,i) => `
+        <div onclick="toggleItem(${i})" id="item${i}" style="
+          display:flex;align-items:center;gap:12px;
+          padding:14px 16px;
+          background:var(--surface);
+          border:1px solid rgba(255,255,255,0.06);
+          border-radius:12px;
+          cursor:pointer;
+          transition:all 0.2s;
+        ">
+          <span style="font-size:22px">${item.emoji}</span>
+          <span style="flex:1;font-size:14px;color:var(--white)">${item.name}</span>
+          <span style="font-size:13px;color:var(--muted)">${item.price}</span>
+          <span id="check${i}" style="font-size:16px;opacity:0.2">○</span>
+        </div>
+      `).join('')}
+    </div>
+    <button class="modal-btn btn-gold" onclick="sendMenuOrder()">Siparişi WhatsApp'a Gönder →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Kapat</button>
+  `,
+  checkout: `
+    <div class="modal-title">🔑 Check-Out</div>
+    <div class="modal-desc">Ayrılmadan önce resepsiyonumuzu bilgilendirin. Valizlerinizi odanızda bırakabilirsiniz, saat 14:00'a kadar saklarız.</div>
+    <button class="modal-btn btn-gold" onclick="goCheckout()">Resepsiyona Bildir →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">İptal</button>
+  `,
+  instagram: `
+    <div class="modal-title">📸 Instagram'da Paylaş</div>
+    <div class="modal-desc">Oteli hikayende etiketlemek için Instagram profilimizi ziyaret et.</div>
+    <button class="modal-btn btn-gold" onclick="goInstagram()">@${HOTEL.instagram} →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Kapat</button>
+  `
+};
+
+const menuItems = [
+  {emoji:'🥐', name:'Kahvaltı Tabağı', price:'280₺'},
+  {emoji:'🥗', name:'Mevsim Salatası', price:'180₺'},
+  {emoji:'🍝', name:'Paket Makarna', price:'220₺'},
+  {emoji:'🍔', name:'Gurme Burger', price:'260₺'},
+  {emoji:'🍰', name:'Günün Tatlısı', price:'120₺'},
+  {emoji:'☕', name:'Türk Kahvesi', price:'60₺'},
+  {emoji:'🧃', name:'Taze Meyve Suyu', price:'80₺'},
+];
+const selectedItems = new Set();
+
+function toggleItem(i) {
+  const el = document.getElementById(`item${i}`);
+  const check = document.getElementById(`check${i}`);
+  if (selectedItems.has(i)) {
+    selectedItems.delete(i);
+    el.style.borderColor = 'rgba(255,255,255,0.06)';
+    el.style.background = 'var(--surface)';
+    check.textContent = '○';
+    check.style.opacity = '0.2';
+    check.style.color = '';
+  } else {
+    selectedItems.add(i);
+    el.style.borderColor = 'var(--gold)';
+    el.style.background = 'rgba(201,169,110,0.08)';
+    check.textContent = '●';
+    check.style.opacity = '1';
+    check.style.color = 'var(--gold)';
+  }
+}
+
+function sendMenuOrder() {
+  if (selectedItems.size === 0) {
+    alert('Lütfen en az bir ürün seçin.');
+    return;
+  }
+  const list = [...selectedItems].map(i => `• ${menuItems[i].emoji} ${menuItems[i].name} (${menuItems[i].price})`).join('\n');
+  const msg = encodeURIComponent(`Merhaba, Oda ${HOTEL.room} — Oda servisi siparişim:\n\n${list}\n\nTeşekkürler.`);
+  window.open(`https://wa.me/${HOTEL.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+}
+
+let currentModal = null;
+
+function openModal(type) {
+  currentModal = type;
+  document.getElementById('modal-content').innerHTML = modals[type];
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('overlay')) return;
+  document.getElementById('overlay').classList.remove('open');
+}
+
+function copyWifi() {
+  navigator.clipboard.writeText(HOTEL.wifi_pass).then(() => {
+    const btn = document.querySelector('.btn-gold');
+    btn.textContent = '✓ Kopyalandı!';
+    btn.style.background = '#70c9a0';
+    setTimeout(() => {
+      btn.textContent = '📋 Şifreyi Kopyala';
+      btn.style.background = '';
+    }, 2000);
+  });
+}
+
+function rateStar(n) {
+  const stars = document.querySelectorAll('.star-big');
+  stars.forEach((s, i) => {
+    s.classList.toggle('active', i < n);
+  });
+}
+
+function goReview() {
+  window.open(HOTEL.google_review, '_blank');
+}
+
+function goWhatsApp() {
+  const msg = encodeURIComponent(`Merhaba, Oda ${HOTEL.room}'den yardıma ihtiyacım var.`);
+  window.open(`https://wa.me/${HOTEL.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+}
+
+function goMenuWhatsApp() {
+  const msg = encodeURIComponent(`Merhaba, Oda ${HOTEL.room} — oda servisi sipariş vermek istiyorum.`);
+  window.open(`https://wa.me/${HOTEL.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+}
+
+function goCheckout() {
+  const msg = encodeURIComponent(`Merhaba, Oda ${HOTEL.room} — check-out yapıyorum.`);
+  window.open(`https://wa.me/${HOTEL.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+}
+
+function goInstagram() {
+  window.open(`https://instagram.com/${HOTEL.instagram}`, '_blank');
+}
+</script>
+
+</body>
+</html>
