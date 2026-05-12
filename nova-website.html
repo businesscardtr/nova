@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova — Otellerin Akıllı Deneyim Teknolojisi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #060606;
+  --dark: #0e0e0e;
+  --card: #141414;
+  --gold: #c9a96e;
+  --gold2: #e8c99a;
+  --gold3: rgba(201,169,110,0.12);
+  --gold-border: rgba(201,169,110,0.2);
+  --white: #f0ece4;
+  --muted: #6b6760;
+  --border: rgba(255,255,255,0.06);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(201,169,110,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.12s ease;
+}
+
+/* GRAIN */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 28px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(6,6,6,0.7);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+  padding: 10px 28px;
+  border: 1px solid var(--gold-border);
+  color: var(--gold) !important;
+  transition: all 0.3s !important;
+}
+
+.nav-cta:hover {
+  background: var(--gold3) !important;
+  border-color: var(--gold) !important;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 60px 80px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,169,110,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,169,110,0.03) 0%, transparent 60%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,169,110,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,169,110,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.hero-text { }
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  animation: fadeUp 1s ease both;
+}
+
+.tag-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 6vw, 88px);
+  font-weight: 300;
+  line-height: 1.02;
+  color: var(--white);
+  margin-bottom: 28px;
+  animation: fadeUp 1s 0.1s ease both;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+
+.hero-desc {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 460px;
+  margin-bottom: 48px;
+  font-weight: 300;
+  animation: fadeUp 1s 0.2s ease both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  animation: fadeUp 1s 0.3s ease both;
+}
+
+.btn-primary {
+  padding: 16px 36px;
+  background: var(--gold);
+  color: #060606;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: none;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+
+.btn-secondary {
+  padding: 16px 36px;
+  background: transparent;
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  cursor: none;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.btn-secondary:hover { border-color: var(--gold-border); color: var(--gold); }
+
+/* PHONE MOCKUP */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  animation: fadeUp 1s 0.2s ease both;
+}
+
+.phone-wrap {
+  position: relative;
+  width: 280px;
+}
+
+.phone {
+  width: 280px;
+  background: #0a0a0a;
+  border-radius: 44px;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 12px;
+  box-shadow:
+    0 80px 120px rgba(0,0,0,0.8),
+    0 0 0 1px rgba(255,255,255,0.04),
+    inset 0 0 0 1px rgba(255,255,255,0.02);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-16px) rotate(1deg); }
+}
+
+.phone-notch {
+  width: 100px; height: 28px;
+  background: #060606;
+  border-radius: 0 0 20px 20px;
+  margin: 0 auto 12px;
+}
+
+.phone-screen {
+  background: #0d0d0d;
+  border-radius: 34px;
+  overflow: hidden;
+  padding: 20px 16px;
+}
+
+.phone-hotel-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.phone-hotel-sub {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.phone-star-btn {
+  background: linear-gradient(135deg, #1a1200, #1e1600);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.phone-star-emoji { font-size: 20px; }
+
+.phone-star-text {
+  font-size: 11px;
+  color: var(--gold2);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.phone-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.phone-card {
+  background: #161616;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.phone-card-emoji { font-size: 18px; margin-bottom: 6px; }
+.phone-card-label { font-size: 10px; color: var(--white); font-weight: 500; }
+.phone-card-sub { font-size: 9px; color: var(--muted); }
+
+.phone-info {
+  background: #161616;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.phone-info-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.phone-info-value { font-size: 12px; color: var(--white); }
+.phone-badge { font-size: 9px; padding: 3px 10px; background: rgba(201,169,110,0.1); color: var(--gold); border-radius: 100px; }
+
+/* NFC CARD */
+.nfc-card {
+  position: absolute;
+  bottom: -20px;
+  right: -60px;
+  width: 180px;
+  height: 112px;
+  background: linear-gradient(135deg, #111, #0a0a0a);
+  border: 1px solid rgba(201,169,110,0.25);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  animation: float 6s 1s ease-in-out infinite;
+}
+
+.nfc-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+}
+
+.nfc-name {
+  font-size: 13px;
+  color: var(--white);
+  font-weight: 500;
+}
+
+.nfc-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.3;
+}
+
+/* GLOW EFFECTS */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.glow-1 {
+  width: 300px; height: 300px;
+  background: rgba(201,169,110,0.08);
+  top: -100px; right: -50px;
+}
+
+.glow-2 {
+  width: 200px; height: 200px;
+  background: rgba(201,169,110,0.05);
+  bottom: 0; left: 50px;
+}
+
+/* STATS */
+.stats {
+  padding: 60px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  position: relative;
+  z-index: 2;
+}
+
+.stat {
+  background: var(--black);
+  padding: 48px 40px;
+  transition: background 0.3s;
+}
+
+.stat:hover { background: #0a0a0a; }
+
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* HOW IT WORKS */
+.how {
+  padding: 120px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-tag {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-tag::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 80px;
+}
+
+.section-title em { font-style: italic; color: var(--gold); }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--border);
+}
+
+.step {
+  background: var(--black);
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.step::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.step:hover { background: #0a0a0a; }
+.step:hover::before { opacity: 0.4; }
+
+.step-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  font-weight: 300;
+  color: rgba(201,169,110,0.08);
+  line-height: 1;
+  margin-bottom: 24px;
+  transition: color 0.3s;
+}
+
+.step:hover .step-number { color: rgba(201,169,110,0.15); }
+
+.step-icon { font-size: 32px; margin-bottom: 20px; }
+
+.step h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.step p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* FEATURES */
+.features {
+  padding: 0 60px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+}
+
+.feature {
+  background: var(--black);
+  padding: 56px 48px;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.feature:hover { background: #0a0a0a; }
+
+.feature-emoji { font-size: 36px; margin-bottom: 20px; display: block; }
+
+.feature h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.feature p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.feature-tag {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 4px 12px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+}
+
+/* REVIEW DEMO */
+.review-section {
+  padding: 120px 60px;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.review-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.2;
+}
+
+.review-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.review-demo {
+  background: var(--card);
+  border: 1px solid var(--gold-border);
+  border-radius: 24px;
+  padding: 40px;
+  position: relative;
+}
+
+.review-demo::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 40px; right: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.5;
+}
+
+.review-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.review-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.stars-demo {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.star-demo {
+  font-size: 28px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  filter: grayscale(1);
+  opacity: 0.3;
+}
+
+.star-demo.active {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.review-result {
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 400;
+  display: none;
+  animation: fadeUp 0.4s ease both;
+}
+
+.review-result.google {
+  background: rgba(201,169,110,0.1);
+  border: 1px solid var(--gold-border);
+  color: var(--gold2);
+}
+
+.review-result.complaint {
+  background: rgba(224,112,112,0.08);
+  border: 1px solid rgba(224,112,112,0.2);
+  color: #e07070;
+}
+
+.review-result.show { display: block; }
+
+/* PRICING */
+.pricing {
+  padding: 120px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: var(--card);
+  border: 1px solid var(--gold-border);
+  border-radius: 4px;
+  padding: 60px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 60px; right: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+}
+
+.pricing-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.pricing-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.pricing-unit {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.pricing-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+  text-align: left;
+}
+
+.pricing-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.pricing-feature::before {
+  content: '✦';
+  color: var(--gold);
+  flex-shrink: 0;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* CONTACT */
+.contact {
+  padding: 120px 60px;
+  background: var(--dark);
+  position: relative;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+}
+
+.contact-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.contact h2 em { font-style: italic; color: var(--gold); }
+
+.contact-desc {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 48px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+  border-radius: 0;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: var(--gold-border);
+  background: rgba(201,169,110,0.03);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: var(--muted); }
+.contact-form select option { background: #111; }
+.contact-form textarea { min-height: 120px; resize: vertical; }
+
+.form-submit {
+  width: 100%;
+  padding: 18px;
+  background: var(--gold);
+  color: #060606;
+  border: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: none;
+  transition: all 0.3s;
+  margin-top: 8px;
+}
+
+.form-submit:hover { background: var(--gold2); }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 48px;
+}
+
+.form-success.show { display: block; }
+.form-success h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.form-success p { font-size: 14px; color: var(--muted); }
+
+/* FOOTER */
+footer {
+  padding: 40px 60px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+}
+
+footer p { font-size: 12px; color: var(--muted); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-content { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { order: -1; }
+  .phone { width: 240px; }
+  .nfc-card { display: none; }
+  .stats { grid-template-columns: 1fr 1fr; padding: 0; }
+  .how, .features, .pricing { padding: 80px 24px; }
+  .steps { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .review-section { padding: 80px 24px; }
+  .review-inner { grid-template-columns: 1fr; gap: 48px; }
+  .pricing-features { grid-template-columns: 1fr; }
+  .contact { padding: 80px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Nova</div>
+  <div class="nav-links">
+    <a href="#nasil-calisir">Nasıl Çalışır</a>
+    <a href="#ozellikler">Özellikler</a>
+    <a href="#fiyat">Fiyat</a>
+    <a href="#demo" class="nav-cta">Demo Talep Et</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-tag">
+        <div class="tag-dot"></div>
+        NFC Akıllı Otel Teknolojisi
+      </div>
+      <h1>
+        Misafiriniz<br>
+        <em>her şeyi</em><br>
+        bir dokunuşta
+      </h1>
+      <p class="hero-desc">
+        Oda kartı artık sadece kapı açmıyor. Wi-Fi, oda servisi, Google yorumu, check-out — hepsi tek dokunuşta. Otelciler için tasarlandı.
+      </p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn-primary">
+          Demo Talep Et
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#nasil-calisir" class="btn-secondary">Nasıl Çalışır?</a>
+      </div>
+    </div>
+
+    <!-- PHONE MOCKUP -->
+    <div class="hero-visual">
+      <div class="phone-wrap">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-hotel-name">Maison Noir</div>
+            <div class="phone-hotel-sub">Nova · Oda 207</div>
+
+            <div class="phone-star-btn">
+              <div class="phone-star-emoji">⭐</div>
+              <div class="phone-star-text">Deneyiminizi 5 Yıldızla<br>Taçlandırın</div>
+            </div>
+
+            <div class="phone-grid">
+              <div class="phone-card">
+                <div class="phone-card-emoji">📶</div>
+                <div class="phone-card-label">Wi-Fi Bağlan</div>
+                <div class="phone-card-sub">Tek tıkla şifre</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card-emoji">🍽️</div>
+                <div class="phone-card-label">Oda Servisi</div>
+                <div class="phone-card-sub">Menüyü görüntüle</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card-emoji">💬</div>
+                <div class="phone-card-label">Resepsiyon</div>
+                <div class="phone-card-sub">WhatsApp ile</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card-emoji">🔑</div>
+                <div class="phone-card-label">Check-Out</div>
+                <div class="phone-card-sub">Hızlı ayrılış</div>
+              </div>
+            </div>
+
+            <div class="phone-info">
+              <div>
+                <div class="phone-info-label">Kahvaltı</div>
+                <div class="phone-info-value">07:00 — 10:30</div>
+              </div>
+              <div class="phone-badge">Açık</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NFC KART -->
+        <div class="nfc-card">
+          <div class="nfc-logo">Nova</div>
+          <div class="nfc-name">Maison Noir</div>
+          <div class="nfc-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat reveal">
+    <div class="stat-number">3×</div>
+    <div class="stat-label">Daha fazla Google yorumu</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-number">90%</div>
+    <div class="stat-label">Şikayetler dışarıya çıkmaz</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-number">∞</div>
+    <div class="stat-label">Sınırsız güncelleme</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-number">0</div>
+    <div class="stat-label">Uygulama indirme gerektirmez</div>
+  </div>
+</div>
+
+<!-- NASIL ÇALIŞIR -->
+<section class="how" id="nasil-calisir">
+  <div class="section-tag">Nasıl Çalışır</div>
+  <div class="section-title">Üç adımda <em>hayata geçer</em></div>
+
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-number">01</div>
+      <div class="step-icon">📋</div>
+      <h3>Bilgileri Alıyoruz</h3>
+      <p>Wi-Fi bilgisi, WhatsApp numarası, oda servisi menüsü, Google Maps linki. Hepsini bir formda topluyoruz.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-number">02</div>
+      <div class="step-icon">⚡</div>
+      <h3>Kuruyoruz</h3>
+      <p>Otelinize özel dijital sayfayı hazırlıyor, NFC kartlarına programlıyor, 2 gün içinde teslim ediyoruz.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-number">03</div>
+      <div class="step-icon">🚀</div>
+      <h3>Yayında</h3>
+      <p>Misafirleriniz kartı telefona yaklaştırıyor, sayfa açılıyor. Menü değişti mi? Biz güncelliyoruz, kart değişmez.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ÖZELLİKLER -->
+<section class="features" id="ozellikler">
+  <div class="section-tag">Özellikler</div>
+  <div class="section-title">Otelcinin <em>gerçek ihtiyacı</em></div>
+
+  <div class="features-grid">
+    <div class="feature reveal">
+      <span class="feature-emoji">⭐</span>
+      <h3>Akıllı Yorum Yönetimi</h3>
+      <p>3 yıldız ve üzeri → Google'a yönlendirir. 1-2 yıldız → şikayet size gelir, dışarıya çıkmaz. Google puanınız organik olarak yükselir.</p>
+      <span class="feature-tag">En Çok Tercih Edilen</span>
+    </div>
+    <div class="feature reveal">
+      <span class="feature-emoji">📶</span>
+      <h3>Wi-Fi Tek Tıkla</h3>
+      <p>Misafir şifreyi aramaz, resepsiyonu aramaz. Tek butona basar, şifre kopyalanır. Konnektisite sorunu biter.</p>
+      <span class="feature-tag">Operasyonel Hız</span>
+    </div>
+    <div class="feature reveal">
+      <span class="feature-emoji">🍽️</span>
+      <h3>Dijital Oda Servisi</h3>
+      <p>Misafir menüden seçimini yapar, sipariş otomatik olarak WhatsApp'ınıza gelir. Kağıt menü yok, tercüman yok.</p>
+      <span class="feature-tag">Gelir Artışı</span>
+    </div>
+    <div class="feature reveal">
+      <span class="feature-emoji">♾️</span>
+      <h3>Sınırsız Güncelleme</h3>
+      <p>Menü değişti, Wi-Fi şifresi değişti, etkinlik saatleri değişti — her güncelleme dahil. Kart değişmez, biz güncelliyoruz.</p>
+      <span class="feature-tag">Ek Ücret Yok</span>
+    </div>
+  </div>
+</section>
+
+<!-- YORUM DEMOsu -->
+<section class="review-section">
+  <div class="review-inner">
+    <div>
+      <div class="section-tag">Akıllı Yorum Sistemi</div>
+      <div class="section-title" style="margin-bottom:24px;">Sadece <em>mutlu</em> misafirler Google'a gider</div>
+      <p style="font-size:15px;color:var(--muted);line-height:1.75;font-weight:300;">3 yıldız ve üzeri veren misafiriniz Google'a yönlendirilir. Memnuniyetsiz misafir ise direkt size ulaşır — şikayet internete yansımadan çözüme kavuşur.</p>
+    </div>
+    <div class="review-demo reveal">
+      <div class="review-title">Konaklamanızı değerlendirin</div>
+      <div class="review-sub">Aşağıdan puan verin ve sistemi test edin</div>
+      <div class="stars-demo" id="starsDemo">
+        <span class="star-demo" onclick="demoRate(1)">⭐</span>
+        <span class="star-demo" onclick="demoRate(2)">⭐</span>
+        <span class="star-demo" onclick="demoRate(3)">⭐</span>
+        <span class="star-demo" onclick="demoRate(4)">⭐</span>
+        <span class="star-demo" onclick="demoRate(5)">⭐</span>
+      </div>
+      <div class="review-result google" id="resultGoogle">
+        ✨ Harika! Google yorum sayfasına yönlendiriliyorsunuz...
+      </div>
+      <div class="review-result complaint" id="resultComplaint">
+        😔 Üzgünüz. Şikayetiniz direkt resepsiyona iletiliyor — Google'a yansımıyor.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FİYAT -->
+<section class="pricing" id="fiyat">
+  <div class="section-tag">Fiyatlandırma</div>
+  <div class="section-title" style="margin-bottom:48px;">Basit, <em>şeffaf</em></div>
+
+  <div class="pricing-card reveal">
+    <div class="pricing-eyebrow">Oda Başı · Tek Seferlik</div>
+    <div class="pricing-price">350₺</div>
+    <div class="pricing-unit">oda başı · sınırsız güncelleme dahil</div>
+
+    <div class="pricing-features">
+      <div class="pricing-feature">NFC kart üretimi ve programlama</div>
+      <div class="pricing-feature">Otele özel dijital sayfa</div>
+      <div class="pricing-feature">Google yorum yönetimi</div>
+      <div class="pricing-feature">Wi-Fi tek tıkla bağlantı</div>
+      <div class="pricing-feature">Oda servisi menüsü</div>
+      <div class="pricing-feature">WhatsApp entegrasyonu</div>
+      <div class="pricing-feature">Sınırsız içerik güncelleme</div>
+      <div class="pricing-feature">Teknik destek</div>
+      <div class="pricing-feature">2 gün içinde kurulum</div>
+    </div>
+
+    <a href="#demo" class="btn-primary" style="display:inline-flex;margin:0 auto;">
+      Demo Talep Et
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- DEMO TALEP -->
+<section class="contact" id="demo">
+  <div class="contact-inner">
+    <div class="section-tag" style="justify-content:center;">Demo Talep Et</div>
+    <h2>Otelinizi <em>dönüştürelim</em></h2>
+    <p class="contact-desc">Formu doldurun, 24 saat içinde sizi arayalım. Ücretsiz demo kurulumu yapıyoruz.</p>
+
+    <form class="contact-form" id="demoForm" action="https://formspree.io/f/xkoyzrob" method="POST">
+      <div class="form-row">
+        <input type="text" name="ad_soyad" placeholder="Adınız Soyadınız" required>
+        <input type="tel" name="telefon" placeholder="Telefon Numaranız" required>
+      </div>
+      <input type="text" name="otel_adi" placeholder="Otel Adı" required>
+      <div class="form-row">
+        <input type="text" name="sehir" placeholder="Şehir / İlçe">
+        <select name="oda_sayisi">
+          <option value="" disabled selected>Oda Sayısı</option>
+          <option>10-30 oda</option>
+          <option>30-50 oda</option>
+          <option>50-100 oda</option>
+          <option>100-200 oda</option>
+          <option>200+ oda</option>
+        </select>
+      </div>
+      <textarea name="notlar" placeholder="Eklemek istediğiniz bir şey var mı?"></textarea>
+      <button type="submit" class="form-submit">Demo Talep Et →</button>
+    </form>
+
+    <div class="form-success" id="formSuccess">
+      <h3>Talebiniz alındı! ✦</h3>
+      <p>En kısa sürede sizi arayacağız.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Nova</div>
+  <p>© 2026 Nova · Akıllı Otel Teknolojisi</p>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx - 4 + 'px';
+  cursor.style.top = my - 4 + 'px';
+});
+
+function animRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) *.12;
+  ring.style.left = rx - 18 + 'px';
+  ring.style.top = ry - 18 + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Review demo
+function demoRate(n) {
+  document.querySelectorAll('.star-demo').forEach((s, i) => {
+    s.classList.toggle('active', i < n);
+  });
+  const g = document.getElementById('resultGoogle');
+  const c = document.getElementById('resultComplaint');
+  g.classList.remove('show');
+  c.classList.remove('show');
+  setTimeout(() => {
+    if (n >= 3) g.classList.add('show');
+    else c.classList.add('show');
+  }, 300);
+}
+
+// Form
+document.getElementById('demoForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const res = await fetch('https://formspree.io/f/xkoyzrob', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: new FormData(this)
+  });
+  if (res.ok) {
+    this.style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+  }
+});
+</script>
+
+</body>
+</html>
