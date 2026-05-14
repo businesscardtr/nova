@@ -1,0 +1,188 @@
+<svg width="100%" viewBox="0 0 680 420" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">JW Marriott Istanbul Nova NFC Card Demo Preview</title>
+  <desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">A luxury NFC business card mockup showing the JW Marriott Istanbul Nova smart experience card alongside a phone screen preview</desc>
+
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#06080a"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="50%" stop-color="#b8975a" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+    <linearGradient id="phoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d1320"/>
+      <stop offset="100%" stop-color="#06080a"/>
+    </linearGradient>
+    <linearGradient id="headerGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b8975a" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#b8975a" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000000" flood-opacity="0.7"/>
+    </filter>
+    <filter id="phoneShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    <clipPath id="cardClip">
+      <rect x="0" y="0" width="340" height="210" rx="16"/>
+    </clipPath>
+    <clipPath id="phoneClip">
+      <rect x="0" y="0" width="160" height="300" rx="22"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="680" height="420" fill="#0a0c0f" style="fill:rgb(10, 12, 15);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.04" stroke="#b8975a" stroke-width="0.5" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.04;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <line x1="0" y1="84" x2="680" y2="84" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <line x1="0" y1="168" x2="680" y2="168" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <line x1="0" y1="252" x2="680" y2="252" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <line x1="0" y1="336" x2="680" y2="336" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <line x1="136" y1="0" x2="136" y2="420" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <line x1="272" y1="0" x2="272" y2="420" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <line x1="408" y1="0" x2="408" y2="420" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <line x1="544" y1="0" x2="544" y2="420" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  </g>
+
+  <!-- ===== NFC CARD ===== -->
+  <g transform="translate(52, 100)" filter="url(#cardShadow)" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <g clip-path="url(#cardClip)" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+      <!-- Card background -->
+      <rect width="340" height="210" rx="16" fill="url(#cardGrad)" style="stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <!-- Header glow -->
+      <rect width="340" height="80" fill="url(#headerGlow)" style="stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <!-- Border -->
+      <rect width="340" height="210" rx="16" fill="none" stroke="#b8975a" stroke-width="0.8" stroke-opacity="0.3" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.8px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <!-- Gold top line -->
+      <rect x="0" y="0" width="340" height="1" fill="url(#goldLine)" style="stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    </g>
+
+    <!-- JW Emblem circle -->
+    <circle cx="36" cy="36" r="20" fill="none" stroke="#b8975a" stroke-width="0.8" stroke-opacity="0.4" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.8px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <circle cx="36" cy="36" r="14" fill="none" stroke="#b8975a" stroke-width="0.4" stroke-opacity="0.2" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.4px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="36" y="32" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="700" fill="#b8975a" letter-spacing="1" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:11px;font-weight:700;text-anchor:middle;dominant-baseline:auto">JW</text>
+    <text x="36" y="43" text-anchor="middle" font-family="Georgia, serif" font-size="5.5" fill="#b8975a" opacity="0.7" letter-spacing="1.5" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:Georgia, serif;font-size:5.5px;font-weight:400;text-anchor:middle;dominant-baseline:auto">MARRIOTT</text>
+
+    <!-- NFC symbol top right -->
+    <g opacity="0.25" stroke="#b8975a" stroke-width="0.8" fill="none" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.8px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.25;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+      <path d="M308 18 Q316 26 308 34" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.8px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <path d="M313 14 Q325 26 313 38" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.8px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <path d="M318 10 Q334 26 318 42" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.8px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    </g>
+
+    <!-- Hotel name -->
+    <text x="20" y="130" font-family="Georgia, serif" font-size="18" font-weight="300" fill="#ede8e0" letter-spacing="0.5" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:18px;font-weight:300;text-anchor:start;dominant-baseline:auto">JW Marriott</text>
+    <text x="20" y="152" font-family="Georgia, serif" font-size="18" font-weight="300" fill="#ede8e0" letter-spacing="0.5" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:18px;font-weight:300;text-anchor:start;dominant-baseline:auto">Istanbul Bosphorus</text>
+
+    <!-- Gold divider line -->
+    <line x1="20" y1="165" x2="200" y2="165" stroke="url(#goldLine)" stroke-width="1" style="fill:rgb(0, 0, 0);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+    <!-- Nova tag -->
+    <rect x="20" y="174" width="88" height="18" rx="9" fill="none" stroke="#b8975a" stroke-width="0.6" stroke-opacity="0.4" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <circle cx="30" cy="183" r="2.5" fill="#b8975a" opacity="0.7" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="38" y="187" font-family="Arial, sans-serif" font-size="8" fill="#b8975a" letter-spacing="1" opacity="0.9" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.9;font-family:Arial, sans-serif;font-size:8px;font-weight:400;text-anchor:start;dominant-baseline:auto">NOVA</text>
+
+    <!-- Room tag -->
+    <text x="290" y="187" text-anchor="end" font-family="Arial, sans-serif" font-size="9" fill="#b8975a" opacity="0.5" letter-spacing="1" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:Arial, sans-serif;font-size:9px;font-weight:400;text-anchor:end;dominant-baseline:auto">ROOM 1204</text>
+  </g>
+
+  <!-- ===== PHONE MOCKUP ===== -->
+  <g transform="translate(468, 60)" filter="url(#phoneShadow)" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <g clip-path="url(#phoneClip)" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+      <!-- Phone body -->
+      <rect width="160" height="300" rx="22" fill="url(#phoneGrad)" style="stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <rect width="160" height="300" rx="22" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1" style="fill:none;stroke:rgba(255, 255, 255, 0.12);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+      <!-- Screen header glow -->
+      <rect width="160" height="90" fill="#b8975a" opacity="0.06" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.06;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+      <!-- Notch -->
+      <rect x="52" y="0" width="56" height="22" rx="0" fill="#06080a" style="fill:rgb(6, 8, 10);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <rect x="52" y="0" width="56" height="22" rx="0" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" style="fill:none;stroke:rgba(255, 255, 255, 0.06);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+      <!-- JW mini emblem on phone -->
+      <circle cx="80" cy="50" r="14" fill="none" stroke="#b8975a" stroke-width="0.7" stroke-opacity="0.5" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.7px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <text x="80" y="47" text-anchor="middle" font-family="Georgia, serif" font-size="7" font-weight="700" fill="#b8975a" letter-spacing="0.5" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:7px;font-weight:700;text-anchor:middle;dominant-baseline:auto">JW</text>
+      <text x="80" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-size="3.5" fill="#b8975a" opacity="0.6" letter-spacing="1" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:Arial, sans-serif;font-size:3.5px;font-weight:400;text-anchor:middle;dominant-baseline:auto">MARRIOTT</text>
+
+      <!-- Hotel name on phone -->
+      <text x="80" y="75" text-anchor="middle" font-family="Georgia, serif" font-size="9" font-weight="300" fill="#ede8e0" letter-spacing="0.3" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:9px;font-weight:300;text-anchor:middle;dominant-baseline:auto">Istanbul Bosphorus</text>
+      <text x="80" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#b8975a" opacity="0.7" letter-spacing="1.5" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:Arial, sans-serif;font-size:6px;font-weight:400;text-anchor:middle;dominant-baseline:auto">NOVA SMART EXPERIENCE</text>
+
+      <!-- Gold divider -->
+      <line x1="40" y1="92" x2="120" y2="92" stroke="#b8975a" stroke-width="0.5" stroke-opacity="0.3" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+      <!-- 5 Star button -->
+      <rect x="10" y="98" width="140" height="32" rx="8" fill="#1a1408" stroke="#b8975a" stroke-width="0.7" stroke-opacity="0.5" style="fill:rgb(26, 20, 8);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.7px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <text x="20" y="110" font-family="Arial, sans-serif" font-size="8" fill="#d4b07a" letter-spacing="0.2" style="fill:rgb(212, 176, 122);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:8px;font-weight:400;text-anchor:start;dominant-baseline:auto">⭐ Crown Your Stay</text>
+      <text x="20" y="122" font-family="Arial, sans-serif" font-size="7" fill="#5a5650" style="fill:rgb(90, 86, 80);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">Share on Google</text>
+      <text x="144" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#b8975a" opacity="0.7" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:Arial, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">›</text>
+
+      <!-- Section label -->
+      <text x="10" y="144" font-family="Arial, sans-serif" font-size="6" fill="#5a5650" letter-spacing="1.5" style="fill:rgb(90, 86, 80);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:6px;font-weight:400;text-anchor:start;dominant-baseline:auto">CONCIERGE SERVICES</text>
+
+      <!-- Service grid 2x3 -->
+      <!-- Row 1 -->
+      <rect x="10" y="150" width="64" height="38" rx="7" fill="#0c0f12" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" style="fill:rgb(12, 15, 18);stroke:rgba(255, 255, 255, 0.05);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <text x="22" y="163" font-family="Arial, sans-serif" font-size="11" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">🍽️</text>
+      <text x="18" y="176" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">In-Room</text>
+      <text x="18" y="184" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">Dining</text>
+
+      <rect x="86" y="150" width="64" height="38" rx="7" fill="#0c0f12" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" style="fill:rgb(12, 15, 18);stroke:rgba(255, 255, 255, 0.05);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <text x="98" y="163" font-family="Arial, sans-serif" font-size="11" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">📶</text>
+      <text x="92" y="176" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">Wi-Fi</text>
+      <text x="92" y="184" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">Access</text>
+
+      <!-- Row 2 -->
+      <rect x="10" y="194" width="64" height="38" rx="7" fill="#0c0f12" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" style="fill:rgb(12, 15, 18);stroke:rgba(255, 255, 255, 0.05);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <text x="22" y="207" font-family="Arial, sans-serif" font-size="11" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">🧖</text>
+      <text x="18" y="220" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">Spa &amp;</text>
+      <text x="18" y="228" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">Wellness</text>
+
+      <rect x="86" y="194" width="64" height="38" rx="7" fill="#0c0f12" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" style="fill:rgb(12, 15, 18);stroke:rgba(255, 255, 255, 0.05);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <text x="98" y="207" font-family="Arial, sans-serif" font-size="11" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">🔔</text>
+      <text x="92" y="220" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">Concierge</text>
+      <text x="92" y="228" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">24/7</text>
+
+      <!-- Row 3 -->
+      <rect x="10" y="238" width="64" height="38" rx="7" fill="#0c0f12" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" style="fill:rgb(12, 15, 18);stroke:rgba(255, 255, 255, 0.05);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <text x="22" y="251" font-family="Arial, sans-serif" font-size="11" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">🚗</text>
+      <text x="18" y="264" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">Transport</text>
+      <text x="18" y="272" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">-ation</text>
+
+      <rect x="86" y="238" width="64" height="38" rx="7" fill="#0c0f12" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" style="fill:rgb(12, 15, 18);stroke:rgba(255, 255, 255, 0.05);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <text x="98" y="251" font-family="Arial, sans-serif" font-size="11" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">🗝️</text>
+      <text x="92" y="264" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">Express</text>
+      <text x="92" y="272" font-family="Arial, sans-serif" font-size="7" fill="#ede8e0" style="fill:rgb(237, 232, 224);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:7px;font-weight:400;text-anchor:start;dominant-baseline:auto">Check-Out</text>
+
+      <!-- Nova footer on phone -->
+      <line x1="10" y1="284" x2="150" y2="284" stroke="#b8975a" stroke-width="0.3" stroke-opacity="0.2" style="fill:rgb(0, 0, 0);stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+      <text x="80" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#5a5650" letter-spacing="1" style="fill:rgb(90, 86, 80);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:6px;font-weight:400;text-anchor:middle;dominant-baseline:auto">POWERED BY NOVA</text>
+    </g>
+
+    <!-- Phone side buttons -->
+    <rect x="-3" y="80" width="3" height="28" rx="1.5" fill="rgba(255,255,255,0.1)" style="fill:rgba(255, 255, 255, 0.1);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <rect x="-3" y="115" width="3" height="18" rx="1.5" fill="rgba(255,255,255,0.1)" style="fill:rgba(255, 255, 255, 0.1);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <rect x="160" y="100" width="3" height="36" rx="1.5" fill="rgba(255,255,255,0.1)" style="fill:rgba(255, 255, 255, 0.1);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  </g>
+
+  <!-- ===== NFC TAP ANIMATION ===== -->
+  <g transform="translate(430, 240)" opacity="0.6" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <circle cx="0" cy="0" r="6" fill="none" stroke="#b8975a" stroke-width="1.5" stroke-opacity="0.8" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <circle cx="0" cy="0" r="11" fill="none" stroke="#b8975a" stroke-width="1" stroke-opacity="0.5" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <circle cx="0" cy="0" r="16" fill="none" stroke="#b8975a" stroke-width="0.6" stroke-opacity="0.3" style="fill:none;stroke:rgb(184, 151, 90);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#b8975a" opacity="0.5" letter-spacing="1" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:Arial, sans-serif;font-size:8px;font-weight:400;text-anchor:middle;dominant-baseline:auto">TAP</text>
+  </g>
+
+  <!-- ===== LABELS ===== -->
+  <text x="222" y="88" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#b8975a" opacity="0.5" letter-spacing="2" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:Arial, sans-serif;font-size:9px;font-weight:400;text-anchor:middle;dominant-baseline:auto">NFC ROOM CARD</text>
+  <text x="548" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#b8975a" opacity="0.5" letter-spacing="2" style="fill:rgb(184, 151, 90);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:Arial, sans-serif;font-size:9px;font-weight:400;text-anchor:middle;dominant-baseline:auto">GUEST EXPERIENCE</text>
+
+  <!-- Bottom text -->
+  <text x="340" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#5a5650" letter-spacing="1.5" style="fill:rgb(90, 86, 80);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:9px;font-weight:400;text-anchor:middle;dominant-baseline:auto">NOVA SMART HOTEL TECHNOLOGY — CUSTOM BUILT FOR JW MARRIOTT ISTANBUL</text>
+</svg>
