@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JW Marriott Istanbul — Nova Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #06080a;
+  --surface: #0c0f12;
+  --surface2: #121619;
+  --gold: #b8975a;
+  --gold2: #d4b07a;
+  --gold3: #f0d4a0;
+  --gold-dim: rgba(184,151,90,0.08);
+  --gold-border: rgba(184,151,90,0.18);
+  --white: #ede8e0;
+  --muted: #5a5650;
+  --blue: #1a2a3a;
+  --danger: #c07060;
+  --success: #608060;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Jost', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* SUBTLE GRAIN */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ============ HEADER ============ */
+.header {
+  position: relative;
+  padding: 0 0 40px;
+  overflow: hidden;
+}
+
+/* Animated background gradient */
+.header-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(184,151,90,0.12) 0%, transparent 70%),
+    linear-gradient(180deg, #0d1117 0%, var(--bg) 100%);
+}
+
+/* Bosphorus silhouette */
+.header-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 80' preserveAspectRatio='none'%3E%3Cpath d='M0,60 Q20,50 40,55 Q60,60 80,45 Q100,30 120,40 Q130,45 140,38 Q150,30 160,35 Q170,38 175,32 Q180,26 185,30 Q190,34 195,28 Q200,22 205,26 Q210,30 215,24 Q220,18 230,25 Q240,32 250,28 Q260,24 270,30 Q280,36 290,28 Q295,24 300,30 Q310,40 320,35 Q340,25 360,38 Q380,50 400,45 L400,80 L0,80 Z' fill='rgba(184,151,90,0.04)'/%3E%3C/svg%3E") no-repeat bottom;
+  background-size: 100% 100%;
+}
+
+.header-inner {
+  position: relative;
+  z-index: 2;
+  padding: 52px 28px 0;
+  text-align: center;
+}
+
+/* JW LOGO */
+.jw-emblem {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 24px;
+  position: relative;
+}
+
+.jw-emblem-ring {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: emblem-pulse 4s ease-in-out infinite;
+}
+
+@keyframes emblem-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(184,151,90,0.2); }
+  50% { box-shadow: 0 0 0 12px rgba(184,151,90,0); }
+}
+
+.jw-emblem-ring::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 1px solid rgba(184,151,90,0.08);
+}
+
+.jw-letters {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.hotel-brand {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  opacity: 0.8;
+  animation: fadeDown 1s 0.1s ease both;
+}
+
+.hotel-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  margin-bottom: 6px;
+  animation: fadeDown 1s 0.2s ease both;
+}
+
+.hotel-city {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 300;
+  margin-bottom: 28px;
+  animation: fadeDown 1s 0.3s ease both;
+}
+
+/* Gold divider */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 28px;
+  animation: fadeDown 1s 0.35s ease both;
+}
+
+.divider-line {
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+  opacity: 0.4;
+}
+
+.divider-line.right {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.divider-diamond {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+/* Nova tag */
+.nova-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 16px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+  animation: fadeDown 1s 0.4s ease both;
+}
+
+.nova-pulse {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: blink 2s ease infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ============ STAR BUTTON ============ */
+.star-wrap {
+  padding: 24px 20px 8px;
+  animation: fadeUp 1s 0.4s ease both;
+}
+
+.star-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #130f06, #1a1408);
+  border: 1px solid var(--gold-border);
+  border-radius: 18px;
+  padding: 22px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.4s;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.star-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(184,151,90,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.star-btn:hover::before, .star-btn:active::before { opacity: 1; }
+.star-btn:active { transform: scale(0.99); }
+
+.star-btn-glow {
+  position: absolute;
+  top: -20px; right: -20px;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, rgba(184,151,90,0.15), transparent);
+  border-radius: 50%;
+}
+
+.star-emoji { font-size: 28px; line-height: 1; flex-shrink: 0; position: relative; z-index: 1; }
+
+.star-text { flex: 1; position: relative; z-index: 1; }
+
+.star-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--gold2);
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+
+.star-desc { font-size: 12px; color: var(--muted); font-weight: 300; letter-spacing: 0.02em; }
+
+.star-chevron {
+  color: var(--gold);
+  font-size: 18px;
+  flex-shrink: 0;
+  position: relative; z-index: 1;
+  transition: transform 0.3s;
+}
+
+.star-btn:hover .star-chevron { transform: translateX(4px); }
+
+/* ============ SECTION LABEL ============ */
+.section-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 20px 20px 10px;
+  font-weight: 400;
+}
+
+/* ============ SERVICE GRID ============ */
+.grid-wrap {
+  padding: 0 20px 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  animation: fadeUp 1s 0.5s ease both;
+}
+
+.grid-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 16px;
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.grid-card:hover::after { opacity: 1; }
+.grid-card:hover { background: var(--surface2); transform: translateY(-2px); }
+.grid-card:active { transform: translateY(0) scale(0.98); }
+
+.card-icon { font-size: 24px; line-height: 1; }
+.card-label { font-size: 13px; font-weight: 400; color: var(--white); letter-spacing: 0.01em; }
+.card-sub { font-size: 11px; color: var(--muted); font-weight: 300; letter-spacing: 0.02em; }
+
+/* ============ INFO PANEL ============ */
+.info-wrap {
+  padding: 0 20px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: fadeUp 1s 0.55s ease both;
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; font-weight: 400; }
+.info-value { font-size: 15px; color: var(--white); font-weight: 300; letter-spacing: 0.02em; }
+
+.badge {
+  font-size: 10px;
+  padding: 4px 14px;
+  border-radius: 100px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.badge-gold { background: rgba(184,151,90,0.1); color: var(--gold); border: 1px solid var(--gold-border); }
+.badge-dim { background: rgba(255,255,255,0.04); color: var(--muted); border: 1px solid rgba(255,255,255,0.06); }
+
+/* ============ FOOTER ============ */
+.footer {
+  padding: 28px 20px 52px;
+  text-align: center;
+  animation: fadeUp 1s 0.6s ease both;
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
+
+.footer-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: 0.6; }
+
+/* ============ MODAL ============ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(20px);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s;
+}
+
+.overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  width: 100%;
+  max-width: 480px;
+  background: #0c0f12;
+  border: 1px solid var(--gold-border);
+  border-radius: 28px 28px 0 0;
+  padding: 28px 24px 52px;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.overlay.open .modal { transform: translateY(0); }
+
+.modal-handle {
+  width: 36px; height: 3px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  margin: 0 auto 24px;
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.modal-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; }
+
+.modal-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 20px;
+}
+
+.modal-divider-line { flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+.modal-divider-gem { width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); opacity: 0.5; }
+
+.modal-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-gold { background: var(--gold); color: #06080a; }
+.btn-gold:hover { background: var(--gold2); transform: translateY(-1px); }
+.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.08); color: var(--muted); }
+.btn-outline:hover { border-color: var(--gold-border); color: var(--white); }
+
+/* WIFI BOX */
+.wifi-box {
+  background: rgba(184,151,90,0.05);
+  border: 1px solid var(--gold-border);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wifi-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 22px; right: 22px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.3;
+}
+
+.wifi-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.wifi-network { font-size: 16px; color: var(--white); font-weight: 400; margin-bottom: 18px; letter-spacing: 0.02em; }
+.wifi-pass-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.wifi-pass { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold2); font-weight: 300; letter-spacing: 0.1em; }
+
+/* STARS */
+.star-row { display: flex; gap: 10px; justify-content: center; margin-bottom: 22px; }
+.star-big { font-size: 32px; cursor: pointer; transition: transform 0.2s; filter: grayscale(1); opacity: 0.25; }
+.star-big.active { filter: none; opacity: 1; transform: scale(1.12); }
+
+.review-box { display: none; margin-bottom: 16px; }
+.review-box textarea {
+  width: 100%;
+  min-height: 90px;
+  background: var(--surface);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--white);
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  resize: none;
+  outline: none;
+  letter-spacing: 0.01em;
+}
+
+.review-hint { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+
+/* MENU */
+.menu-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.menu-tab {
+  padding: 7px 16px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 400;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.menu-tab.active { background: var(--gold); border-color: var(--gold); color: #06080a; }
+
+.menu-panel { display: none; }
+.menu-panel.active { display: block; }
+
+.menu-cat { margin-bottom: 24px; }
+
+.menu-cat-title {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(184,151,90,0.12);
+  font-weight: 400;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-item:last-child { border-bottom: none; }
+.menu-item:hover { padding-left: 6px; }
+.menu-item.selected { padding-left: 6px; background: rgba(184,151,90,0.05); border-radius: 8px; padding: 12px 8px; margin: 2px 0; border-bottom: none; }
+
+.menu-item-info { flex: 1; min-width: 0; }
+.menu-item-name { font-size: 13px; color: var(--white); font-weight: 400; letter-spacing: 0.01em; margin-bottom: 2px; }
+.menu-item-desc { font-size: 11px; color: var(--muted); font-weight: 300; line-height: 1.4; }
+.menu-item-price { font-size: 13px; color: var(--gold); font-weight: 400; flex-shrink: 0; letter-spacing: 0.02em; }
+.menu-check { font-size: 12px; opacity: 0.2; flex-shrink: 0; color: var(--gold); transition: all 0.2s; }
+.menu-check.on { opacity: 1; }
+
+.order-btn {
+  position: sticky;
+  bottom: 0;
+  margin-top: 16px;
+  background: var(--gold);
+  color: #06080a;
+  border: none;
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.order-btn:hover { background: var(--gold2); }
+
+
+/* DINING */
+.dining-wrap {
+  padding: 0 20px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dining-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.dining-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 20%; bottom: 20%;
+  width: 2px;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: 0 2px 2px 0;
+}
+
+.dining-card:hover { background: var(--surface2); padding-left: 22px; }
+.dining-card:hover::before { opacity: 0.5; }
+.dining-card:active { transform: scale(0.99); }
+
+.dining-name { font-size: 14px; color: var(--white); font-weight: 400; letter-spacing: 0.01em; margin-bottom: 3px; }
+.dining-cuisine { font-size: 11px; color: var(--muted); font-weight: 300; margin-bottom: 3px; }
+.dining-hours { font-size: 11px; color: var(--muted); font-weight: 300; letter-spacing: 0.02em; }
+
+.dining-tag {
+  font-size: 10px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  background: rgba(184,151,90,0.08);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  white-space: nowrap;
+}
+
+.dining-tag.open { background: rgba(96,128,96,0.12); color: #90c890; border-color: rgba(96,128,96,0.25); }
+.dining-tag.seasonal { background: rgba(90,120,160,0.12); color: #90b0d8; border-color: rgba(90,120,160,0.25); }
+
+/* ANIMATIONS */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-inner">
+
+    <div class="jw-emblem" style="animation: fadeDown 1s ease both;">
+      <div class="jw-emblem-ring">
+        <div class="jw-letters">JW</div>
+      </div>
+    </div>
+
+    <div class="hotel-brand">Marriott Luxury Collection</div>
+    <div class="hotel-name">JW Marriott<br>Istanbul Bosphorus</div>
+    <div class="hotel-city">Istanbul, Türkiye</div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line right"></div>
+    </div>
+
+    <div class="nova-tag">
+      <div class="nova-pulse"></div>
+      Nova Smart Experience
+    </div>
+
+  </div>
+</div>
+
+<!-- REVIEW BUTTON -->
+<div class="star-wrap">
+  <button class="star-btn" onclick="openModal('review')">
+    <div class="star-btn-glow"></div>
+    <div class="star-emoji">⭐</div>
+    <div class="star-text">
+      <div class="star-title">Crown Your Stay with 5 Stars</div>
+      <div class="star-desc">Share your experience on Google</div>
+    </div>
+    <div class="star-chevron">›</div>
+  </button>
+</div>
+
+<!-- SERVICES -->
+<div class="section-label">Concierge Services</div>
+<div class="grid-wrap">
+  <div class="grid-card" onclick="openModal('dining')">
+    <div class="card-icon">🍽️</div>
+    <div>
+      <div class="card-label">In-Room Dining</div>
+      <div class="card-sub">Order from menu</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('wifi')">
+    <div class="card-icon">📶</div>
+    <div>
+      <div class="card-label">Wi-Fi Access</div>
+      <div class="card-sub">One tap connect</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('spa')">
+    <div class="card-icon">🧖</div>
+    <div>
+      <div class="card-label">Spa & Wellness</div>
+      <div class="card-sub">Book your session</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('concierge')">
+    <div class="card-icon">🔔</div>
+    <div>
+      <div class="card-label">Concierge</div>
+      <div class="card-sub">24/7 assistance</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('transport')">
+    <div class="card-icon">🚗</div>
+    <div>
+      <div class="card-label">Transportation</div>
+      <div class="card-sub">Transfers & taxi</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('checkout')">
+    <div class="card-icon">🗝️</div>
+    <div>
+      <div class="card-label">Express Check-Out</div>
+      <div class="card-sub">Quick departure</div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO -->
+<div class="section-label">Hotel Information</div>
+<div class="info-wrap">
+  <div class="info-card">
+    <div>
+      <div class="info-label">Breakfast · Grand Ballroom</div>
+      <div class="info-value">07:00 — 10:30</div>
+    </div>
+    <span class="badge badge-gold">Daily</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Check-In</div>
+      <div class="info-value">From 15:00</div>
+    </div>
+    <span class="badge badge-dim">3:00 PM</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Check-Out</div>
+      <div class="info-value">Until 12:00</div>
+    </div>
+    <span class="badge badge-dim">Today</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Spa & Fitness Center</div>
+      <div class="info-value">06:00 — 23:00</div>
+    </div>
+    <span class="badge badge-gold">Complimentary</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Restaurants On-Site</div>
+      <div class="info-value">7 Restaurants · 1 Bar</div>
+    </div>
+    <span class="badge badge-gold">Open</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Parking · Valet</div>
+      <div class="info-value">Daily €18 · Off-site 0.2 KM</div>
+    </div>
+    <span class="badge badge-dim">Available</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Pet Policy</div>
+      <div class="info-value">Pets Welcome · Max 2 · 8kg</div>
+    </div>
+    <span class="badge badge-gold">€100 / stay</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Property</div>
+      <div class="info-value">Smoke Free · Min Age 18</div>
+    </div>
+    <span class="badge badge-dim">Policy</span>
+  </div>
+</div>
+
+<!-- DINING -->
+<div class="section-label">Dining & Bars</div>
+<div class="dining-wrap">
+  <div class="dining-card" onclick="window.open('https://www.octoistanbul.com/','_blank')">
+    <div class="dining-left">
+      <div class="dining-name">Octo</div>
+      <div class="dining-cuisine">Mediterranean</div>
+      <div class="dining-hours">12:00 — 23:00 · Daily</div>
+    </div>
+    <div class="dining-right">
+      <span class="dining-tag">Reserve</span>
+    </div>
+  </div>
+  <div class="dining-card" onclick="window.open('https://iokinau.com/rezervasyon-karakoy/','_blank')">
+    <div class="dining-left">
+      <div class="dining-name">IOKI Nau</div>
+      <div class="dining-cuisine">Japanese · Nikkei</div>
+      <div class="dining-hours">12:00 — 00:00 · Daily</div>
+    </div>
+    <div class="dining-right">
+      <span class="dining-tag">Reserve</span>
+    </div>
+  </div>
+  <div class="dining-card">
+    <div class="dining-left">
+      <div class="dining-name">Sky Karaköy</div>
+      <div class="dining-cuisine">Rooftop Bar · 360° View</div>
+      <div class="dining-hours">17:30 — 01:00 · Apr–Nov</div>
+    </div>
+    <div class="dining-right">
+      <span class="dining-tag seasonal">Seasonal</span>
+    </div>
+  </div>
+  <div class="dining-card">
+    <div class="dining-left">
+      <div class="dining-name">Tea Lounge</div>
+      <div class="dining-cuisine">Café · Social · 200yr Brick Walls</div>
+      <div class="dining-hours">08:00 — 23:00 · Daily</div>
+    </div>
+    <div class="dining-right">
+      <span class="dining-tag open">Open</span>
+    </div>
+  </div>
+  <div class="dining-card" onclick="window.open('https://www.morecravings.com/en/venues/istanbul-baking-company-karakoy','_blank')">
+    <div class="dining-left">
+      <div class="dining-name">Istanbul Baking Co.</div>
+      <div class="dining-cuisine">Coffee House · Organic Bakery</div>
+      <div class="dining-hours">08:00 — 22:00 · Daily</div>
+    </div>
+    <div class="dining-right">
+      <span class="dining-tag open">Open</span>
+    </div>
+  </div>
+  <div class="dining-card">
+    <div class="dining-left">
+      <div class="dining-name">Wine Cellar</div>
+      <div class="dining-cuisine">Private Dining · Up to 8 guests</div>
+      <div class="dining-hours">16:00 — 22:00 · Daily</div>
+    </div>
+    <div class="dining-right">
+      <span class="dining-tag">Reserve</span>
+    </div>
+  </div>
+  <div class="dining-card">
+    <div class="dining-left">
+      <div class="dining-name">Skull & Bones</div>
+      <div class="dining-cuisine">Cocktail Bar · Karaköy Street</div>
+      <div class="dining-hours">15:00 — 01:00 · Mon–Thu</div>
+    </div>
+    <div class="dining-right">
+      <span class="dining-tag open">Open</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-badge">
+    <div class="footer-dot"></div>
+    Powered by Nova
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-handle"></div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const H = {
+  wifi_name: 'JWMarriott_Guest',
+  wifi_pass: 'Bosphorus2024',
+  whatsapp: '+905434979879',
+  google: 'https://g.page/r/JW_MARRIOTT_ISTANBUL/review',
+};
+
+const menuData = {
+  dining: [
+    { cat: '🥗 Starters', items: [
+      { n: 'Octopus Carpaccio', d: 'Citrus dressing, capers, micro herbs', p: '₺890' },
+      { n: 'Wagyu Beef Tartare', d: 'Quail egg, truffle aioli, brioche', p: '₺1.200' },
+      { n: 'Smoked Salmon Rosette', d: 'Cream cheese, cucumber, dill', p: '₺780' },
+      { n: 'Burrata & Heirloom Tomato', d: 'Aged balsamic, basil oil', p: '₺650' },
+    ]},
+    { cat: '🍝 Pasta & Risotto', items: [
+      { n: 'Black Truffle Fettuccine', d: 'Black truffle, parmesan, butter', p: '₺1.450' },
+      { n: 'Lobster Bisque Risotto', d: 'Arborio, lobster, saffron, chive', p: '₺1.650' },
+      { n: 'Spaghetti al Nero', d: 'Squid ink, king prawn, cherry tomato', p: '₺1.250' },
+    ]},
+    { cat: '🥩 Main Course', items: [
+      { n: 'Wagyu Striploin 200g', d: 'Truffle jus, pomme purée, asparagus', p: '₺3.200' },
+      { n: 'Grilled Turbot', d: 'Beurre blanc, capers, lemon zest', p: '₺2.400' },
+      { n: 'Rack of Lamb', d: 'Pistachio crust, rosemary jus, ratatouille', p: '₺2.800' },
+      { n: 'Pan-Seared Duck Breast', d: 'Orange glaze, wild berry compote', p: '₺1.950' },
+    ]},
+    { cat: '🍮 Desserts', items: [
+      { n: 'Valrhona Chocolate Fondant', d: 'Tahini ice cream, gold leaf', p: '₺580' },
+      { n: 'Crème Brûlée', d: 'Madagascar vanilla, seasonal berries', p: '₺480' },
+      { n: 'Cheese Selection', d: 'Artisan cheeses, honeycomb, walnut bread', p: '₺950' },
+    ]},
+  ],
+  beverages: [
+    { cat: '☕ Hot Beverages', items: [
+      { n: 'Turkish Coffee', d: 'Served with lokum', p: '₺180' },
+      { n: 'Nespresso Selection', p: '₺220' },
+      { n: 'Premium Tea Collection', d: 'Dammann Frères selection', p: '₺180' },
+    ]},
+    { cat: '🍸 Cocktails', items: [
+      { n: 'Bosphorus Sunset', d: 'Vodka, pomegranate, rose water, lemon', p: '₺680' },
+      { n: 'Ottoman Sour', d: 'Raki, lemon, honey, egg white', p: '₺620' },
+      { n: 'Negroni', d: 'Campari, sweet vermouth, gin', p: '₺680' },
+      { n: 'Champagne Cocktail', d: 'Moët & Chandon, Angostura, sugar', p: '₺980' },
+    ]},
+    { cat: '🍷 Wine by Glass', items: [
+      { n: 'Château Margaux 2018', d: 'Bordeaux, France', p: '₺2.800' },
+      { n: 'Opus One 2019', d: 'Napa Valley, USA', p: '₺3.200' },
+      { n: 'Kavaklıdere Prestige', d: 'Ankara, Turkey', p: '₺480' },
+    ]},
+  ]
+};
+
+const selectedItems = {};
+let rating = 0;
+
+const modals = {
+  review: () => `
+    <div class="modal-title">Rate Your Experience</div>
+    <div class="modal-desc">We strive for perfection. Share how we did.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <div class="star-row">
+      ${[1,2,3,4,5].map(n=>`<span class="star-big" onclick="rate(${n})">⭐</span>`).join('')}
+    </div>
+    <div class="review-box" id="rbox">
+      <textarea id="rtext" placeholder="Tell us about your experience..."></textarea>
+      <div class="review-hint" id="rhint"></div>
+    </div>
+    <button class="modal-btn btn-gold" id="rbtn" onclick="submitReview()" style="display:none;">Continue →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Perhaps Later</button>
+  `,
+  wifi: () => `
+    <div class="modal-title">Wi-Fi Access</div>
+    <div class="modal-desc">Complimentary high-speed internet throughout the property.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <div class="wifi-box">
+      <div class="wifi-label">Network</div>
+      <div class="wifi-network">${H.wifi_name}</div>
+      <div class="wifi-pass-label">Password</div>
+      <div class="wifi-pass">${H.wifi_pass}</div>
+    </div>
+    <button class="modal-btn btn-gold" onclick="copyWifi()">Copy Password</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  dining: () => `
+    <div class="modal-title">In-Room Dining</div>
+    <div class="modal-desc">Select items and your order will be sent directly to our kitchen.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="switchTab('dining-food',this)">🍽️ À la Carte</button>
+      <button class="menu-tab" onclick="switchTab('dining-bev',this)">🍷 Beverages</button>
+    </div>
+    <div id="dining-food" class="menu-panel active">
+      ${menuData.dining.map(cat=>`
+        <div class="menu-cat">
+          <div class="menu-cat-title">${cat.cat}</div>
+          ${cat.items.map((item,i)=>{
+            const k='d_'+cat.cat+'_'+i;
+            return `<div class="menu-item" onclick="toggleItem('${k}','${item.n}','${item.p}',this)" id="mi_${k}">
+              <div class="menu-item-info">
+                <div class="menu-item-name">${item.n}</div>
+                ${item.d?`<div class="menu-item-desc">${item.d}</div>`:''}
+              </div>
+              <div class="menu-item-price">${item.p}</div>
+              <div class="menu-check" id="mc_${k}">◇</div>
+            </div>`;
+          }).join('')}
+        </div>
+      `).join('')}
+    </div>
+    <div id="dining-bev" class="menu-panel">
+      ${menuData.beverages.map(cat=>`
+        <div class="menu-cat">
+          <div class="menu-cat-title">${cat.cat}</div>
+          ${cat.items.map((item,i)=>{
+            const k='b_'+cat.cat+'_'+i;
+            return `<div class="menu-item" onclick="toggleItem('${k}','${item.n}','${item.p}',this)" id="mi_${k}">
+              <div class="menu-item-info">
+                <div class="menu-item-name">${item.n}</div>
+                ${item.d?`<div class="menu-item-desc">${item.d}</div>`:''}
+              </div>
+              <div class="menu-item-price">${item.p}</div>
+              <div class="menu-check" id="mc_${k}">◇</div>
+            </div>`;
+          }).join('')}
+        </div>
+      `).join('')}
+    </div>
+    <button class="order-btn" onclick="sendOrder()">Place Order via WhatsApp →</button>
+  `,
+  spa: () => `
+    <div class="modal-title">Spa & Wellness</div>
+    <div class="modal-desc">Indulge in our award-winning Quan Spa. Our team will assist you in booking your preferred treatment.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I would like to book a Spa treatment. Could you please assist me?')">Book via WhatsApp →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  concierge: () => `
+    <div class="modal-title">Concierge</div>
+    <div class="modal-desc">Our dedicated concierge team is at your service around the clock. Let us know how we can assist you.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I need concierge assistance.')">Contact via WhatsApp →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  transport: () => `
+    <div class="modal-title">Transportation</div>
+    <div class="modal-desc">Private transfers, Bosphorus cruises, and city tours. Let us arrange your journey.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I would like to arrange transportation.')">Request via WhatsApp →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  checkout: () => `
+    <div class="modal-title">Express Check-Out</div>
+    <div class="modal-desc">We hope your stay has been exceptional. Please notify us before your departure and we will prepare your bill.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I am ready to check out. Thank you for a wonderful stay.')">Notify Reception →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Cancel</button>
+  `,
+};
+
+function openModal(t) {
+  document.getElementById('modal-body').innerHTML = modals[t]();
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('overlay')) return;
+  document.getElementById('overlay').classList.remove('open');
+}
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleItem(k, name, price, el) {
+  const mc = document.getElementById('mc_' + k);
+  if (selectedItems[k]) {
+    delete selectedItems[k];
+    el.classList.remove('selected');
+    mc.textContent = '◇';
+    mc.classList.remove('on');
+  } else {
+    selectedItems[k] = { name, price };
+    el.classList.add('selected');
+    mc.textContent = '◆';
+    mc.classList.add('on');
+  }
+}
+
+function sendOrder() {
+  const items = Object.values(selectedItems);
+  if (!items.length) { alert('Please select at least one item.'); return; }
+  const list = items.map(i => `• ${i.name} (${i.price})`).join('\n');
+  const msg = encodeURIComponent(`Hello, I would like to place a room service order:\n\n${list}\n\nThank you.`);
+  window.open(`https://wa.me/${H.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+}
+
+function copyWifi() {
+  navigator.clipboard.writeText(H.wifi_pass).then(() => {
+    const btn = document.querySelector('.btn-gold');
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied';
+    btn.style.background = '#608060';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2000);
+  });
+}
+
+function rate(n) {
+  rating = n;
+  document.querySelectorAll('.star-big').forEach((s, i) => s.classList.toggle('active', i < n));
+  document.getElementById('rbox').style.display = 'block';
+  const btn = document.getElementById('rbtn');
+  const hint = document.getElementById('rhint');
+  btn.style.display = 'flex';
+  if (n >= 3) {
+    hint.textContent = '✦ Your review will be shared on Google. Your kind words help us greatly.';
+    hint.style.color = 'var(--gold)';
+    btn.textContent = 'Share on Google →';
+    btn.style.background = 'var(--gold)';
+    btn.style.color = '#06080a';
+  } else {
+    hint.textContent = 'We sincerely apologize. Your feedback will be addressed immediately by our management team.';
+    hint.style.color = 'var(--muted)';
+    btn.textContent = 'Send to Management →';
+    btn.style.background = 'rgba(192,112,96,0.2)';
+    btn.style.color = 'var(--danger)';
+    btn.style.border = '1px solid rgba(192,112,96,0.3)';
+  }
+}
+
+function submitReview() {
+  const text = document.getElementById('rtext').value.trim();
+  if (rating >= 3) {
+    if (text) navigator.clipboard.writeText(text).catch(() => {});
+    window.open(H.google, '_blank');
+  } else {
+    const msg = encodeURIComponent(`Dear Management, I would like to share feedback (${rating} stars):\n\n${text || 'General feedback.'}`);
+    window.open(`https://wa.me/${H.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+  }
+}
+
+function goWA(msg) {
+  window.open(`https://wa.me/${H.whatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+</script>
+</body>
+</html>
