@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wings Hotels Pera — Nova Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #080a0c;
+  --surface: #0e1114;
+  --surface2: #141820;
+  --gold: #9a8060;
+  --gold2: #b89a74;
+  --gold3: #d4bfa0;
+  --gold-dim: rgba(154,128,96,0.08);
+  --gold-border: rgba(154,128,96,0.18);
+  --white: #ebe6de;
+  --muted: #545250;
+  --danger: #b06860;
+  --success: #607860;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ============ HEADER ============ */
+.header {
+  position: relative;
+  padding: 0 0 40px;
+  overflow: hidden;
+}
+
+.header-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(154,128,96,0.10) 0%, transparent 70%),
+    linear-gradient(180deg, #0c1018 0%, var(--bg) 100%);
+}
+
+/* Pera / Beyoğlu silhouette */
+.header-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 70px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 70' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q15,42 30,46 Q50,52 70,40 Q85,32 95,36 Q100,38 105,30 Q110,22 115,27 Q118,30 120,24 Q122,18 126,22 Q130,26 134,20 Q138,14 144,20 Q150,26 156,22 Q162,18 170,24 Q178,30 185,26 Q190,22 196,28 Q202,34 210,28 Q218,22 226,28 Q234,34 244,28 Q254,22 264,30 Q274,38 280,32 Q290,24 300,30 Q310,38 325,34 Q345,26 365,38 Q385,50 400,44 L400,70 L0,70 Z' fill='rgba(154,128,96,0.05)'/%3E%3C/svg%3E") no-repeat bottom;
+  background-size: 100% 100%;
+}
+
+.header-inner {
+  position: relative;
+  z-index: 2;
+  padding: 52px 28px 0;
+  text-align: center;
+}
+
+/* WINGS EMBLEM */
+.wings-emblem {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 24px;
+  animation: fadeDown 1s ease both;
+}
+
+.wings-emblem-ring {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: emblem-pulse 4s ease-in-out infinite;
+}
+
+@keyframes emblem-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(154,128,96,0.2); }
+  50% { box-shadow: 0 0 0 12px rgba(154,128,96,0); }
+}
+
+.wings-emblem-ring::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 1px solid rgba(154,128,96,0.08);
+}
+
+.wings-icon {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.hotel-brand {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  opacity: 0.8;
+  animation: fadeDown 1s 0.1s ease both;
+}
+
+.hotel-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  margin-bottom: 6px;
+  animation: fadeDown 1s 0.2s ease both;
+}
+
+.hotel-city {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 300;
+  margin-bottom: 28px;
+  animation: fadeDown 1s 0.3s ease both;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 28px;
+  animation: fadeDown 1s 0.35s ease both;
+}
+
+.divider-line {
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+  opacity: 0.4;
+}
+
+.divider-line.right {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.divider-diamond {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+.nova-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 16px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+  animation: fadeDown 1s 0.4s ease both;
+}
+
+.nova-pulse {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: blink 2s ease infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ============ STAR BUTTON ============ */
+.star-wrap {
+  padding: 24px 20px 8px;
+  animation: fadeUp 1s 0.4s ease both;
+}
+
+.star-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #100e08, #181408);
+  border: 1px solid var(--gold-border);
+  border-radius: 18px;
+  padding: 22px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.4s;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.star-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(154,128,96,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.star-btn:hover::before, .star-btn:active::before { opacity: 1; }
+.star-btn:active { transform: scale(0.99); }
+
+.star-btn-glow {
+  position: absolute;
+  top: -20px; right: -20px;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, rgba(154,128,96,0.15), transparent);
+  border-radius: 50%;
+}
+
+.star-emoji { font-size: 28px; line-height: 1; flex-shrink: 0; position: relative; z-index: 1; }
+.star-text { flex: 1; position: relative; z-index: 1; }
+
+.star-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--gold2);
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+
+.star-desc { font-size: 12px; color: var(--muted); font-weight: 300; letter-spacing: 0.02em; }
+
+.star-chevron {
+  color: var(--gold);
+  font-size: 18px;
+  flex-shrink: 0;
+  position: relative; z-index: 1;
+  transition: transform 0.3s;
+}
+
+.star-btn:hover .star-chevron { transform: translateX(4px); }
+
+/* ============ SECTION LABEL ============ */
+.section-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 20px 20px 10px;
+  font-weight: 400;
+}
+
+/* ============ SERVICE GRID ============ */
+.grid-wrap {
+  padding: 0 20px 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  animation: fadeUp 1s 0.5s ease both;
+}
+
+.grid-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 16px;
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.grid-card:hover::after { opacity: 1; }
+.grid-card:hover { background: var(--surface2); transform: translateY(-2px); }
+.grid-card:active { transform: translateY(0) scale(0.98); }
+
+.card-icon { font-size: 24px; line-height: 1; }
+.card-label { font-size: 13px; font-weight: 400; color: var(--white); letter-spacing: 0.01em; }
+.card-sub { font-size: 11px; color: var(--muted); font-weight: 300; letter-spacing: 0.02em; }
+
+/* ============ INFO PANEL ============ */
+.info-wrap {
+  padding: 0 20px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: fadeUp 1s 0.55s ease both;
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; font-weight: 400; }
+.info-value { font-size: 15px; color: var(--white); font-weight: 300; letter-spacing: 0.02em; }
+
+.badge {
+  font-size: 10px;
+  padding: 4px 14px;
+  border-radius: 100px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.badge-gold { background: rgba(154,128,96,0.1); color: var(--gold); border: 1px solid var(--gold-border); }
+.badge-dim { background: rgba(255,255,255,0.04); color: var(--muted); border: 1px solid rgba(255,255,255,0.06); }
+
+/* ============ DINING ============ */
+.dining-wrap {
+  padding: 0 20px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: fadeUp 1s 0.58s ease both;
+}
+
+.dining-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.dining-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 20%; bottom: 20%;
+  width: 2px;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: 0 2px 2px 0;
+}
+
+.dining-card:hover { background: var(--surface2); padding-left: 22px; }
+.dining-card:hover::before { opacity: 0.5; }
+.dining-card:active { transform: scale(0.99); }
+
+.dining-name { font-size: 14px; color: var(--white); font-weight: 400; letter-spacing: 0.01em; margin-bottom: 3px; }
+.dining-cuisine { font-size: 11px; color: var(--muted); font-weight: 300; margin-bottom: 3px; }
+.dining-hours { font-size: 11px; color: var(--muted); font-weight: 300; letter-spacing: 0.02em; }
+
+.dining-tag {
+  font-size: 10px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  background: rgba(154,128,96,0.08);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  white-space: nowrap;
+}
+
+.dining-tag.open { background: rgba(96,120,96,0.12); color: #90c890; border-color: rgba(96,120,96,0.25); }
+
+/* ============ FOOTER ============ */
+.footer {
+  padding: 28px 20px 52px;
+  text-align: center;
+  animation: fadeUp 1s 0.6s ease both;
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
+
+.footer-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: 0.6; }
+
+/* ============ MODAL ============ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(20px);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s;
+}
+
+.overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  width: 100%;
+  max-width: 480px;
+  background: #0e1114;
+  border: 1px solid var(--gold-border);
+  border-radius: 28px 28px 0 0;
+  padding: 28px 24px 52px;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.overlay.open .modal { transform: translateY(0); }
+
+.modal-handle {
+  width: 36px; height: 3px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  margin: 0 auto 24px;
+}
+
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.modal-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; }
+
+.modal-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 20px;
+}
+
+.modal-divider-line { flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+.modal-divider-gem { width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); opacity: 0.5; }
+
+.modal-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-gold { background: var(--gold); color: #080a0c; }
+.btn-gold:hover { background: var(--gold2); transform: translateY(-1px); }
+.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.08); color: var(--muted); }
+.btn-outline:hover { border-color: var(--gold-border); color: var(--white); }
+
+/* WIFI BOX */
+.wifi-box {
+  background: rgba(154,128,96,0.05);
+  border: 1px solid var(--gold-border);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wifi-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 22px; right: 22px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.3;
+}
+
+.wifi-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.wifi-network { font-size: 16px; color: var(--white); font-weight: 400; margin-bottom: 18px; letter-spacing: 0.02em; }
+.wifi-pass-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.wifi-pass { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold2); font-weight: 300; letter-spacing: 0.1em; }
+
+/* STARS */
+.star-row { display: flex; gap: 10px; justify-content: center; margin-bottom: 22px; }
+.star-big { font-size: 32px; cursor: pointer; transition: transform 0.2s; filter: grayscale(1); opacity: 0.25; }
+.star-big.active { filter: none; opacity: 1; transform: scale(1.12); }
+
+.review-box { display: none; margin-bottom: 16px; }
+.review-box textarea {
+  width: 100%;
+  min-height: 90px;
+  background: var(--surface);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 14px;
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 8px;
+}
+
+.review-box textarea:focus { border-color: var(--gold); }
+.review-hint { font-size: 11px; font-weight: 300; letter-spacing: 0.02em; line-height: 1.5; }
+
+/* MENU */
+.menu-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+.menu-tab {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+
+.menu-tab.active { background: rgba(154,128,96,0.1); border-color: var(--gold-border); color: var(--gold); }
+
+.menu-panel { display: none; }
+.menu-panel.active { display: block; }
+
+.menu-cat { margin-bottom: 20px; }
+.menu-cat-title { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 400; }
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 1px solid transparent;
+  margin-bottom: 4px;
+}
+
+.menu-item:hover { background: var(--surface2); }
+.menu-item.selected { background: rgba(154,128,96,0.08); border-color: var(--gold-border); }
+
+.menu-item-info { flex: 1; }
+.menu-item-name { font-size: 13px; color: var(--white); font-weight: 400; margin-bottom: 2px; }
+.menu-item-desc { font-size: 11px; color: var(--muted); font-weight: 300; }
+.menu-item-price { font-size: 13px; color: var(--gold2); font-weight: 300; white-space: nowrap; }
+.menu-check { font-size: 14px; color: var(--muted); transition: color 0.2s; }
+.menu-check.on { color: var(--gold); }
+
+.order-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--gold);
+  color: #080a0c;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s;
+  margin-top: 12px;
+}
+
+.order-btn:hover { background: var(--gold2); transform: translateY(-1px); }
+
+/* ANIMATIONS */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-inner">
+
+    <div class="wings-emblem">
+      <div class="wings-emblem-ring">
+        <div class="wings-icon">🪶</div>
+      </div>
+    </div>
+
+    <div class="hotel-brand">The Wings Hotels</div>
+    <div class="hotel-name">Pera</div>
+    <div class="hotel-city">Beyoğlu, İstanbul</div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line right"></div>
+    </div>
+
+    <div class="nova-tag">
+      <div class="nova-pulse"></div>
+      Nova Misafir Deneyimi
+    </div>
+
+  </div>
+</div>
+
+<!-- REVIEW BUTTON -->
+<div class="star-wrap">
+  <button class="star-btn" onclick="openModal('review')">
+    <div class="star-btn-glow"></div>
+    <div class="star-emoji">⭐</div>
+    <div class="star-text">
+      <div class="star-title">Konaklamanızı Değerlendirin</div>
+      <div class="star-desc">Google'da deneyiminizi paylaşın</div>
+    </div>
+    <div class="star-chevron">›</div>
+  </button>
+</div>
+
+<!-- SERVICES -->
+<div class="section-label">Misafir Hizmetleri</div>
+<div class="grid-wrap">
+  <div class="grid-card" onclick="openModal('dining')">
+    <div class="card-icon">🍽️</div>
+    <div>
+      <div class="card-label">Oda Servisi</div>
+      <div class="card-sub">Menüden sipariş ver</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('wifi')">
+    <div class="card-icon">📶</div>
+    <div>
+      <div class="card-label">Wi-Fi Bağlantısı</div>
+      <div class="card-sub">Tek dokunuşla bağlan</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('fitness')">
+    <div class="card-icon">🏋️</div>
+    <div>
+      <div class="card-label">Fitness</div>
+      <div class="card-sub">Modern ekipman</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('concierge')">
+    <div class="card-icon">🔔</div>
+    <div>
+      <div class="card-label">Concierge</div>
+      <div class="card-sub">7/24 hizmetinizde</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('meeting')">
+    <div class="card-icon">💼</div>
+    <div>
+      <div class="card-label">Toplantı Odası</div>
+      <div class="card-sub">Rezervasyon yap</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('checkout')">
+    <div class="card-icon">🗝️</div>
+    <div>
+      <div class="card-label">Hızlı Çıkış</div>
+      <div class="card-sub">Express check-out</div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO -->
+<div class="section-label">Otel Bilgileri</div>
+<div class="info-wrap">
+  <div class="info-card">
+    <div>
+      <div class="info-label">Kahvaltı · The Hezar Restaurant</div>
+      <div class="info-value">Hf. içi 07:30 — 10:30</div>
+    </div>
+    <span class="badge badge-gold">Hf. sonu 11:00</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Giriş Saati</div>
+      <div class="info-value">14:00'dan itibaren</div>
+    </div>
+    <span class="badge badge-dim">Check-In</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Çıkış Saati</div>
+      <div class="info-value">12:00'a kadar</div>
+    </div>
+    <span class="badge badge-dim">Bugün</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Tea Pera · Lobby Lounge</div>
+      <div class="info-value">09:00 — 21:00</div>
+    </div>
+    <span class="badge badge-gold">Açık</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Fitness Merkezi</div>
+      <div class="info-value">06:00 — 23:00</div>
+    </div>
+    <span class="badge badge-gold">Ücretsiz</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Konum · Beyoğlu</div>
+      <div class="info-value">Meşrutiyet Cad. No: 35</div>
+    </div>
+    <span class="badge badge-dim">Pera</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Galata Kulesi</div>
+      <div class="info-value">Yürüme mesafesinde</div>
+    </div>
+    <span class="badge badge-gold">~5 dk</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">İstiklal Caddesi</div>
+      <div class="info-value">Birkaç adım uzaklıkta</div>
+    </div>
+    <span class="badge badge-gold">~2 dk</span>
+  </div>
+</div>
+
+<!-- DINING -->
+<div class="section-label">Yiyecek & İçecek</div>
+<div class="dining-wrap">
+  <div class="dining-card">
+    <div>
+      <div class="dining-name">The Hezar Restaurant</div>
+      <div class="dining-cuisine">Türk & Dünya Mutfağı · Boğaz Manzarası</div>
+      <div class="dining-hours">Kahvaltı 07:30 — 10:30 · Hf. sonu 11:00</div>
+    </div>
+    <span class="dining-tag open">Açık</span>
+  </div>
+  <div class="dining-card">
+    <div>
+      <div class="dining-name">Tea Pera</div>
+      <div class="dining-cuisine">İngiliz Çay Kültürü · Scone & Kek</div>
+      <div class="dining-hours">09:00 — 21:00 · Her gün</div>
+    </div>
+    <span class="dining-tag open">Açık</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-badge">
+    <div class="footer-dot"></div>
+    Nova · The Wings Hotels Pera
+    <div class="footer-dot"></div>
+  </div>
+</div>
+
+<!-- MODAL OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const H = {
+  wifi_name: 'TheWings_Pera',
+  wifi_pass: 'Pera2024',
+  whatsapp: '+902123514444',
+  google: 'https://g.page/r/WINGS_PERA_PLACEHOLDER/review',
+};
+
+const menuData = {
+  dining: [
+    { cat: '🥐 Kahvaltı', items: [
+      { n: 'Türk Kahvaltısı Tabağı', d: 'Peynir, zeytin, domates, salatalık, bal, kaymak', p: '₺480' },
+      { n: 'Menemen', d: 'Domates, biber, yumurta', p: '₺320' },
+      { n: 'Avokado Toast', d: 'Ekşi maya ekmek, avokado, limon, mikro yeşillik', p: '₺380' },
+      { n: 'Granola Tabağı', d: 'Yoğurt, mevsim meyveleri, bal', p: '₺280' },
+    ]},
+    { cat: '🥗 Ana Yemekler', items: [
+      { n: 'Club Sandviç', d: 'Tavuk, marul, domates, turşu', p: '₺420' },
+      { n: 'Izgara Köfte', d: 'Dana et, yanında patates', p: '₺520' },
+      { n: 'Sebze Risotto', d: 'Parmesan, taze otlar', p: '₺460' },
+      { n: 'Izgara Somon', d: 'Basmati pilav, sebze', p: '₺680' },
+    ]},
+    { cat: '🍮 Tatlılar', items: [
+      { n: 'Baklava Tabağı', d: 'Antep fıstıklı, kaymak ile', p: '₺280' },
+      { n: 'Crème Brûlée', d: 'Vanilyalı, mevsim meyveleri', p: '₺320' },
+      { n: 'Künefe', d: 'Dondurma ile servis', p: '₺360' },
+    ]},
+  ],
+  beverages: [
+    { cat: '☕ Sıcak İçecekler', items: [
+      { n: 'Türk Kahvesi', d: 'Lokum ile', p: '₺120' },
+      { n: 'Nespresso Seçkisi', p: '₺160' },
+      { n: 'Özel Çay Koleksiyonu', d: 'Tea Pera karışımları', p: '₺140' },
+      { n: 'Sütlü Kahve', d: 'Flat white, latte, cappuccino', p: '₺160' },
+    ]},
+    { cat: '🍸 Cocktail', items: [
+      { n: 'Pera Spritz', d: 'Prosecco, elma, tarçın, limon', p: '₺480' },
+      { n: 'Telgraf Sour', d: 'Rakı, limon, bal, yumurta akı', p: '₺440' },
+      { n: 'Boğaz Sunset', d: 'Votka, nar, gül suyu, limon', p: '₺520' },
+    ]},
+    { cat: '🍷 Şarap', items: [
+      { n: 'Kavaklıdere Prestige', d: 'Ankara', p: '₺480' },
+      { n: 'Pamukkale Anfora', d: 'Denizli', p: '₺360' },
+      { n: 'Corvus Karasakız', d: 'Bozcaada', p: '₺520' },
+    ]},
+  ]
+};
+
+const selectedItems = {};
+let rating = 0;
+
+const modals = {
+  review: () => `
+    <div class="modal-title">Deneyiminizi Değerlendirin</div>
+    <div class="modal-desc">Mükemmelliği hedefliyoruz. Görüşleriniz bizim için değerlidir.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <div class="star-row">
+      ${[1,2,3,4,5].map(n=>`<span class="star-big" onclick="rate(${n})">⭐</span>`).join('')}
+    </div>
+    <div class="review-box" id="rbox">
+      <textarea id="rtext" placeholder="Konaklamanız hakkında düşüncelerinizi paylaşın..."></textarea>
+      <div class="review-hint" id="rhint"></div>
+    </div>
+    <button class="modal-btn btn-gold" id="rbtn" onclick="submitReview()" style="display:none;">Devam Et →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Belki Daha Sonra</button>
+  `,
+  wifi: () => `
+    <div class="modal-title">Wi-Fi Bağlantısı</div>
+    <div class="modal-desc">Tüm otelde ücretsiz yüksek hızlı internet.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <div class="wifi-box">
+      <div class="wifi-label">Ağ Adı</div>
+      <div class="wifi-network">${H.wifi_name}</div>
+      <div class="wifi-pass-label">Şifre</div>
+      <div class="wifi-pass">${H.wifi_pass}</div>
+    </div>
+    <button class="modal-btn btn-gold" onclick="copyWifi()">Şifreyi Kopyala</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Kapat</button>
+  `,
+  dining: () => `
+    <div class="modal-title">Oda Servisi</div>
+    <div class="modal-desc">Seçimlerinizi yapın, siparişiniz doğrudan mutfağımıza iletilsin.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="switchTab('dining-food',this)">🍽️ Yemekler</button>
+      <button class="menu-tab" onclick="switchTab('dining-bev',this)">🍷 İçecekler</button>
+    </div>
+    <div id="dining-food" class="menu-panel active">
+      ${menuData.dining.map(cat=>`
+        <div class="menu-cat">
+          <div class="menu-cat-title">${cat.cat}</div>
+          ${cat.items.map((item,i)=>{
+            const k='d_'+cat.cat+'_'+i;
+            return `<div class="menu-item" onclick="toggleItem('${k}','${item.n}','${item.p}',this)" id="mi_${k}">
+              <div class="menu-item-info">
+                <div class="menu-item-name">${item.n}</div>
+                ${item.d?`<div class="menu-item-desc">${item.d}</div>`:''}
+              </div>
+              <div class="menu-item-price">${item.p}</div>
+              <div class="menu-check" id="mc_${k}">◇</div>
+            </div>`;
+          }).join('')}
+        </div>
+      `).join('')}
+    </div>
+    <div id="dining-bev" class="menu-panel">
+      ${menuData.beverages.map(cat=>`
+        <div class="menu-cat">
+          <div class="menu-cat-title">${cat.cat}</div>
+          ${cat.items.map((item,i)=>{
+            const k='b_'+cat.cat+'_'+i;
+            return `<div class="menu-item" onclick="toggleItem('${k}','${item.n}','${item.p}',this)" id="mi_${k}">
+              <div class="menu-item-info">
+                <div class="menu-item-name">${item.n}</div>
+                ${item.d?`<div class="menu-item-desc">${item.d}</div>`:''}
+              </div>
+              <div class="menu-item-price">${item.p}</div>
+              <div class="menu-check" id="mc_${k}">◇</div>
+            </div>`;
+          }).join('')}
+        </div>
+      `).join('')}
+    </div>
+    <button class="order-btn" onclick="sendOrder()">WhatsApp ile Sipariş Ver →</button>
+  `,
+  fitness: () => `
+    <div class="modal-title">Fitness Merkezi</div>
+    <div class="modal-desc">Modern ekipmanlarla donatılmış fitness merkezimiz konaklamanız süresince ücretsiz olarak kullanımınıza açıktır.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <div class="wifi-box">
+      <div class="wifi-label">Çalışma Saatleri</div>
+      <div class="wifi-network">06:00 — 23:00</div>
+      <div class="wifi-pass-label">Kat</div>
+      <div class="wifi-pass" style="font-size:20px">Resepsiyon'a sorunuz</div>
+    </div>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Kapat</button>
+  `,
+  meeting: () => `
+    <div class="modal-title">Toplantı Odası</div>
+    <div class="modal-desc">Şık tasarımı ve doğal ışığıyla toplantı odamız; yönetici toplantılarından yaratıcı workshop'lara kadar her ihtiyacınıza uygundur.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Merhaba, toplantı odası rezervasyonu yapmak istiyorum. Yardımcı olabilir misiniz?')">WhatsApp ile Rezervasyon →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Kapat</button>
+  `,
+  concierge: () => `
+    <div class="modal-title">Concierge</div>
+    <div class="modal-desc">Deneyimli concierge ekibimiz 7/24 hizmetinizde. İstanbul'u en iyi şekilde keşfetmeniz için buradayız.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Merhaba, concierge yardımına ihtiyacım var.')">WhatsApp ile İletişim →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Kapat</button>
+  `,
+  checkout: () => `
+    <div class="modal-title">Hızlı Çıkış</div>
+    <div class="modal-desc">Konaklamanızın mükemmel geçmesini umuyoruz. Ayrılmadan önce bizi haberdar edin, hesabınızı hazırlayalım.</div>
+    <div class="modal-divider"><div class="modal-divider-line"></div><div class="modal-divider-gem"></div><div class="modal-divider-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Merhaba, çıkış yapmak istiyorum. Harika bir konaklama için teşekkürler.')">Resepsiyonu Bilgilendir →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Vazgeç</button>
+  `,
+};
+
+function openModal(t) {
+  document.getElementById('modal-body').innerHTML = modals[t]();
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('overlay')) return;
+  document.getElementById('overlay').classList.remove('open');
+}
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleItem(k, name, price, el) {
+  const mc = document.getElementById('mc_' + k);
+  if (selectedItems[k]) {
+    delete selectedItems[k];
+    el.classList.remove('selected');
+    mc.textContent = '◇';
+    mc.classList.remove('on');
+  } else {
+    selectedItems[k] = { name, price };
+    el.classList.add('selected');
+    mc.textContent = '◆';
+    mc.classList.add('on');
+  }
+}
+
+function sendOrder() {
+  const items = Object.values(selectedItems);
+  if (!items.length) { alert('Lütfen en az bir ürün seçin.'); return; }
+  const list = items.map(i => `• ${i.name} (${i.price})`).join('\n');
+  const msg = encodeURIComponent(`Merhaba, oda servisi siparişi vermek istiyorum:\n\n${list}\n\nTeşekkürler.`);
+  window.open(`https://wa.me/${H.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+}
+
+function copyWifi() {
+  navigator.clipboard.writeText(H.wifi_pass).then(() => {
+    const btn = document.querySelector('.btn-gold');
+    const orig = btn.textContent;
+    btn.textContent = '✓ Kopyalandı';
+    btn.style.background = '#607860';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2000);
+  });
+}
+
+function rate(n) {
+  rating = n;
+  document.querySelectorAll('.star-big').forEach((s, i) => s.classList.toggle('active', i < n));
+  document.getElementById('rbox').style.display = 'block';
+  const btn = document.getElementById('rbtn');
+  const hint = document.getElementById('rhint');
+  btn.style.display = 'flex';
+  if (n >= 3) {
+    hint.textContent = '✦ Değerlendirmeniz Google\'da paylaşılacak. Güzel sözleriniz bize çok yardımcı oluyor.';
+    hint.style.color = 'var(--gold)';
+    btn.textContent = 'Google\'da Paylaş →';
+    btn.style.background = 'var(--gold)';
+    btn.style.color = '#080a0c';
+  } else {
+    hint.textContent = 'Yaşadığınız deneyim için özür dileriz. Geri bildiriminiz yönetim ekibimize iletilecektir.';
+    hint.style.color = 'var(--muted)';
+    btn.textContent = 'Yönetime İlet →';
+    btn.style.background = 'rgba(176,104,96,0.2)';
+    btn.style.color = 'var(--danger)';
+    btn.style.border = '1px solid rgba(176,104,96,0.3)';
+  }
+}
+
+function submitReview() {
+  const text = document.getElementById('rtext').value.trim();
+  if (rating >= 3) {
+    if (text) navigator.clipboard.writeText(text).catch(() => {});
+    window.open(H.google, '_blank');
+  } else {
+    const msg = encodeURIComponent(`Sayın Yönetim, geri bildirim paylaşmak istiyorum (${rating} yıldız):\n\n${text || 'Genel geri bildirim.'}`);
+    window.open(`https://wa.me/${H.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+  }
+}
+
+function goWA(msg) {
+  window.open(`https://wa.me/${H.whatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+</script>
+</body>
+</html>
