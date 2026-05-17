@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Halich Hotel — Galata View Suite</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #080d14;
+  --navy: #0d1625;
+  --navy2: #121e30;
+  --gold: #c9a96e;
+  --gold2: #e8c99a;
+  --gold-dim: rgba(201,169,110,0.1);
+  --gold-border: rgba(201,169,110,0.2);
+  --white: #f0ece4;
+  --muted: #6b7280;
+  --success: #70c9a0;
+  --danger: #e07070;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Jost', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* GRAIN */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* HEADER */
+.header {
+  position: relative;
+  padding: 48px 28px 40px;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--gold-border);
+}
+
+/* Galata tower SVG background */
+.header-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0d1a2e 0%, var(--bg) 100%);
+}
+
+.header-glow {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(201,169,110,0.12), transparent 70%);
+  pointer-events: none;
+}
+
+/* Galata Tower Illustration */
+.galata-wrap {
+  position: absolute;
+  right: -10px;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  opacity: 0.08;
+  display: flex;
+  align-items: flex-end;
+}
+
+.header-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.hotel-brand {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+.hotel-logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+/* Welcome badge */
+.welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  margin-bottom: 20px;
+  background: rgba(201,169,110,0.06);
+}
+
+.welcome-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.welcome-text {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+}
+
+.room-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.room-type {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+/* Gold divider */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.div-line { width: 40px; height: 1px; background: var(--gold); opacity: 0.3; }
+.div-diamond { width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); opacity: 0.6; }
+
+/* Welcome message */
+.welcome-msg {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(240,236,228,0.65);
+  line-height: 1.6;
+  max-width: 280px;
+  margin: 0 auto;
+  letter-spacing: 0.02em;
+}
+
+/* GALATA FACT */
+.galata-fact {
+  margin: 0 20px;
+  background: var(--navy);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.galata-fact::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 20px; right: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.4;
+}
+
+.fact-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 6px;
+  font-weight: 300;
+}
+
+.fact-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 20px 20px 10px;
+  font-weight: 300;
+}
+
+/* STAR BUTTON */
+.star-wrap { padding: 0 20px 8px; }
+
+.star-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #1a1200, #201800);
+  border: 1px solid var(--gold);
+  border-radius: 16px;
+  padding: 20px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  animation: pulse-gold 2.5s 1s ease infinite;
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,169,110,0.25); }
+  50% { box-shadow: 0 0 0 8px rgba(201,169,110,0); }
+}
+
+.star-btn:active { transform: scale(0.99); }
+.star-emoji { font-size: 26px; flex-shrink: 0; }
+.star-text { flex: 1; }
+.star-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--gold2);
+  margin-bottom: 2px;
+}
+.star-desc { font-size: 11px; color: var(--muted); font-weight: 300; }
+.star-arrow { color: var(--gold); font-size: 18px; }
+
+/* SERVICE GRID */
+.grid-wrap {
+  padding: 0 20px 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.grid-card {
+  background: var(--navy);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 16px 14px;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.grid-card:hover { background: var(--navy2); border-color: var(--gold-border); }
+.grid-card:active { transform: scale(0.97); }
+
+.card-emoji { font-size: 22px; line-height: 1; }
+.card-label { font-size: 13px; font-weight: 400; color: var(--white); }
+.card-sub { font-size: 11px; color: var(--muted); font-weight: 300; }
+
+/* INFO CARDS */
+.info-wrap {
+  padding: 0 20px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-card {
+  background: var(--navy);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.info-value { font-size: 14px; color: var(--white); font-weight: 300; }
+.badge { font-size: 10px; padding: 3px 12px; border-radius: 100px; }
+.badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+.badge-dim { background: rgba(255,255,255,0.04); color: var(--muted); border: 1px solid rgba(255,255,255,0.06); }
+
+/* FOOTER */
+.footer {
+  padding: 24px 20px 44px;
+  text-align: center;
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.footer-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: 0.5; }
+
+/* MODAL */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(16px);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  width: 100%;
+  max-width: 480px;
+  background: var(--navy);
+  border: 1px solid var(--gold-border);
+  border-radius: 28px 28px 0 0;
+  padding: 28px 24px 52px;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.overlay.open .modal { transform: translateY(0); }
+
+.modal-handle {
+  width: 36px; height: 3px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  margin: 0 auto 22px;
+}
+
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.modal-desc { font-size: 13px; color: var(--muted); margin-bottom: 22px; line-height: 1.6; font-weight: 300; }
+
+.modal-divider {
+  display: flex; align-items: center; gap: 10px; margin: 4px 0 20px;
+}
+.modal-line { flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+.modal-gem { width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); opacity: 0.4; }
+
+.modal-btn {
+  width: 100%; padding: 15px; border-radius: 12px;
+  font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  cursor: pointer; border: none; transition: all 0.25s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-bottom: 10px;
+}
+
+.btn-gold { background: var(--gold); color: #080d14; }
+.btn-gold:hover { background: var(--gold2); }
+.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.08); color: var(--muted); }
+
+/* WIFI */
+.wifi-box {
+  background: rgba(201,169,110,0.05);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+.wifi-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.wifi-name { font-size: 15px; color: var(--white); font-weight: 400; margin-bottom: 14px; }
+.wifi-pass { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold2); font-weight: 300; letter-spacing: 0.08em; }
+
+/* STARS */
+.star-row { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
+.star-big { font-size: 30px; cursor: pointer; transition: transform 0.2s; filter: grayscale(1); opacity: 0.25; }
+.star-big.active { filter: none; opacity: 1; transform: scale(1.1); }
+
+.review-hint { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.5; display: none; }
+.review-hint.show { display: block; }
+
+.review-textarea {
+  width: 100%; min-height: 80px;
+  background: var(--navy2);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--white);
+  font-family: 'Jost', sans-serif;
+  font-size: 14px; font-weight: 300;
+  resize: none; outline: none;
+  display: none; margin-bottom: 12px;
+}
+
+.review-textarea.show { display: block; }
+.review-btn { display: none !important; }
+.review-btn.show { display: flex !important; }
+
+/* ROOM FEATURES */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.feature-icon { font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-glow"></div>
+
+  <!-- Galata Tower SVG -->
+  <div class="galata-wrap">
+    <svg viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <rect x="25" y="80" width="30" height="100" fill="white"/>
+      <rect x="20" y="160" width="40" height="20" fill="white"/>
+      <ellipse cx="40" cy="80" rx="25" ry="8" fill="white"/>
+      <rect x="30" y="90" width="8" height="12" rx="4" fill="#080d14"/>
+      <rect x="42" y="90" width="8" height="12" rx="4" fill="#080d14"/>
+      <rect x="30" y="115" width="8" height="12" rx="4" fill="#080d14"/>
+      <rect x="42" y="115" width="8" height="12" rx="4" fill="#080d14"/>
+      <rect x="30" y="140" width="8" height="12" rx="4" fill="#080d14"/>
+      <rect x="42" y="140" width="8" height="12" rx="4" fill="#080d14"/>
+      <polygon points="40,10 20,80 60,80" fill="white"/>
+      <line x1="40" y1="0" x2="40" y2="14" stroke="white" stroke-width="2"/>
+      <path d="M34,18 Q28,14 28,8 Q28,2 34,0 Q28,6 28,10 Q28,14 34,18Z" fill="white"/>
+    </svg>
+  </div>
+
+  <div class="header-inner">
+    <div class="hotel-logo-text">The Halich Hotel · İstanbul</div>
+
+    <div class="welcome-badge">
+      <div class="welcome-dot"></div>
+      <div class="welcome-text">Nova · Smart Guest Experience</div>
+    </div>
+
+    <div class="room-name">Galata View<br>Deluxe Room</div>
+    <div class="room-type">Double Bed · Karaköy</div>
+
+    <div class="divider">
+      <div class="div-line"></div>
+      <div class="div-diamond"></div>
+      <div class="div-line"></div>
+    </div>
+
+    <div class="welcome-msg">
+      Welcome to one of our most coveted rooms.<br>
+      The tower outside your window has been<br>
+      watching over Istanbul since 1348.
+    </div>
+  </div>
+</div>
+
+<!-- GALATA FACT -->
+<div style="height:16px;"></div>
+<div class="galata-fact">
+  <div class="fact-eyebrow">✦ Did You Know</div>
+  <div class="fact-text">"The Galata Tower was built in 1348 by the Genoese. At 66.9 metres, it was once the tallest structure in Constantinople. Today, it watches over your stay."</div>
+</div>
+
+<!-- REVIEW BUTTON -->
+<div class="section-label">Your Experience</div>
+<div class="star-wrap">
+  <button class="star-btn" onclick="openModal('review')">
+    <div class="star-emoji">⭐</div>
+    <div class="star-text">
+      <div class="star-title">Share Your Galata Experience</div>
+      <div class="star-desc">Your review helps future travellers find this view</div>
+    </div>
+    <div class="star-arrow">›</div>
+  </button>
+</div>
+
+<!-- SERVICES -->
+<div class="section-label">Hotel Services</div>
+<div class="grid-wrap">
+  <div class="grid-card" onclick="openModal('wifi')">
+    <div class="card-emoji">📶</div>
+    <div>
+      <div class="card-label">Wi-Fi</div>
+      <div class="card-sub">One tap password</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('dining')">
+    <div class="card-emoji">🍽️</div>
+    <div>
+      <div class="card-label">Room Service</div>
+      <div class="card-sub">Order to your room</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('concierge')">
+    <div class="card-emoji">🔔</div>
+    <div>
+      <div class="card-label">Concierge</div>
+      <div class="card-sub">WhatsApp · 24/7</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('transport')">
+    <div class="card-emoji">🚗</div>
+    <div>
+      <div class="card-label">Transfer</div>
+      <div class="card-sub">Airport · City</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('explore')">
+    <div class="card-emoji">🗺️</div>
+    <div>
+      <div class="card-label">Explore Istanbul</div>
+      <div class="card-sub">Tours & attractions</div>
+    </div>
+  </div>
+  <div class="grid-card" onclick="openModal('checkout')">
+    <div class="card-emoji">🗝️</div>
+    <div>
+      <div class="card-label">Check-Out</div>
+      <div class="card-sub">Express departure</div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO -->
+<div class="section-label">Hotel Information</div>
+<div class="info-wrap">
+  <div class="info-card">
+    <div>
+      <div class="info-label">Breakfast</div>
+      <div class="info-value">07:00 — 10:00</div>
+    </div>
+    <span class="badge badge-gold">Daily</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Check-In / Check-Out</div>
+      <div class="info-value">14:00 / 12:00</div>
+    </div>
+    <span class="badge badge-dim">Standard</span>
+  </div>
+  <div class="info-card">
+    <div>
+      <div class="info-label">Your Room</div>
+      <div class="info-value">20 m² · Shower · Double Bed</div>
+    </div>
+    <span class="badge badge-gold">Galata View</span>
+  </div>
+</div>
+
+<!-- ROOM FEATURES -->
+<div class="section-label">Room Features</div>
+<div style="padding: 0 20px 8px;">
+  <div style="background:var(--navy); border-radius:14px; padding:16px 18px; border:1px solid rgba(255,255,255,0.04);">
+    <div class="features-grid">
+      <div class="feature-item"><span class="feature-icon">❄️</span> Air Conditioning</div>
+      <div class="feature-item"><span class="feature-icon">📺</span> Satellite TV</div>
+      <div class="feature-item"><span class="feature-icon">🔐</span> Deposit Safebox</div>
+      <div class="feature-item"><span class="feature-icon">💻</span> Working Desk</div>
+      <div class="feature-item"><span class="feature-icon">☕</span> Tea & Coffee</div>
+      <div class="feature-item"><span class="feature-icon">🧴</span> Bath Amenities</div>
+      <div class="feature-item"><span class="feature-icon">🌡️</span> Heating System</div>
+      <div class="feature-item"><span class="feature-icon">💧</span> Complimentary Water</div>
+    </div>
+  </div>
+</div>
+
+<!-- ISTANBUL GUIDE -->
+<div class="section-label">Istanbul Guide · Curated by The Halich</div>
+
+<div style="padding: 0 20px 8px;">
+
+  <!-- TABS -->
+  <div style="display:flex; gap:6px; margin-bottom:12px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px;">
+    <button onclick="showTab('restaurants')" id="tab-restaurants" class="guide-tab active" style="padding:6px 14px; border-radius:100px; font-size:11px; font-weight:400; border:1px solid rgba(201,169,110,0.4); background:var(--gold); color:#080d14; cursor:pointer; white-space:nowrap; font-family:'Jost',sans-serif; letter-spacing:0.04em; transition:all 0.2s;">🍽️ Restaurants</button>
+    <button onclick="showTab('bars')" id="tab-bars" class="guide-tab" style="padding:6px 14px; border-radius:100px; font-size:11px; font-weight:400; border:1px solid rgba(255,255,255,0.1); background:transparent; color:var(--muted); cursor:pointer; white-space:nowrap; font-family:'Jost',sans-serif; letter-spacing:0.04em; transition:all 0.2s;">🍸 Bars</button>
+    <button onclick="showTab('clubs')" id="tab-clubs" class="guide-tab" style="padding:6px 14px; border-radius:100px; font-size:11px; font-weight:400; border:1px solid rgba(255,255,255,0.1); background:transparent; color:var(--muted); cursor:pointer; white-space:nowrap; font-family:'Jost',sans-serif; letter-spacing:0.04em; transition:all 0.2s;">🎵 Clubs</button>
+    <button onclick="showTab('tours')" id="tab-tours" class="guide-tab" style="padding:6px 14px; border-radius:100px; font-size:11px; font-weight:400; border:1px solid rgba(255,255,255,0.1); background:transparent; color:var(--muted); cursor:pointer; white-space:nowrap; font-family:'Jost',sans-serif; letter-spacing:0.04em; transition:all 0.2s;">🗺️ Tours</button>
+  </div>
+
+  <!-- RESTAURANTS -->
+  <div id="panel-restaurants" class="guide-panel">
+    <div class="guide-item" onclick="openMaps('Karaköy Lokantası Istanbul')">
+      <div class="guide-left">
+        <div class="guide-name">Karaköy Lokantası</div>
+        <div class="guide-desc">Michelin Bib Gourmand · Ottoman Turkish cuisine · 2 min walk</div>
+      </div>
+      <div class="guide-badge">⭐ Must</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Octo Istanbul restaurant')">
+      <div class="guide-left">
+        <div class="guide-name">Octo Istanbul</div>
+        <div class="guide-desc">Mediterranean · Seafood · TripAdvisor Top 3 Karaköy</div>
+      </div>
+      <div class="guide-badge">🐟 Sea</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Neolokal Istanbul restaurant')">
+      <div class="guide-left">
+        <div class="guide-name">Neolokal</div>
+        <div class="guide-desc">Contemporary Turkish · Rooftop · Galata Port</div>
+      </div>
+      <div class="guide-badge">🏆 Fine</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Mürver restaurant Istanbul')">
+      <div class="guide-left">
+        <div class="guide-name">Mürver Restaurant</div>
+        <div class="guide-desc">Michelin Listed · Golden Horn views · Modern Anatolian</div>
+      </div>
+      <div class="guide-badge">🌟 View</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Mikla restaurant Istanbul')">
+      <div class="guide-left">
+        <div class="guide-name">Mikla</div>
+        <div class="guide-desc">Michelin Star · New Anatolian Cuisine · Beyoğlu rooftop</div>
+      </div>
+      <div class="guide-badge">⭐ Star</div>
+    </div>
+    <div class="guide-item" onclick="window.open('https://www.google.com/maps/search/best+restaurants+karaköy+istanbul','_blank')">
+      <div class="guide-left">
+        <div class="guide-name" style="color:var(--gold);">View All on Maps →</div>
+        <div class="guide-desc">Google Maps · Best restaurants near you</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BARS -->
+  <div id="panel-bars" class="guide-panel" style="display:none;">
+    <div class="guide-item" onclick="openMaps('Nardis Jazz Club Istanbul')">
+      <div class="guide-left">
+        <div class="guide-name">Nardis Jazz Club</div>
+        <div class="guide-desc">Live jazz nightly · Cozy & intimate · Near Galata Tower</div>
+      </div>
+      <div class="guide-badge">🎷 Jazz</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('360 Istanbul bar')">
+      <div class="guide-left">
+        <div class="guide-name">360 Istanbul</div>
+        <div class="guide-desc">Panoramic Bosphorus views · Rooftop cocktails · Istiklal</div>
+      </div>
+      <div class="guide-badge">🌇 View</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Mitte Karaköy bar')">
+      <div class="guide-left">
+        <div class="guide-name">Mitte Karaköy</div>
+        <div class="guide-desc">Craft cocktails · Sleek design · Stylish crowd · 5 min</div>
+      </div>
+      <div class="guide-badge">🍸 Craft</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Finn Karaköy bar')">
+      <div class="guide-left">
+        <div class="guide-name">Finn Karaköy</div>
+        <div class="guide-desc">Inventive cocktails · Intimate atmosphere · 5 min walk</div>
+      </div>
+      <div class="guide-badge">🔥 Hot</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Duble Meze Bar Istanbul')">
+      <div class="guide-left">
+        <div class="guide-name">Duble Meze Bar</div>
+        <div class="guide-desc">Rooftop meyhane · Golden Horn views · DJs at night</div>
+      </div>
+      <div class="guide-badge">🌙 Night</div>
+    </div>
+    <div class="guide-item" onclick="window.open('https://www.google.com/maps/search/best+bars+karaköy+istanbul','_blank')">
+      <div class="guide-left">
+        <div class="guide-name" style="color:var(--gold);">View All on Maps →</div>
+        <div class="guide-desc">Google Maps · Best bars near you</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLUBS -->
+  <div id="panel-clubs" class="guide-panel" style="display:none;">
+    <div class="guide-item" onclick="openMaps('Klein Karaköy club')">
+      <div class="guide-left">
+        <div class="guide-name">Klein Karaköy</div>
+        <div class="guide-desc">Underground techno · Intimate space · Best sound system</div>
+      </div>
+      <div class="guide-badge">🎧 Tech</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Oligark club Istanbul Karaköy')">
+      <div class="guide-left">
+        <div class="guide-name">Oligark</div>
+        <div class="guide-desc">Bosphorus views · Glowing dance floors · Upscale Karaköy</div>
+      </div>
+      <div class="guide-badge">💎 Upscale</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Babylon Istanbul club')">
+      <div class="guide-left">
+        <div class="guide-name">Babylon Bomonti</div>
+        <div class="guide-desc">Live music · Jazz to electronic · Cultural hub · Beyoğlu</div>
+      </div>
+      <div class="guide-badge">🎤 Live</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Kiki club Istanbul Karaköy')">
+      <div class="guide-left">
+        <div class="guide-name">Kiki</div>
+        <div class="guide-desc">Hip-hop & R&B · Vibrant crowd · Trendy Karaköy</div>
+      </div>
+      <div class="guide-badge">🔊 Party</div>
+    </div>
+    <div class="guide-item" onclick="openMaps('Sortie club Istanbul Bosphorus')">
+      <div class="guide-left">
+        <div class="guide-name">Sortie</div>
+        <div class="guide-desc">Waterfront · Bosphorus · Themed nights · Ortaköy</div>
+      </div>
+      <div class="guide-badge">🌊 Water</div>
+    </div>
+    <div class="guide-item" onclick="window.open('https://www.google.com/maps/search/best+clubs+karaköy+beyoğlu+istanbul','_blank')">
+      <div class="guide-left">
+        <div class="guide-name" style="color:var(--gold);">View All on Maps →</div>
+        <div class="guide-desc">Google Maps · Best clubs near you</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOURS -->
+  <div id="panel-tours" class="guide-panel" style="display:none;">
+    <div class="guide-item" onclick="goWA('Hello, I would like to arrange a Bosphorus cruise tour from The Halich Hotel.')">
+      <div class="guide-left">
+        <div class="guide-name">Bosphorus Cruise</div>
+        <div class="guide-desc">2 hrs · Europe & Asia · Sunset recommended · Arrange via us</div>
+      </div>
+      <div class="guide-badge">⛵ Cruise</div>
+    </div>
+    <div class="guide-item" onclick="goWA('Hello, I would like a walking tour of Galata and Beyoğlu from The Halich Hotel.')">
+      <div class="guide-left">
+        <div class="guide-name">Galata & Beyoğlu Walk</div>
+        <div class="guide-desc">Galata Tower · Istiklal · Start from your door · 2 min</div>
+      </div>
+      <div class="guide-badge">🚶 Walk</div>
+    </div>
+    <div class="guide-item" onclick="goWA('Hello, I would like to visit the Old City - Sultanahmet from The Halich Hotel.')">
+      <div class="guide-left">
+        <div class="guide-name">Old City · Sultanahmet</div>
+        <div class="guide-desc">Hagia Sophia · Blue Mosque · Basilica Cistern · 15 min</div>
+      </div>
+      <div class="guide-badge">🕌 History</div>
+    </div>
+    <div class="guide-item" onclick="goWA('Hello, I would like a Turkish food tour from The Halich Hotel.')">
+      <div class="guide-left">
+        <div class="guide-name">Turkish Food Tour</div>
+        <div class="guide-desc">Street food · Spice Bazaar · Meyhane experience · Full day</div>
+      </div>
+      <div class="guide-badge">🥙 Food</div>
+    </div>
+    <div class="guide-item" onclick="goWA('Hello, I would like a Princes Islands day trip from The Halich Hotel.')">
+      <div class="guide-left">
+        <div class="guide-name">Princes Islands Day Trip</div>
+        <div class="guide-desc">Ferry · No cars · Peaceful escape · Full day</div>
+      </div>
+      <div class="guide-badge">🏝️ Island</div>
+    </div>
+    <div class="guide-item" onclick="goWA('Hello, I would like information about tours from The Halich Hotel.')">
+      <div class="guide-left">
+        <div class="guide-name" style="color:var(--gold);">Ask Concierge →</div>
+        <div class="guide-desc">Custom tours · Private guides · Airport transfers</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+.guide-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer;
+  transition: padding-left 0.2s;
+  gap: 10px;
+}
+.guide-item:last-child { border-bottom: none; }
+.guide-item:hover { padding-left: 4px; }
+.guide-left { flex: 1; min-width: 0; }
+.guide-name { font-size: 13px; color: var(--white); font-weight: 400; margin-bottom: 2px; letter-spacing: 0.01em; }
+.guide-desc { font-size: 11px; color: var(--muted); font-weight: 300; line-height: 1.4; }
+.guide-badge {
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(201,169,110,0.08);
+  border: 1px solid rgba(201,169,110,0.15);
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+</style>
+<div class="footer">
+  <div class="footer-badge">
+    <div class="footer-dot"></div>
+    Powered by Nova
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-handle"></div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const H = {
+  wifi_name: 'TheHalich_Guest',
+  wifi_pass: 'Halich2024',
+  whatsapp: '+905447668807',
+  google: 'https://www.tripadvisor.com.tr/Hotel_Review-g293974-d23102113-Reviews-The_Halich_Hotel_Istanbul_Karakoy-Istanbul.html',
+  tripadvisor: 'https://www.tripadvisor.com.tr/Hotel_Review-g293974-d23102113-Reviews-The_Halich_Hotel_Istanbul_Karakoy-Istanbul.html',
+};
+
+let rating = 0;
+
+const modals = {
+  review: () => `
+    <div class="modal-title">⭐ Rate Your Stay</div>
+    <div class="modal-desc">How was your Galata View experience? Your feedback means everything to us.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div class="star-row">
+      ${[1,2,3,4,5].map(n=>`<span class="star-big" onclick="rate(${n})">⭐</span>`).join('')}
+    </div>
+    <textarea class="review-textarea" id="rtxt" placeholder="Tell us about your Galata View experience..."></textarea>
+    <div class="review-hint" id="rhint"></div>
+    <button class="modal-btn btn-gold review-btn" id="rbtn" onclick="submitReview()">Continue →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Perhaps Later</button>
+  `,
+  wifi: () => `
+    <div class="modal-title">📶 Wi-Fi Access</div>
+    <div class="modal-desc">Complimentary high-speed internet throughout The Halich Hotel.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div class="wifi-box">
+      <div class="wifi-label">Network Name</div>
+      <div class="wifi-name">${H.wifi_name}</div>
+      <div class="wifi-label">Password</div>
+      <div class="wifi-pass">${H.wifi_pass}</div>
+    </div>
+    <button class="modal-btn btn-gold" onclick="copyWifi()">Copy Password</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  dining: () => `
+    <div class="modal-title">🍽️ Room Service</div>
+    <div class="modal-desc">Order food and beverages directly to your Galata View room via WhatsApp.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I would like to order room service to my Galata View room.')">Order via WhatsApp →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  concierge: () => `
+    <div class="modal-title">🔔 Concierge</div>
+    <div class="modal-desc">Our team is available 24/7 to assist with any request during your stay.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I need assistance with my stay at The Halich Hotel.')">Contact via WhatsApp →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  transport: () => `
+    <div class="modal-title">🚗 Transportation</div>
+    <div class="modal-desc">Private transfers to Istanbul Airport (45 min) or Sabiha Gökçen (60 min). City tours also available.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I would like to arrange transportation from The Halich Hotel.')">Request via WhatsApp →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  explore: () => `
+    <div class="modal-title">🗺️ Explore Istanbul</div>
+    <div class="modal-desc">From your room you can walk to Galata Tower (2 min), Kapalıçarşı (15 min), Süleymaniye (20 min). Let us arrange a guided tour.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I would like information about tours and attractions near The Halich Hotel.')">Ask Concierge →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  checkout: () => `
+    <div class="modal-title">🗝️ Express Check-Out</div>
+    <div class="modal-desc">Thank you for staying with us. Please notify reception before departure. Luggage storage available until 18:00.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I am ready to check out from my Galata View room. Thank you for a wonderful stay.')">Notify Reception →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Cancel</button>
+  `,
+};
+
+function showTab(tab) {
+  document.querySelectorAll('.guide-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.guide-tab').forEach(t => {
+    t.style.background = 'transparent';
+    t.style.color = 'var(--muted)';
+    t.style.borderColor = 'rgba(255,255,255,0.1)';
+  });
+  document.getElementById('panel-' + tab).style.display = 'block';
+  const activeTab = document.getElementById('tab-' + tab);
+  activeTab.style.background = 'var(--gold)';
+  activeTab.style.color = '#080d14';
+  activeTab.style.borderColor = 'var(--gold)';
+}
+
+function openMaps(query) {
+  window.open('https://www.google.com/maps/search/' + encodeURIComponent(query), '_blank');
+}
+
+function openModal(t) {
+  document.getElementById('modal-body').innerHTML = modals[t]();
+  document.getElementById('overlay').classList.add('open');
+  rating = 0;
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('overlay')) return;
+  document.getElementById('overlay').classList.remove('open');
+}
+
+function rate(n) {
+  rating = n;
+  document.querySelectorAll('.star-big').forEach((s,i) => s.classList.toggle('active', i < n));
+  document.getElementById('rtxt').classList.add('show');
+  document.getElementById('rbtn').classList.add('show');
+  const hint = document.getElementById('rhint');
+  hint.classList.add('show');
+  if (n >= 3) {
+    hint.textContent = '✦ Your review will be shared on TripAdvisor. Thank you for your kind words.';
+    hint.style.color = 'var(--gold)';
+    document.getElementById('rbtn').textContent = 'Share on TripAdvisor →';
+    document.getElementById('rbtn').style.background = 'var(--gold)';
+    document.getElementById('rbtn').style.color = '#080d14';
+  } else {
+    hint.textContent = 'We sincerely apologise. Your feedback will go directly to our management team.';
+    hint.style.color = 'var(--muted)';
+    document.getElementById('rbtn').textContent = 'Send to Management →';
+    document.getElementById('rbtn').style.background = 'rgba(192,112,96,0.2)';
+    document.getElementById('rbtn').style.color = 'var(--danger)';
+    document.getElementById('rbtn').style.border = '1px solid rgba(224,112,112,0.3)';
+  }
+}
+
+function submitReview() {
+  const text = document.getElementById('rtxt').value.trim();
+  if (rating >= 3) {
+    if (text) navigator.clipboard.writeText(text).catch(()=>{});
+    window.open(H.tripadvisor, '_blank');
+  } else {
+    const msg = encodeURIComponent(`Dear Management, feedback from Galata View room (${rating} stars):\n\n${text || 'General feedback.'}`);
+    window.open(`https://wa.me/${H.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+  }
+}
+
+function copyWifi() {
+  navigator.clipboard.writeText(H.wifi_pass).then(() => {
+    const btn = document.querySelector('.btn-gold');
+    btn.textContent = '✓ Copied!';
+    btn.style.background = '#70c9a0';
+    setTimeout(() => { btn.textContent = 'Copy Password'; btn.style.background = ''; }, 2000);
+  });
+}
+
+function goWA(msg) {
+  window.open(`https://wa.me/${H.whatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+</script>
+</body>
+</html>
