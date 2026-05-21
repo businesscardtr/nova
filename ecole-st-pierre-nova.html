@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecole St. Pierre Hotel — Nova Guest Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #09080a;
+  --surface: #131118;
+  --surface2: #1a1820;
+  --gold: #c9a96e;
+  --gold2: #e8c99a;
+  --gold-dim: rgba(201,169,110,0.1);
+  --gold-border: rgba(201,169,110,0.2);
+  --white: #f0ece4;
+  --muted: #6b6760;
+  --stone: #8a7f6e;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Jost', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 999;
+}
+
+/* HEADER */
+.header {
+  position: relative;
+  padding: 48px 24px 40px;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--gold-border);
+}
+
+.header-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #150f08 0%, var(--bg) 100%);
+}
+
+.header-glow {
+  position: absolute; top: -20%; left: 50%;
+  transform: translateX(-50%);
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(201,169,110,0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.header-inner { position: relative; z-index: 2; }
+
+.nova-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 16px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.nova-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold);
+  animation: blink 2s ease infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hotel-logo {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  overflow: hidden;
+  border: 1px solid var(--gold-border);
+}
+
+.hotel-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+.hotel-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  color: var(--white); letter-spacing: 0.06em;
+  line-height: 1.2; margin-bottom: 4px;
+}
+
+.hotel-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-style: italic;
+  color: var(--gold); opacity: 0.8;
+  letter-spacing: 0.08em; margin-bottom: 6px;
+}
+
+.hotel-location {
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  font-weight: 300;
+}
+
+/* HISTORY BADGE */
+.history-badge {
+  margin: 16px 20px 0;
+  background: rgba(201,169,110,0.06);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  text-align: center;
+  position: relative; z-index: 2;
+}
+
+.history-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-style: italic;
+  color: rgba(240,236,228,0.65);
+  line-height: 1.6;
+}
+
+/* STAR BUTTON */
+.star-wrap { padding: 20px 20px 8px; }
+
+.star-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #1a1200, #201800);
+  border: 1px solid var(--gold);
+  border-radius: 16px; padding: 20px;
+  display: flex; align-items: center; gap: 14px;
+  cursor: pointer; transition: all 0.3s; text-align: left;
+  animation: pulse-gold 2.5s 1s ease infinite;
+}
+
+@keyframes pulse-gold {
+  0%,100%{ box-shadow:0 0 0 0 rgba(201,169,110,0.25); }
+  50%{ box-shadow:0 0 0 8px rgba(201,169,110,0); }
+}
+
+.star-btn:active { transform: scale(0.99); }
+.star-emoji { font-size: 28px; flex-shrink: 0; }
+.star-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--gold2); margin-bottom:2px; }
+.star-desc { font-size:11px; color:var(--muted); font-weight:300; }
+.star-arrow { color:var(--gold); font-size:18px; flex-shrink:0; }
+
+/* SECTION LABEL */
+.section-label {
+  font-size:9px; letter-spacing:0.25em; text-transform:uppercase;
+  color:var(--muted); padding:18px 20px 10px; font-weight:300;
+}
+
+/* GRID */
+.grid-wrap {
+  padding: 0 20px 8px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+
+.grid-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px; padding: 16px 14px;
+  cursor: pointer; transition: all 0.25s;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.grid-card:hover { background: var(--surface2); border-color: var(--gold-border); }
+.grid-card:active { transform: scale(0.97); }
+.card-emoji { font-size: 22px; line-height: 1; }
+.card-label { font-size: 13px; font-weight: 400; color: var(--white); }
+.card-sub { font-size: 11px; color: var(--muted); font-weight: 300; }
+
+/* INFO */
+.info-wrap { padding: 0 20px 8px; display: flex; flex-direction: column; gap: 6px; }
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 12px; padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.info-label { font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+.info-value { font-size:14px; color:var(--white); font-weight:300; }
+.badge { font-size:10px; padding:3px 12px; border-radius:100px; }
+.badge-gold { background:var(--gold-dim); color:var(--gold); border:1px solid var(--gold-border); }
+.badge-dim { background:rgba(255,255,255,0.04); color:var(--muted); border:1px solid rgba(255,255,255,0.06); }
+
+/* RESTAURANT */
+.restaurant-card {
+  margin: 0 20px 8px;
+  background: linear-gradient(135deg, #0d0a06, #150f08);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px; padding: 16px 18px;
+  cursor: pointer; transition: all 0.25s;
+}
+
+.restaurant-card:active { transform: scale(0.99); }
+.restaurant-name { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--gold2); margin-bottom:4px; }
+.restaurant-desc { font-size:11px; color:var(--muted); line-height:1.5; font-weight:300; margin-bottom:10px; }
+.restaurant-tag { font-size:10px; padding:3px 12px; border-radius:100px; background:var(--gold-dim); color:var(--gold); border:1px solid var(--gold-border); display:inline-block; }
+
+/* TOURS */
+.tour-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px; padding: 16px 18px;
+  margin-bottom: 8px; cursor: pointer; transition: all 0.25s;
+  display: flex; align-items: center; gap: 14px;
+}
+.tour-card:active { transform: scale(0.99); }
+.tour-emoji { font-size: 24px; flex-shrink: 0; }
+.tour-name { font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:400; color:var(--white); margin-bottom:3px; }
+.tour-desc { font-size:11px; color:var(--muted); font-weight:300; line-height:1.4; }
+.tour-price { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--gold); flex-shrink:0; text-align:right; }
+.tour-price small { display:block; font-size:10px; color:var(--muted); font-family:'Jost',sans-serif; font-weight:300; }
+
+/* GUIDE TABS */
+.guide-tabs {
+  display: flex; gap: 6px; overflow-x: auto;
+  scrollbar-width: none; padding: 0 20px 8px;
+}
+
+.guide-tab {
+  padding: 7px 16px; border-radius: 100px;
+  font-size: 11px; font-weight: 400;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: transparent; color: var(--muted);
+  cursor: pointer; white-space: nowrap;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 0.04em; transition: all 0.2s;
+}
+
+.guide-tab.active { background: var(--gold); border-color: var(--gold); color: #09080a; }
+
+.guide-panel { display: none; padding: 0 20px; background: #131118; border-radius: 14px; margin: 0 20px; }
+.guide-panel.active { display: block; }
+
+.guide-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer; transition: padding-left 0.2s; gap: 10px;
+}
+.guide-item:last-child { border-bottom: none; }
+.guide-item:hover { padding-left: 4px; }
+.guide-left { flex: 1; min-width: 0; }
+.guide-name { font-size:13px; color:#f0ece4; font-weight:400; margin-bottom:2px; }
+.guide-desc { font-size:11px; color:#9a9288; font-weight:300; line-height:1.4; }
+.guide-badge {
+  font-size:10px; padding:3px 10px; border-radius:100px;
+  background:rgba(201,169,110,0.1); border:1px solid rgba(201,169,110,0.2);
+  color:var(--gold); white-space:nowrap; flex-shrink:0;
+}
+
+/* TRAVEL SERVICES */
+.travel-grid {
+  padding: 0 20px 8px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+
+/* GALLERY */
+.gallery-grid {
+  padding: 0 20px 8px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+}
+
+.gallery-item {
+  border-radius: 10px; overflow: hidden;
+  aspect-ratio: 4/3; cursor: pointer;
+  position: relative;
+}
+
+.gallery-item img { width:100%; height:100%; object-fit:cover; display:block; }
+.gallery-item:active { opacity: 0.8; }
+
+/* LIGHTBOX */
+.lightbox {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.96); z-index: 300;
+  flex-direction: column; align-items: center; justify-content: center;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width:90vw; max-height:80vh; object-fit:contain; border-radius:4px; }
+.lb-close { position:absolute; top:20px; right:20px; font-size:24px; color:white; cursor:pointer; }
+.lb-prev { position:absolute; left:16px; top:50%; transform:translateY(-50%); font-size:36px; color:white; cursor:pointer; }
+.lb-next { position:absolute; right:16px; top:50%; transform:translateY(-50%); font-size:36px; color:white; cursor:pointer; }
+
+/* FOOTER */
+.footer { padding:24px 20px 48px; text-align:center; }
+.footer-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 18px; border:1px solid var(--gold-border);
+  border-radius:100px; font-size:9px; color:var(--muted);
+  letter-spacing:0.1em;
+}
+.footer-dot { width:5px; height:5px; border-radius:50%; background:var(--gold); opacity:0.5; }
+
+/* MODAL */
+.overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.9);
+  backdrop-filter:blur(16px); z-index:200;
+  display:flex; align-items:flex-end; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity 0.3s;
+}
+.overlay.open { opacity:1; pointer-events:all; }
+.modal {
+  width:100%; max-width:480px;
+  background:#131118; border:1px solid var(--gold-border);
+  border-radius:28px 28px 0 0; padding:28px 24px 52px;
+  transform:translateY(100%);
+  transition:transform 0.45s cubic-bezier(0.22,1,0.36,1);
+  max-height:88vh; overflow-y:auto;
+}
+.overlay.open .modal { transform:translateY(0); }
+.modal-handle { width:36px; height:3px; background:rgba(255,255,255,0.1); border-radius:2px; margin:0 auto 22px; }
+.modal-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:var(--white); margin-bottom:6px; }
+.modal-desc { font-size:13px; color:var(--muted); margin-bottom:20px; line-height:1.6; font-weight:300; }
+.modal-divider { display:flex; align-items:center; gap:10px; margin:4px 0 18px; }
+.modal-line { flex:1; height:1px; background:rgba(255,255,255,0.06); }
+.modal-gem { width:4px; height:4px; background:var(--gold); transform:rotate(45deg); opacity:0.4; }
+.modal-btn {
+  width:100%; padding:15px; border-radius:12px;
+  font-family:'Jost',sans-serif; font-size:13px; font-weight:400;
+  letter-spacing:0.08em; text-transform:uppercase;
+  cursor:pointer; border:none; transition:all 0.25s;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  margin-bottom:10px;
+}
+.btn-gold { background:var(--gold); color:#09080a; }
+.btn-gold:hover { background:var(--gold2); }
+.btn-outline { background:transparent; border:1px solid rgba(255,255,255,0.08); color:var(--muted); }
+
+.wifi-box {
+  background:rgba(201,169,110,0.05); border:1px solid var(--gold-border);
+  border-radius:14px; padding:20px; margin-bottom:16px;
+}
+.wifi-label { font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+.wifi-name { font-size:15px; color:var(--white); font-weight:400; margin-bottom:14px; }
+.wifi-pass { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold2); font-weight:300; letter-spacing:0.08em; }
+
+.star-row { display:flex; gap:10px; justify-content:center; margin-bottom:20px; }
+.star-big { font-size:32px; cursor:pointer; transition:transform 0.2s; filter:grayscale(1); opacity:0.25; }
+.star-big.active { filter:none; opacity:1; transform:scale(1.1); }
+.review-hint { font-size:11px; color:var(--muted); margin-top:8px; line-height:1.5; display:none; }
+.review-hint.show { display:block; }
+.review-textarea {
+  width:100%; min-height:80px;
+  background:var(--surface2); border:1px solid var(--gold-border);
+  border-radius:12px; padding:12px 14px; color:var(--white);
+  font-family:'Jost',sans-serif; font-size:14px; font-weight:300;
+  resize:none; outline:none; display:none; margin-bottom:12px;
+}
+.review-textarea.show { display:block; }
+.review-btn { display:none !important; }
+.review-btn.show { display:flex !important; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-glow"></div>
+  <div class="header-inner">
+    <div class="nova-tag"><div class="nova-dot"></div>Nova · Smart Guest Experience</div>
+    <div class="hotel-logo">
+      <img src="https://estphotel.com/wp-content/uploads/2021/01/EcoleStPierreHotel_logo-01-300x300.png" alt="Ecole St Pierre">
+    </div>
+    <div class="hotel-name">Ecole St. Pierre</div>
+    <div class="hotel-tagline">multicultural heritage</div>
+    <div class="hotel-location">Galata · Beyoğlu · İstanbul</div>
+  </div>
+</div>
+
+<div class="history-badge">
+  <div class="history-text">"Built in the 19th century as a French school. The walls inside date back to the Genoese Empire — over 1,000 years of history surrounds you."</div>
+</div>
+
+<!-- REVIEW -->
+<div class="star-wrap">
+  <button class="star-btn" onclick="openModal('review')">
+    <div class="star-emoji">⭐</div>
+    <div style="flex:1;">
+      <div class="star-title">Share Your Experience</div>
+      <div class="star-desc">Help future travellers discover this hidden gem</div>
+    </div>
+    <div class="star-arrow">›</div>
+  </button>
+</div>
+
+<!-- SERVICES -->
+<div class="section-label">Hotel Services</div>
+<div class="grid-wrap">
+  <div class="grid-card" onclick="openModal('wifi')">
+    <div class="card-emoji">📶</div>
+    <div><div class="card-label">Wi-Fi</div><div class="card-sub">One tap password</div></div>
+  </div>
+  <div class="grid-card" onclick="openModal('concierge')">
+    <div class="card-emoji">🔔</div>
+    <div><div class="card-label">Concierge</div><div class="card-sub">WhatsApp · 24/7</div></div>
+  </div>
+  <div class="grid-card" onclick="openModal('taxi')">
+    <div class="card-emoji">🚕</div>
+    <div><div class="card-label">Call a Taxi</div><div class="card-sub">Galata taxi service</div></div>
+  </div>
+  <div class="grid-card" onclick="openModal('checkout')">
+    <div class="card-emoji">🗝️</div>
+    <div><div class="card-label">Check-Out</div><div class="card-sub">Express departure</div></div>
+  </div>
+</div>
+
+<!-- RESTAURANT -->
+<div class="section-label">Dine With Us</div>
+<div class="restaurant-card" onclick="window.open('https://estphotel.com/ilcortile','_blank')">
+  <div class="restaurant-name">🍕 IL CORTILE Ristorante & Pizzeria</div>
+  <div class="restaurant-desc">Authentic Italian cuisine in our historic courtyard, surrounded by 13th century Genoese walls. A truly unique dining experience.</div>
+  <span class="restaurant-tag">View Menu →</span>
+</div>
+
+<!-- INFO -->
+<div class="section-label">Hotel Information</div>
+<div class="info-wrap">
+  <div class="info-card">
+    <div><div class="info-label">Address</div><div class="info-value" style="font-size:12px;">Galata Kulesi Sokak No:20/A</div></div>
+    <span class="badge badge-gold" onclick="window.open('https://goo.gl/maps/UyTjGTRxvhKz2Bvz5','_blank')" style="cursor:pointer;">Map →</span>
+  </div>
+  <div class="info-card">
+    <div><div class="info-label">Phone</div><div class="info-value">+90 212 244 26 75</div></div>
+    <span class="badge badge-gold" onclick="window.open('tel:+902122442675')" style="cursor:pointer;">Call</span>
+  </div>
+  <div class="info-card">
+    <div><div class="info-label">Instagram</div><div class="info-value" style="font-size:12px;">@ecolestpierrehotel</div></div>
+    <span class="badge badge-dim" onclick="window.open('https://www.instagram.com/ecolestpierrehotel/','_blank')" style="cursor:pointer;">Follow</span>
+  </div>
+</div>
+
+<!-- TOURS -->
+<div class="section-label">Tours & Experiences</div>
+<div style="padding:0 20px 8px;">
+  <div class="tour-card" onclick="bookTour('Bosphorus Cruise')">
+    <div class="tour-emoji">⛵</div>
+    <div class="tour-info">
+      <div class="tour-name">Bosphorus Cruise</div>
+      <div class="tour-desc">Panoramic views · 2 hrs · Bridge & fortresses · Sunset</div>
+    </div>
+    <div class="tour-price">25€<small>per person</small></div>
+  </div>
+  <div class="tour-card" onclick="bookTour('Old City & Galata Tour')">
+    <div class="tour-emoji">🏛️</div>
+    <div class="tour-info">
+      <div class="tour-name">Old City & Galata</div>
+      <div class="tour-desc">Hagia Sophia · Blue Mosque · Galata Tower next door</div>
+    </div>
+    <div class="tour-price">90€<small>per person</small></div>
+  </div>
+  <div class="tour-card" onclick="bookTour('Princess Islands Day Trip')">
+    <div class="tour-emoji">🏝️</div>
+    <div class="tour-info">
+      <div class="tour-name">Princess Islands</div>
+      <div class="tour-desc">Büyükada · No cars · Ferry · Full day escape</div>
+    </div>
+    <div class="tour-price">30€<small>per person</small></div>
+  </div>
+  <div class="tour-card" onclick="bookTour('Hammam & Spa Experience')">
+    <div class="tour-emoji">🛁</div>
+    <div class="tour-info">
+      <div class="tour-name">Hammam & Spa</div>
+      <div class="tour-desc">Turkish bath · Massage · Çemberlitaş · 5 min walk</div>
+    </div>
+    <div class="tour-price">75€<small>from</small></div>
+  </div>
+</div>
+
+<!-- CITY GUIDE -->
+<div class="section-label">Galata City Guide</div>
+<div class="guide-tabs">
+  <button onclick="showTab('restaurants')" id="tab-restaurants" class="guide-tab active">🍽️ Restaurants</button>
+  <button onclick="showTab('bars')" id="tab-bars" class="guide-tab">🍸 Bars</button>
+  <button onclick="showTab('clubs')" id="tab-clubs" class="guide-tab">🎵 Clubs</button>
+</div>
+<div style="height:8px;"></div>
+
+<div id="panel-restaurants" class="guide-panel active">
+  <div class="guide-item" onclick="openMaps('Karaköy Lokantası Istanbul')">
+    <div class="guide-left"><div class="guide-name">Karaköy Lokantası</div><div class="guide-desc">Michelin Bib Gourmand · Ottoman cuisine · 3 min walk</div></div>
+    <div class="guide-badge">⭐ Must</div>
+  </div>
+  <div class="guide-item" onclick="openMaps('Neolokal restaurant Istanbul')">
+    <div class="guide-left"><div class="guide-name">Neolokal</div><div class="guide-desc">Contemporary Turkish · SALT Galata · Rooftop views</div></div>
+    <div class="guide-badge">🏆 Fine</div>
+  </div>
+  <div class="guide-item" onclick="openMaps('Octo Istanbul restaurant')">
+    <div class="guide-left"><div class="guide-name">Octo Istanbul</div><div class="guide-desc">Mediterranean · Seafood · Top rated Karaköy</div></div>
+    <div class="guide-badge">🐟 Sea</div>
+  </div>
+  <div class="guide-item" onclick="openMaps('Asmalı Cavit meyhane Istanbul')">
+    <div class="guide-left"><div class="guide-name">Asmalı Cavit</div><div class="guide-desc">Classic meyhane · Asmalımescit · Local favourite</div></div>
+    <div class="guide-badge">🥂 Meze</div>
+  </div>
+  <div class="guide-item" onclick="window.open('https://www.google.com/maps/search/best+restaurants+galata+karaköy+istanbul','_blank')">
+    <div class="guide-left"><div class="guide-name" style="color:var(--gold);">View All on Maps →</div><div class="guide-desc">Google Maps · Best near you</div></div>
+  </div>
+</div>
+
+<div id="panel-bars" class="guide-panel">
+  <div class="guide-item" onclick="openMaps('Nardis Jazz Club Istanbul Galata')">
+    <div class="guide-left"><div class="guide-name">Nardis Jazz Club</div><div class="guide-desc">Live jazz nightly · 2 min walk · Intimate</div></div>
+    <div class="guide-badge">🎷 Jazz</div>
+  </div>
+  <div class="guide-item" onclick="openMaps('360 Istanbul bar rooftop')">
+    <div class="guide-left"><div class="guide-name">360 Istanbul</div><div class="guide-desc">Panoramic rooftop · Bosphorus views · Cocktails</div></div>
+    <div class="guide-badge">🌆 View</div>
+  </div>
+  <div class="guide-item" onclick="openMaps('Mitte Karaköy bar')">
+    <div class="guide-left"><div class="guide-name">Mitte Karaköy</div><div class="guide-desc">Craft cocktails · Stylish crowd · 5 min</div></div>
+    <div class="guide-badge">🍸 Craft</div>
+  </div>
+  <div class="guide-item" onclick="openMaps('Limonlu Bahçe bar Istanbul')">
+    <div class="guide-left"><div class="guide-name">Limonlu Bahçe</div><div class="guide-desc">Garden bar · Cihangir · Relaxed bohemian vibe</div></div>
+    <div class="guide-badge">🌿 Garden</div>
+  </div>
+  <div class="guide-item" onclick="window.open('https://www.google.com/maps/search/best+bars+galata+karaköy+istanbul','_blank')">
+    <div class="guide-left"><div class="guide-name" style="color:var(--gold);">View All on Maps →</div><div class="guide-desc">Google Maps · Best bars near you</div></div>
+  </div>
+</div>
+
+<div id="panel-clubs" class="guide-panel">
+  <div class="guide-item" onclick="openMaps('Klein Karaköy club Istanbul')">
+    <div class="guide-left"><div class="guide-name">Klein</div><div class="guide-desc">Underground techno · Best sound system · Karaköy</div></div>
+    <div class="guide-badge">🎧 Tech</div>
+  </div>
+  <div class="guide-item" onclick="openMaps('Minimüzikhol Istanbul')">
+    <div class="guide-left"><div class="guide-name">Minimüzikhol</div><div class="guide-desc">Alternative · Live acts + DJs · Cihangir</div></div>
+    <div class="guide-badge">🎤 Alt</div>
+  </div>
+  <div class="guide-item" onclick="openMaps('Babylon Bomonti Istanbul club')">
+    <div class="guide-left"><div class="guide-name">Babylon Bomonti</div><div class="guide-desc">Live music · Jazz to electronic · Cultural hub</div></div>
+    <div class="guide-badge">🎵 Live</div>
+  </div>
+  <div class="guide-item" onclick="window.open('https://www.google.com/maps/search/best+clubs+beyoglu+istanbul','_blank')">
+    <div class="guide-left"><div class="guide-name" style="color:var(--gold);">View All on Maps →</div><div class="guide-desc">Google Maps · Best clubs near you</div></div>
+  </div>
+</div>
+
+<div style="height:8px;"></div>
+
+<!-- TRAVEL SERVICES -->
+<div class="section-label">Travel Services</div>
+<div class="travel-grid">
+  <div onclick="window.open('https://www.cabistanbul.com','_blank')" style="background:linear-gradient(135deg,#1a1200,#201800);border:1px solid rgba(201,169,110,0.35);border-radius:14px;padding:14px;cursor:pointer;" ontouchstart="this.style.transform='scale(0.97)'" ontouchend="this.style.transform='scale(1)'">
+    <div style="font-size:22px;margin-bottom:6px;">🚗</div>
+    <div style="font-size:13px;font-weight:400;color:var(--gold2);margin-bottom:3px;">Airport Transfer</div>
+    <div style="font-size:10px;color:var(--muted);">Private · 24/7</div>
+    <div style="margin-top:8px;font-size:10px;color:var(--gold);letter-spacing:0.1em;">BOOK →</div>
+  </div>
+  <div onclick="window.open('https://www.teknevia.com/en','_blank')" style="background:linear-gradient(135deg,#001a1a,#00201e);border:1px solid rgba(100,200,180,0.25);border-radius:14px;padding:14px;cursor:pointer;" ontouchstart="this.style.transform='scale(0.97)'" ontouchend="this.style.transform='scale(1)'">
+    <div style="font-size:22px;margin-bottom:6px;">⛵</div>
+    <div style="font-size:13px;font-weight:400;color:#a0e0d0;margin-bottom:3px;">Rent a Boat</div>
+    <div style="font-size:10px;color:var(--muted);">Bosphorus · Yacht</div>
+    <div style="margin-top:8px;font-size:10px;color:#64c8b4;letter-spacing:0.1em;">BOOK →</div>
+  </div>
+  <div onclick="window.open('https://www.getyourguide.com/istanbul-l56/','_blank')" style="background:linear-gradient(135deg,#0d0d1a,#12122a);border:1px solid rgba(150,130,220,0.25);border-radius:14px;padding:14px;cursor:pointer;" ontouchstart="this.style.transform='scale(0.97)'" ontouchend="this.style.transform='scale(1)'">
+    <div style="font-size:22px;margin-bottom:6px;">🏛️</div>
+    <div style="font-size:13px;font-weight:400;color:#b8b0e8;margin-bottom:3px;">Istanbul Tours</div>
+    <div style="font-size:10px;color:var(--muted);">Old City · Cappadocia</div>
+    <div style="margin-top:8px;font-size:10px;color:#9688d4;letter-spacing:0.1em;">BOOK →</div>
+  </div>
+  <div onclick="window.open('https://www.rentalcars.com','_blank')" style="background:linear-gradient(135deg,#001a08,#002010);border:1px solid rgba(80,180,120,0.25);border-radius:14px;padding:14px;cursor:pointer;" ontouchstart="this.style.transform='scale(0.97)'" ontouchend="this.style.transform='scale(1)'">
+    <div style="font-size:22px;margin-bottom:6px;">🚙</div>
+    <div style="font-size:13px;font-weight:400;color:#90d4a8;margin-bottom:3px;">Rent a Car</div>
+    <div style="font-size:10px;color:var(--muted);">Best rates · Turkey</div>
+    <div style="margin-top:8px;font-size:10px;color:#60b880;letter-spacing:0.1em;">BOOK →</div>
+  </div>
+  <div onclick="window.open('https://www.airalo.com','_blank')" style="background:linear-gradient(135deg,#0d1a1a,#0a1820);border:1px solid rgba(80,160,220,0.25);border-radius:14px;padding:14px;cursor:pointer;" ontouchstart="this.style.transform='scale(0.97)'" ontouchend="this.style.transform='scale(1)'">
+    <div style="font-size:22px;margin-bottom:6px;">📱</div>
+    <div style="font-size:13px;font-weight:400;color:#90c8e8;margin-bottom:3px;">eSIM Turkey</div>
+    <div style="font-size:10px;color:var(--muted);">No roaming · Instant</div>
+    <div style="margin-top:8px;font-size:10px;color:#60a8d0;letter-spacing:0.1em;">GET →</div>
+  </div>
+  <div onclick="window.open('https://www.worldnomads.com','_blank')" style="background:linear-gradient(135deg,#1a0d0d,#201010);border:1px solid rgba(220,120,100,0.25);border-radius:14px;padding:14px;cursor:pointer;" ontouchstart="this.style.transform='scale(0.97)'" ontouchend="this.style.transform='scale(1)'">
+    <div style="font-size:22px;margin-bottom:6px;">🛡️</div>
+    <div style="font-size:13px;font-weight:400;color:#e8a898;margin-bottom:3px;">Travel Insurance</div>
+    <div style="font-size:10px;color:var(--muted);">Medical · Cancel</div>
+    <div style="margin-top:8px;font-size:10px;color:#d07868;letter-spacing:0.1em;">GET →</div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="section-label">Our Hotel</div>
+<div class="gallery-grid" id="gallery-grid"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lb-close">✕</span>
+  <span class="lb-prev" onclick="event.stopPropagation();prevPhoto()">‹</span>
+  <img id="lb-img" src="">
+  <span class="lb-next" onclick="event.stopPropagation();nextPhoto()">›</span>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-badge"><div class="footer-dot"></div>Powered by Nova</div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-handle"></div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const H = {
+  wifi_name: 'EcoleStPierre_Guest',
+  wifi_pass: '——',
+  whatsapp: '+902122442675',
+  google: 'https://www.google.com/search?q=ecole+st+pierre+hotel+istanbul',
+  tripadvisor: 'https://www.tripadvisor.com',
+};
+
+const urlParams = new URLSearchParams(window.location.search);
+const ROOM = urlParams.get('room') || '';
+const ROOM_LABEL = ROOM ? `Room ${ROOM}` : 'Ecole St. Pierre';
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (ROOM) {
+    const loc = document.querySelector('.hotel-location');
+    if (loc) loc.innerHTML = `Galata · Beyoğlu · İstanbul &nbsp;·&nbsp; <span style="color:var(--gold);">Room ${ROOM}</span>`;
+  }
+});
+
+let rating = 0;
+
+const modals = {
+  review: () => `
+    <div class="modal-title">⭐ Rate Your Stay</div>
+    <div class="modal-desc">How was your experience at Ecole St. Pierre?</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div class="star-row">${[1,2,3,4,5].map(n=>`<span class="star-big" onclick="rate(${n})">⭐</span>`).join('')}</div>
+    <textarea class="review-textarea" id="rtxt" placeholder="Share your experience..."></textarea>
+    <div class="review-hint" id="rhint"></div>
+    <button class="modal-btn btn-gold review-btn" id="rbtn" onclick="submitReview()">Continue →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Perhaps Later</button>
+  `,
+  wifi: () => `
+    <div class="modal-title">📶 Wi-Fi Access</div>
+    <div class="modal-desc">Complimentary Wi-Fi throughout Ecole St. Pierre Hotel.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div class="wifi-box">
+      <div class="wifi-label">Network</div>
+      <div class="wifi-name">${H.wifi_name}</div>
+      <div class="wifi-label">Password</div>
+      <div class="wifi-pass">${H.wifi_pass}</div>
+    </div>
+    <button class="modal-btn btn-gold" onclick="navigator.clipboard.writeText('${H.wifi_pass}').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>this.textContent='Copy Password',2000)})">Copy Password</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  concierge: () => `
+    <div class="modal-title">🔔 Concierge</div>
+    <div class="modal-desc">Our team is available 24/7 for any request during your stay.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I need assistance at Ecole St. Pierre Hotel. [${ROOM_LABEL}]')">Contact via WhatsApp →</button>
+    <button class="modal-btn btn-outline" onclick="window.open('tel:+902122442675')">📞 Call Reception</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  taxi: () => `
+    <div class="modal-title">🚕 Call a Taxi</div>
+    <div class="modal-desc">Galata taxi service available 24/7.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I need a taxi from Ecole St. Pierre Hotel, Galata. [${ROOM_LABEL}]')">Request via WhatsApp →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+  `,
+  checkout: () => `
+    <div class="modal-title">🗝️ Check-Out</div>
+    <div class="modal-desc">Thank you for staying with us. Please notify reception before departure.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I am ready to check out from Ecole St. Pierre Hotel. Thank you for a wonderful stay! [${ROOM_LABEL}]')">Notify Reception →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Cancel</button>
+  `,
+};
+
+function openModal(t) {
+  document.getElementById('modal-body').innerHTML = modals[t]();
+  document.getElementById('overlay').classList.add('open');
+  rating = 0;
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('overlay')) return;
+  document.getElementById('overlay').classList.remove('open');
+}
+
+function rate(n) {
+  rating = n;
+  document.querySelectorAll('.star-big').forEach((s,i) => s.classList.toggle('active', i < n));
+  document.getElementById('rtxt').classList.add('show');
+  document.getElementById('rbtn').classList.add('show');
+  const hint = document.getElementById('rhint');
+  hint.classList.add('show');
+  if (n >= 3) {
+    hint.textContent = '✦ Your review will be shared on Google. Thank you!';
+    hint.style.color = 'var(--gold)';
+    document.getElementById('rbtn').textContent = 'Share on Google →';
+    document.getElementById('rbtn').style.background = 'var(--gold)';
+    document.getElementById('rbtn').style.color = '#09080a';
+  } else {
+    hint.textContent = 'We sincerely apologise. Your feedback goes directly to management.';
+    hint.style.color = 'var(--muted)';
+    document.getElementById('rbtn').textContent = 'Send to Management →';
+    document.getElementById('rbtn').style.background = 'rgba(192,112,96,0.2)';
+    document.getElementById('rbtn').style.color = '#e07070';
+    document.getElementById('rbtn').style.border = '1px solid rgba(224,112,112,0.3)';
+  }
+}
+
+function submitReview() {
+  const text = document.getElementById('rtxt').value.trim();
+  if (rating >= 3) {
+    if (text) navigator.clipboard.writeText(text).catch(()=>{});
+    document.getElementById('modal-body').innerHTML = `
+      <div class="modal-title">⭐ Share Your Review</div>
+      <div class="modal-desc">Where would you like to share your experience?</div>
+      <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+      <button class="modal-btn btn-gold" onclick="window.open('${H.google}','_blank')">Share on Google →</button>
+      <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>
+    `;
+  } else {
+    const msg = encodeURIComponent(`Dear Management, feedback (${rating} stars):\n\n${text || 'General feedback.'}`);
+    window.open(`https://wa.me/${H.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+  }
+}
+
+function goWA(msg) {
+  window.open(`https://wa.me/${H.whatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function bookTour(tour) {
+  goWA(`Hello, I would like to book: ${tour} [${ROOM_LABEL}]`);
+}
+
+function showTab(tab) {
+  document.querySelectorAll('.guide-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.guide-tab').forEach(t => {
+    t.style.background = 'transparent';
+    t.style.color = 'var(--muted)';
+    t.style.borderColor = 'rgba(255,255,255,0.08)';
+  });
+  document.getElementById('panel-' + tab).classList.add('active');
+  const at = document.getElementById('tab-' + tab);
+  at.style.background = 'var(--gold)';
+  at.style.color = '#09080a';
+  at.style.borderColor = 'var(--gold)';
+}
+
+function openMaps(q) {
+  window.open('https://www.google.com/maps/search/' + encodeURIComponent(q), '_blank');
+}
+
+// Gallery
+const PHOTOS = [
+  { src: 'https://estphotel.com/wp-content/uploads/2026/03/1TH00513-scaled.jpg', label: 'Hotel' },
+  { src: 'https://estphotel.com/wp-content/uploads/2026/03/1TH00598.jpg', label: 'Hotel' },
+  { src: 'https://estphotel.com/wp-content/uploads/2021/12/1TH00567.jpg', label: 'Galata Suite' },
+  { src: 'https://estphotel.com/wp-content/uploads/2021/12/1TH00223-3.jpg', label: 'Galata Suite Bathtub' },
+  { src: 'https://estphotel.com/wp-content/uploads/2021/12/1TH00236.jpg', label: 'Galata Suite Bathtub' },
+  { src: 'https://estphotel.com/wp-content/uploads/2021/12/1TH00459.jpg', label: 'Galata Suite Terrace' },
+  { src: 'https://estphotel.com/wp-content/uploads/2021/12/1TH05654-1-scaled.jpg', label: 'Historical Suite' },
+  { src: 'https://estphotel.com/wp-content/uploads/2021/12/1TH00059-e1638908469104.jpg', label: 'Courtyard Room' },
+  { src: 'https://estphotel.com/wp-content/uploads/2020/04/1TH00550-D-scaled.jpg', label: 'Hotel' },
+  { src: 'https://estphotel.com/wp-content/uploads/2026/03/2-scaled.jpg', label: 'Hotel' },
+  { src: 'https://estphotel.com/wp-content/uploads/2026/03/1TH00637-scaled.jpg', label: 'Hotel' },
+  { src: 'https://estphotel.com/wp-content/uploads/2020/04/A_1TH00648-scaled.jpg', label: 'Hotel' },
+];
+
+let currentPhoto = 0;
+
+window.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('gallery-grid');
+  PHOTOS.forEach((photo, i) => {
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    div.innerHTML = `<img src="${photo.src}" alt="${photo.label}" loading="lazy">`;
+    div.onclick = () => openLightbox(i);
+    grid.appendChild(div);
+  });
+});
+
+function openLightbox(i) {
+  currentPhoto = i;
+  document.getElementById('lb-img').src = PHOTOS[i].src;
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+function prevPhoto() {
+  currentPhoto = (currentPhoto - 1 + PHOTOS.length) % PHOTOS.length;
+  document.getElementById('lb-img').src = PHOTOS[currentPhoto].src;
+}
+
+function nextPhoto() {
+  currentPhoto = (currentPhoto + 1) % PHOTOS.length;
+  document.getElementById('lb-img').src = PHOTOS[currentPhoto].src;
+}
+</script>
+</body>
+</html>
