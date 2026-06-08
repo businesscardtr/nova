@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morione Hotel & Spa — Nova</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
+  (function(){var s=document.createElement("script");s.async=1;s.src='https://emrldtp.com/NTM1MzAz.js?t=535303';document.head.appendChild(s);})();
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07090a;
+  --surface:#111518;
+  --surface2:#181c1f;
+  --gold:#b8986a;
+  --gold2:#d4b688;
+  --gold-dim:rgba(184,152,106,.1);
+  --gold-border:rgba(184,152,106,.2);
+  --white:#f0ede8;
+  --muted:#6a6560;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Jost',sans-serif;min-height:100vh;overflow-x:hidden}
+.section-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);padding:18px 20px 10px;font-weight:300}
+.grid-wrap{padding:0 20px 8px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid-card{background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:14px;padding:16px 14px;cursor:pointer;display:flex;flex-direction:column;gap:8px}
+.grid-card:active{transform:scale(.97)}
+.card-emoji{font-size:22px;line-height:1}
+.card-label{font-size:13px;font-weight:400;color:var(--white)}
+.card-sub{font-size:11px;color:var(--muted);font-weight:300}
+.info-wrap{padding:0 20px 8px;display:flex;flex-direction:column;gap:6px}
+.info-card{background:var(--surface);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.info-label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.info-value{font-size:14px;color:var(--white);font-weight:300}
+.badge{font-size:10px;padding:3px 12px;border-radius:100px}
+.badge-gold{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.badge-dim{background:rgba(255,255,255,.04);color:var(--muted);border:1px solid rgba(255,255,255,.06)}
+.tour-card{background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:14px;padding:16px 18px;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;gap:14px}
+.tour-card:active{transform:scale(.99)}
+.tour-emoji{font-size:24px;flex-shrink:0}
+.tour-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--white);margin-bottom:3px}
+.tour-desc{font-size:11px;color:var(--muted);font-weight:300;line-height:1.4}
+.tour-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--gold);flex-shrink:0;text-align:right}
+.tour-price small{display:block;font-size:10px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300}
+.gallery-grid{padding:0 20px 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.gallery-item{border-radius:10px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;position:relative}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:300;flex-direction:column;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:80vh;object-fit:contain;border-radius:4px}
+.lb-close{position:absolute;top:20px;right:20px;font-size:24px;color:white;cursor:pointer}
+.lb-prev{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:36px;color:white;cursor:pointer}
+.lb-next{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:36px;color:white;cursor:pointer}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(16px);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{width:100%;max-width:480px;background:#111518;border:1px solid var(--gold-border);border-radius:28px 28px 0 0;padding:28px 24px 52px;transform:translateY(100%);transition:transform .45s cubic-bezier(.22,1,.36,1);max-height:88vh;overflow-y:auto}
+.overlay.open .modal{transform:translateY(0)}
+.modal-handle{width:36px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin:0 auto 22px}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--white);margin-bottom:6px}
+.modal-desc{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;font-weight:300}
+.modal-divider{display:flex;align-items:center;gap:10px;margin:4px 0 18px}
+.modal-line{flex:1;height:1px;background:rgba(255,255,255,.06)}
+.modal-gem{width:4px;height:4px;background:var(--gold);transform:rotate(45deg);opacity:.4}
+.modal-btn{width:100%;padding:15px;border-radius:12px;font-family:'Jost',sans-serif;font-size:13px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
+.btn-gold{background:var(--gold);color:#07090a}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,.08);color:var(--muted)}
+.wifi-box{background:rgba(184,152,106,.05);border:1px solid var(--gold-border);border-radius:14px;padding:20px;margin-bottom:16px}
+.wifi-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.wifi-name{font-size:15px;color:var(--white);font-weight:400;margin-bottom:14px}
+.wifi-pass{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold2);font-weight:300;letter-spacing:.08em}
+.star-row{display:flex;gap:10px;justify-content:center;margin-bottom:20px}
+.star-big{font-size:32px;cursor:pointer;filter:grayscale(1);opacity:.25}
+.star-big.active{filter:none;opacity:1;transform:scale(1.1)}
+.review-hint{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;display:none}
+.review-hint.show{display:block}
+.review-textarea{width:100%;min-height:80px;background:var(--surface2);border:1px solid var(--gold-border);border-radius:12px;padding:12px 14px;color:var(--white);font-family:'Jost',sans-serif;font-size:14px;resize:none;outline:none;display:none;margin-bottom:12px}
+.review-textarea.show{display:block}
+.review-btn{display:none!important}
+.review-btn.show{display:flex!important}
+.menu-row{display:flex;justify-content:space-between;font-size:12px;padding:6px 8px;border-radius:8px;cursor:pointer;transition:background .2s;border:1px solid transparent}
+.menu-row.selected{background:rgba(120,180,60,.12);border-color:rgba(120,180,60,.3)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,152,106,.25)}50%{box-shadow:0 0 0 8px rgba(184,152,106,0)}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="padding:44px 24px 36px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--gold-border)">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,#0c0f12,var(--bg))"></div>
+  <div style="position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:220px;height:220px;background:radial-gradient(circle,rgba(184,152,106,.12),transparent 70%);pointer-events:none"></div>
+  <div style="position:relative;z-index:2">
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border:1px solid var(--gold-border);border-radius:100px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-bottom:20px">
+      <div style="width:5px;height:5px;border-radius:50%;background:var(--gold);animation:blink 2s ease infinite"></div>
+      Nova · Smart Guest Experience
+    </div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--white);letter-spacing:.06em;line-height:1;margin-bottom:4px">Morione</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:300;color:var(--gold);letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px">Hotel & Spa</div>
+    <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:300">Karaköy · Beyoğlu · İstanbul</div>
+  </div>
+</div>
+
+<!-- REVIEW -->
+<div style="padding:20px 20px 8px">
+  <button onclick="openModal('review')" style="width:100%;background:linear-gradient(135deg,#14100a,#1c1508);border:1px solid var(--gold);border-radius:16px;padding:20px;display:flex;align-items:center;gap:14px;cursor:pointer;text-align:left;animation:pulse 2.5s 1s ease infinite">
+    <div style="font-size:28px;flex-shrink:0">⭐</div>
+    <div style="flex:1">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);margin-bottom:2px">Rate Your Experience</div>
+      <div style="font-size:11px;color:var(--muted);font-weight:300">Your review helps us improve</div>
+    </div>
+    <div style="color:var(--gold);font-size:18px">›</div>
+  </button>
+</div>
+
+<!-- NEARBY RESTAURANTS -->
+<div class="section-label">Nearby Restaurants</div>
+<div style="padding:0 20px 8px;display:flex;flex-direction:column;gap:8px">
+
+  <div onclick="openModal('galatta')" style="background:linear-gradient(135deg,#0d1208,#121a0a);border:1px solid rgba(120,180,80,.35);border-radius:16px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px">
+    <div style="font-size:28px;flex-shrink:0">🥐</div>
+    <div style="flex:1">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#b8d898;margin-bottom:2px">Galatta Karaköy 1950</div>
+      <div style="font-size:11px;color:var(--muted)">Mumhane Cad. · 2 min · Pizza · Breakfast · Deli</div>
+      <div style="margin-top:4px;display:flex;gap:6px">
+        <span style="font-size:9px;padding:2px 8px;border-radius:20px;background:rgba(120,180,60,.15);color:#80c050;border:1px solid rgba(120,180,60,.25)">07:00–22:00</span>
+        <span style="font-size:9px;padding:2px 8px;border-radius:20px;background:rgba(120,180,60,.15);color:#80c050;border:1px solid rgba(120,180,60,.25)">View Menu →</span>
+      </div>
+    </div>
+  </div>
+
+  <div onclick="openModal('hritaly')" style="background:linear-gradient(135deg,#100a0a,#1a1010);border:1px solid rgba(200,80,60,.35);border-radius:16px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px">
+    <div style="font-size:28px;flex-shrink:0">🍝</div>
+    <div style="flex:1">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#e8a898;margin-bottom:2px">HR Italy</div>
+      <div style="font-size:11px;color:var(--muted)">Italian · Pizza · Pasta · Karaköy</div>
+      <div style="margin-top:4px;display:flex;gap:6px">
+        <span style="font-size:9px;padding:2px 8px;border-radius:20px;background:rgba(200,80,60,.15);color:#e08070;border:1px solid rgba(200,80,60,.25)">@hr.italy</span>
+        <span style="font-size:9px;padding:2px 8px;border-radius:20px;background:rgba(200,80,60,.15);color:#e08070;border:1px solid rgba(200,80,60,.25)">View Menu →</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- HOTEL BAR -->
+<div class="section-label">Hotel Bar</div>
+<div style="padding:0 20px 8px">
+  <div onclick="openModal('hotelbar')" style="background:linear-gradient(135deg,#0a0810,#100c1a);border:1px solid rgba(140,100,200,.35);border-radius:16px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px">
+    <div style="font-size:28px;flex-shrink:0">🍷</div>
+    <div style="flex:1">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#c8b0e8;margin-bottom:2px">Hotel Bar</div>
+      <div style="font-size:11px;color:var(--muted)">Snacks · Drinks · Wine · Beer</div>
+      <div style="margin-top:4px">
+        <span style="font-size:9px;padding:2px 8px;border-radius:20px;background:rgba(140,100,200,.15);color:#c8b0e8;border:1px solid rgba(140,100,200,.25)">View Menu →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- SPA -->
+<div class="section-label">Spa & Hammam</div>
+<div style="padding:0 20px 8px">
+  <div onclick="openModal('spa')" style="background:linear-gradient(135deg,#0a0f1a,#0f1525);border:1px solid rgba(184,152,106,.4);border-radius:16px;padding:16px 18px;cursor:pointer;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <div style="font-size:28px">🧖</div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2)">Morione Spa & Hammam</div>
+        <div style="font-size:11px;color:var(--muted)">Kemankeş Mah. · Tel: +90 212 251 35 35</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+      <div style="background:rgba(184,152,106,.08);border-radius:8px;padding:8px 10px">
+        <div style="font-size:10px;color:var(--gold);margin-bottom:2px">Turkish Hammam Massage</div>
+        <div style="font-size:11px;color:var(--white)">40 dk → 90€</div>
+        <div style="font-size:11px;color:var(--white)">60 dk → 110€</div>
+      </div>
+      <div style="background:rgba(184,152,106,.08);border-radius:8px;padding:8px 10px">
+        <div style="font-size:10px;color:var(--gold);margin-bottom:2px">Hammam Scrub & Foam</div>
+        <div style="font-size:11px;color:var(--white)">30 dk → 30€</div>
+        <div style="font-size:11px;color:var(--muted)">Hammam Foam Bath 25€</div>
+      </div>
+      <div style="background:rgba(184,152,106,.08);border-radius:8px;padding:8px 10px">
+        <div style="font-size:10px;color:var(--gold);margin-bottom:2px">Classic Massage</div>
+        <div style="font-size:11px;color:var(--white)">40 dk → 50€</div>
+        <div style="font-size:11px;color:var(--white)">60 dk → 65€</div>
+      </div>
+      <div style="background:rgba(184,152,106,.08);border-radius:8px;padding:8px 10px">
+        <div style="font-size:10px;color:var(--gold);margin-bottom:2px">Bali Massage</div>
+        <div style="font-size:11px;color:var(--white)">40 dk → 60€</div>
+        <div style="font-size:11px;color:var(--white)">60 dk → 80€</div>
+      </div>
+      <div style="background:rgba(184,152,106,.08);border-radius:8px;padding:8px 10px">
+        <div style="font-size:10px;color:var(--gold);margin-bottom:2px">Medical Massage</div>
+        <div style="font-size:11px;color:var(--white)">40 dk → 40€</div>
+        <div style="font-size:11px;color:var(--white)">60 dk → 60€</div>
+      </div>
+      <div style="background:rgba(184,152,106,.08);border-radius:8px;padding:8px 10px">
+        <div style="font-size:10px;color:var(--gold);margin-bottom:2px">Diğer</div>
+        <div style="font-size:11px;color:var(--white)">Sports Massage → 100€</div>
+        <div style="font-size:11px;color:var(--white)">Morocco Hammam → 170€</div>
+      </div>
+    </div>
+    <div style="background:var(--gold);color:#07090a;border:none;border-radius:10px;padding:11px;font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:.08em;text-align:center;text-transform:uppercase">Full Price List & Booking →</div>
+  </div>
+</div>
+
+<!-- HOTEL INFO -->
+<div class="section-label">Hotel Information</div>
+<div class="info-wrap">
+  <div class="info-card"><div><div class="info-label">Breakfast</div><div class="info-value">07:30 — 10:30</div></div><span class="badge badge-gold">Daily</span></div>
+  <div class="info-card"><div><div class="info-label">Check-In / Check-Out</div><div class="info-value">14:00 / 12:00</div></div><span class="badge badge-dim">Standard</span></div>
+  <div class="info-card" style="cursor:pointer" onclick="window.open('tel:+902122499999')"><div><div class="info-label">Reception</div><div class="info-value">+90 212 249 99 99</div></div><span class="badge badge-gold">Call</span></div>
+  <div class="info-card" style="cursor:pointer" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=Demirciler+Sokak+8+Karakoy+Istanbul','_blank')"><div><div class="info-label">Address</div><div class="info-value" style="font-size:12px">Demirciler Sk. No:8, Karaköy</div></div><span class="badge badge-gold">Maps →</span></div>
+  <div class="info-card"><div><div class="info-label">Restaurant</div><div class="info-value">Adap Restaurant</div></div><span class="badge badge-gold">Fine Dining</span></div>
+</div>
+
+<!-- MAP -->
+<div class="section-label">Getting Here</div>
+<div style="padding:0 20px 8px">
+  <div style="background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:14px;overflow:hidden">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d753!2d28.9736!3d41.0232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab9bf9e6b0001%3A0x1!2sDemirciler+Sokak+8+Karakoy!5e0!3m2!1str!2str!4v1" width="100%" height="180" style="border:0;display:block" allowfullscreen loading="lazy"></iframe>
+    <div style="padding:12px 14px">
+      <div style="font-size:10px;color:var(--gold);margin-bottom:8px;letter-spacing:.1em">🚇 NEAREST STATIONS</div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--white)">🟡 Karaköy (T1 Tram)</span><span style="color:var(--muted)">3 min walk</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--white)">⚓ Karaköy Ferry Port</span><span style="color:var(--muted)">150m away</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--white)">🔵 Şişhane (M2)</span><span style="color:var(--muted)">790m</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--white)">🔴 Taksim (M2)</span><span style="color:var(--muted)">12 min walk</span></div>
+      </div>
+      <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=Demirciler+Sokak+8+Karakoy+Istanbul','_blank')" style="margin-top:10px;width:100%;background:var(--gold);color:#07090a;border:none;border-radius:8px;padding:10px;font-family:'Jost',sans-serif;font-size:12px;cursor:pointer;text-transform:uppercase;letter-spacing:.08em">Get Directions →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- TOURS -->
+<div class="section-label">Tours & Experiences</div>
+<div style="padding:0 20px 8px">
+  <div class="tour-card" onclick="bookTour('Old City & Bosphorus Tour — 90€')"><div class="tour-emoji">🏛️</div><div style="flex:1"><div class="tour-name">Old City & Bosphorus</div><div class="tour-desc">Hagia Sophia · Blue Mosque · Bosphorus boat · Full day</div></div><div class="tour-price">90€<small>per person</small></div></div>
+  <div class="tour-card" onclick="bookTour('Princess Islands — 30€')"><div class="tour-emoji">🏝️</div><div style="flex:1"><div class="tour-name">Princess Islands</div><div class="tour-desc">Büyükada · Heybeliada · By boat · Full day</div></div><div class="tour-price">30€<small>per person</small></div></div>
+  <div class="tour-card" onclick="bookTour('Sunset Bosphorus Cruise — 25€')"><div class="tour-emoji">🌅</div><div style="flex:1"><div class="tour-name">Sunset Bosphorus Cruise</div><div class="tour-desc">2 hrs · Panoramic views · Bridges & fortresses</div></div><div class="tour-price">25€<small>per person</small></div></div>
+  <div class="tour-card" onclick="bookTour('Turkish Night Show')"><div class="tour-emoji">🎭</div><div style="flex:1"><div class="tour-name">Turkish Night Show</div><div class="tour-desc">Dinner + belly dance + dervish + folk shows</div></div><div class="tour-price">80€<small>with alcohol</small></div></div>
+</div>
+
+<!-- TRAVELPAYOUTS WIDGETS -->
+<div class="section-label">Book Your Travel</div>
+<div style="padding:0 20px 8px;display:flex;flex-direction:column;gap:12px">
+
+  <script async src="https://tpwgts.com/content?trs=535303&shmarker=644058&locale=en&powered_by=true&campaign_id=172&promo_id=4850" charset="utf-8"></script>
+
+  <script async src="https://tpwgts.com/content?trs=535303&shmarker=644058&bg_color=%23112266&title=Need%20tickets%3F&title_color=%23ffffff&icon_color=%230077ff&search_text=Search%20by%20artist%2C%20team%2C%20event%2C%20etc...&footer_color=%23ffffff&powered_by=true&campaign_id=72&promo_id=8505" charset="utf-8"></script>
+
+  <script async src="https://tpwgts.com/content?trs=535303&shmarker=644058&locale=en&powered_by=true&color_button=%23f2685f&color_focused=%23f2685f&secondary=%23FFFFFF&dark=%2311100f&light=%23FFFFFF&special=%23C4C4C4&border_radius=5&plain=false&no_labels=true&promo_id=8588&campaign_id=541" charset="utf-8"></script>
+
+  <script async src="https://tpwgts.com/content?trs=535303&shmarker=644058&locale=en&city_id=745044&tours=3&powered_by=true&campaign_id=150&promo_id=4489" charset="utf-8"></script>
+
+</div>
+
+<!-- FOOTER -->
+<div style="padding:24px 20px 48px;text-align:center">
+  <div style="display:inline-flex;align-items:center;gap:8px;padding:7px 18px;border:1px solid var(--gold-border);border-radius:100px;font-size:9px;color:var(--muted);letter-spacing:.1em">
+    <div style="width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.5"></div>
+    Powered by Nova
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal"><div class="modal-handle"></div><div id="modal-body"></div></div>
+</div>
+
+<script>
+const H = {
+  wifi_name: '——',
+  wifi_pass: '——',
+  whatsapp: '+90——',
+  google: 'https://www.google.com/search?q=morione+hotel+spa+karakoy+istanbul',
+  tripadvisor: 'https://www.tripadvisor.com/Hotel_Review-g293974-d7323200-Reviews-Morione_Hotel_Spa_Center-Istanbul.html',
+};
+
+let rating = 0;
+
+const modals = {
+  review: () => `
+    <div class="modal-title">⭐ Rate Your Stay</div>
+    <div class="modal-desc">How was your experience at Morione Hotel?</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div class="star-row">${[1,2,3,4,5].map(n=>`<span class="star-big" onclick="rate(${n})">⭐</span>`).join('')}</div>
+    <textarea class="review-textarea" id="rtxt" placeholder="Share your experience..."></textarea>
+    <div class="review-hint" id="rhint"></div>
+    <button class="modal-btn btn-gold review-btn" id="rbtn" onclick="submitReview()">Continue →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Perhaps Later</button>`,
+
+  wifi: () => `
+    <div class="modal-title">📶 Wi-Fi Access</div>
+    <div class="modal-desc">Complimentary Wi-Fi throughout Morione Hotel.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div class="wifi-box">
+      <div class="wifi-label">Network</div><div class="wifi-name">${H.wifi_name}</div>
+      <div class="wifi-label">Password</div><div class="wifi-pass">${H.wifi_pass}</div>
+    </div>
+    <button class="modal-btn btn-gold" onclick="navigator.clipboard.writeText('${H.wifi_pass}').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>this.textContent='Copy Password',2000)})">Copy Password</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>`,
+
+  concierge: () => `
+    <div class="modal-title">🔔 Concierge</div>
+    <div class="modal-desc">Our team is available 24/7 for any request during your stay.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I need assistance at Morione Hotel.')">Contact via WhatsApp →</button>
+    <button class="modal-btn btn-outline" onclick="window.open('tel:+902122499999')">📞 Call Reception</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>`,
+
+  spa: () => `
+    <div class="modal-title">🧖 Spa & Hammam</div>
+    <div class="modal-desc">Morione Spa · Kemankeş Mah. · +90 212 251 35 35</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
+
+      <div style="font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;padding:6px 0 2px">🛁 Hammam</div>
+
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px">
+        <div style="font-size:12px;color:var(--white);margin-bottom:4px">Turkish Hammam Massage</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>40 dk. Masaj + 20 dk. Köpük</span><span style="color:var(--gold)">90€</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>60 dk. Masaj + 30 dk. Kese-Köpük</span><span style="color:var(--gold)">110€</span></div>
+      </div>
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:12px;color:var(--white)">Hammam Scrub & Foam</div><div style="font-size:10px;color:var(--muted)">30 dk.</div></div>
+        <span style="color:var(--gold);font-size:14px">30€</span>
+      </div>
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:12px;color:var(--white)">Hammam Foam Bath</div><div style="font-size:10px;color:var(--muted)">20 dk.</div></div>
+        <span style="color:var(--gold);font-size:14px">25€</span>
+      </div>
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:12px;color:var(--white)">Hammam Coffee Peeling & Scrub</div><div style="font-size:10px;color:var(--muted)">60 dk.</div></div>
+        <span style="color:var(--gold);font-size:14px">140€</span>
+      </div>
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:12px;color:var(--white)">Morocco Hammam</div><div style="font-size:10px;color:var(--muted)">60 dk.</div></div>
+        <span style="color:var(--gold);font-size:14px">170€</span>
+      </div>
+
+      <div style="font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;padding:6px 0 2px">💆 Massage</div>
+
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px">
+        <div style="font-size:12px;color:var(--white);margin-bottom:4px">Medical Massage</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>40 dk.</span><span style="color:var(--gold)">40€</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>60 dk.</span><span style="color:var(--gold)">60€</span></div>
+      </div>
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px">
+        <div style="font-size:12px;color:var(--white);margin-bottom:4px">Classic Massage</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>40 dk.</span><span style="color:var(--gold)">50€</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>60 dk.</span><span style="color:var(--gold)">65€</span></div>
+      </div>
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px">
+        <div style="font-size:12px;color:var(--white);margin-bottom:4px">Bali Massage</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>40 dk.</span><span style="color:var(--gold)">60€</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>60 dk.</span><span style="color:var(--gold)">80€</span></div>
+      </div>
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:12px;color:var(--white)">Sports Massage</div><div style="font-size:10px;color:var(--muted)">60 dk.</div></div>
+        <span style="color:var(--gold);font-size:14px">100€</span>
+      </div>
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:12px;color:var(--white)">Reflexology Massage</div><div style="font-size:10px;color:var(--muted)">30 dk.</div></div>
+        <span style="color:var(--gold);font-size:14px">40€</span>
+      </div>
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:12px;color:var(--white)">Back Massage</div><div style="font-size:10px;color:var(--muted)">30 dk.</div></div>
+        <span style="color:var(--gold);font-size:14px">30€</span>
+      </div>
+
+      <div style="font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;padding:6px 0 2px">✨ Beauty</div>
+
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:12px;color:var(--white)">Facial Treatment</div><div style="font-size:10px;color:var(--muted)">60 dk.</div></div>
+        <span style="color:var(--gold);font-size:14px">55€</span>
+      </div>
+      <div style="background:rgba(184,152,106,.06);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:12px;color:var(--white)">Manicure & Pedicure</div><div style="font-size:10px;color:var(--muted)">60 dk.</div></div>
+        <span style="color:var(--gold);font-size:14px">55€</span>
+      </div>
+
+    </div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I would like to book a Spa & Hammam treatment at Morione Hotel.')">Book Spa Treatment →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>`,
+
+  taxi: () => `
+    <div class="modal-title">🚕 Call a Taxi</div>
+    <div class="modal-desc">Karaköy taxi service, available 24/7.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I need a taxi from Morione Hotel, Karaköy.')">Request via WhatsApp →</button>
+    <button class="modal-btn btn-outline" onclick="window.open('tel:+902122499999')">📞 Call Reception</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>`,
+
+  checkout: () => `
+    <div class="modal-title">🗝️ Check-Out</div>
+    <div class="modal-desc">Please notify reception before departure. Luggage storage available.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I am ready to check out from Morione Hotel. Thank you for a wonderful stay!')">Notify Reception →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Cancel</button>`,
+
+  laundry: () => `
+    <div class="modal-title">👔 Laundry Service</div>
+    <div class="modal-desc">Dry cleaning, pressing and laundry services. Items collected from your room.</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I would like to request laundry service at Morione Hotel.')">Request Laundry →</button>
+    <button class="modal-btn btn-outline" onclick="goWA('Hello, I need dry cleaning service at Morione Hotel.')">🧥 Dry Cleaning →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>`,
+
+  galatta: () => {
+    selectedItems.clear();
+    return `
+    <div class="modal-title">🥐 Galatta Karaköy 1950</div>
+    <div class="modal-desc" style="margin-bottom:8px">Mumhane Cad. No:9/B · 2 dk yürüyüş · 07:00–22:00</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div style="max-height:55vh;overflow-y:auto;padding-right:4px">
+
+      <div style="font-size:10px;color:#80c050;letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px">🥗 Olive Oil & Mezes</div>
+      <div class="menu-row" onclick="toggleItem(this,'Olive Oil Plate (price per kg)')"><span style="color:var(--white)">Zeytinyağlı Tabağı</span><span style="color:#80c050">kg/fiyat</span></div>
+      <div class="menu-row" onclick="toggleItem(this,'Tapas Tabağı')"><span style="color:var(--white)">Tapas Tabağı</span><span style="color:#80c050">—</span></div>
+      <div class="menu-row" onclick="toggleItem(this,'Bruschetta')"><span style="color:var(--white)">Bruschetta</span><span style="color:#80c050">—</span></div>
+      <div class="menu-row" onclick="toggleItem(this,'Fresh Smoked Tongue (Roka, Parmesan, Zeytinyağı)')"><span style="color:var(--white)">Fresh Smoked Tongue</span><span style="color:#80c050">—</span></div>
+
+      <div style="font-size:10px;color:#80c050;letter-spacing:.15em;text-transform:uppercase;margin:10px 0 8px">🍳 Breakfast</div>
+      <div class="menu-row" onclick="toggleItem(this,'Galatta Breakfast')"><span style="color:var(--white)">Galatta Breakfast</span><span style="color:#80c050">—</span></div>
+      <div class="menu-row" onclick="toggleItem(this,'Breakfast Plate')"><span style="color:var(--white)">Breakfast Plate</span><span style="color:#80c050">—</span></div>
+      <div class="menu-row" onclick="toggleItem(this,'Frankfurter Sausage')"><span style="color:var(--white)">Frankfurter Sausage</span><span style="color:#80c050">—</span></div>
+
+      <div style="font-size:10px;color:#80c050;letter-spacing:.15em;text-transform:uppercase;margin:10px 0 8px">🍕 Neapolitan Pizza</div>
+      <div class="menu-row" onclick="toggleItem(this,'Pizza (specify type)')"><span style="color:var(--white)">Pizza (specify type)</span><span style="color:#80c050">—</span></div>
+      <div class="menu-row" onclick="toggleItem(this,'Gluten-Free Pizza')"><span style="color:var(--white)">Gluten-Free Pizza</span><span style="color:#80c050">—</span></div>
+      <div class="menu-row" onclick="toggleItem(this,'Vegan Pizza')"><span style="color:var(--white)">Vegan Pizza</span><span style="color:#80c050">—</span></div>
+
+      <div style="font-size:10px;color:#80c050;letter-spacing:.15em;text-transform:uppercase;margin:10px 0 8px">🥪 Sandwiches</div>
+      <div class="menu-row" onclick="toggleItem(this,'Sourdough Sandwich')"><span style="color:var(--white)">Sourdough Sandwich</span><span style="color:#80c050">—</span></div>
+      <div class="menu-row" onclick="toggleItem(this,'French Baguette Sandwich')"><span style="color:var(--white)">Fransız Bageti</span><span style="color:#80c050">—</span></div>
+      <div class="menu-row" onclick="toggleItem(this,'Focaccia Sandwich')"><span style="color:var(--white)">Focaccia Sandwich</span><span style="color:#80c050">—</span></div>
+
+      <div style="font-size:10px;color:#80c050;letter-spacing:.15em;text-transform:uppercase;margin:10px 0 8px">🍰 Desserts</div>
+      <div class="menu-row" onclick="toggleItem(this,'Tiramisu')"><span style="color:var(--white)">Tiramisu</span><span style="color:#80c050">—</span></div>
+      <div class="menu-row" onclick="toggleItem(this,'Nutella Portion')"><span style="color:var(--white)">Nutella Portion</span><span style="color:#80c050">—</span></div>
+
+    </div>
+    <button id="order-btn" onclick="sendOrderGalatta()" style="margin-top:12px;width:100%;background:#5a9030;color:#fff;border:none;border-radius:10px;padding:13px;font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:.08em;cursor:pointer;text-transform:uppercase;opacity:.4">Select Items to Order</button>
+    <button class="modal-btn btn-outline" style="margin-top:8px" onclick="closeModal()">Close</button>
+  `},
+
+  hotelbar: () => `
+    <div class="modal-title">🍷 Hotel Bar</div>
+    <div class="modal-desc">In-room minibar & hotel bar menu</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:16px">
+
+      <div style="font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;padding:4px 0">🍟 Snacks</div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Sesame Crackers</span><span style="font-size:12px;color:var(--gold)">₺60</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Cheese Crackers</span><span style="font-size:12px;color:var(--gold)">₺80</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Topkek Cake</span><span style="font-size:12px;color:var(--gold)">₺100</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Chocolate</span><span style="font-size:12px;color:var(--gold)">₺100</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Ülker Creamy Biscuit</span><span style="font-size:12px;color:var(--gold)">₺100</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Nuts & Snacks</span><span style="font-size:12px;color:var(--gold)">₺100</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Pringles Chips</span><span style="font-size:12px;color:var(--gold)">₺100</span></div>
+
+      <div style="font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;padding:8px 0 4px">🥤 Drinks</div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Water (0.5L)</span><span style="font-size:12px;color:var(--gold)">₺60</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Mineral Water (Soda)</span><span style="font-size:12px;color:var(--gold)">₺110</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Coca-Cola</span><span style="font-size:12px;color:var(--gold)">₺110</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Niğde Gazoz (Turkish Soda)</span><span style="font-size:12px;color:var(--gold)">₺110</span></div>
+
+      <div style="font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;padding:8px 0 4px">🍺 Alcohol</div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Beer</span><span style="font-size:12px;color:var(--gold)">₺320</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Wine (18.75cl)</span><span style="font-size:12px;color:var(--gold)">₺150</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12px;color:var(--white)">Wine Bottle (75cl)</span><span style="font-size:12px;color:var(--gold)">₺3.000</span></div>
+
+    </div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I would like to order from the Hotel Bar.')">Order via Reception →</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>`,
+
+  hritaly: () => {
+    selectedItems.clear();
+    var rows = function(items) {
+      return items.map(function(i) {
+        return '<div class="menu-row" onclick="toggleItem(this,\'' + i[0] + '\')" style="border:1px solid transparent"><span style="color:var(--white)">' + i[1] + '</span><span style="color:#e08070">' + i[2] + '</span></div>';
+      }).join('');
+    };
+    var cat = function(label) {
+      return '<div style="font-size:10px;color:#e08070;letter-spacing:.15em;text-transform:uppercase;margin:10px 0 8px">' + label + '</div>';
+    };
+    return '<div class="modal-title">🍝 HR Italy</div>'
+      + '<div class="modal-desc" style="margin-bottom:8px">Italian Cuisine · Karaköy · @hr.italy</div>'
+      + '<div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>'
+      + '<div style="max-height:55vh;overflow-y:auto;padding-right:4px">'
+      + cat('🍕 Pizza')
+      + rows([
+          ['Turkish Pizza ₺830','Turkish Pizza (Lahmacun)','₺830'],
+          ['Osso Buco Pizza ₺1.250','Osso Buco Pizza 🆕','₺1.250'],
+          ['Margherita Pizza ₺700','Margherita Pizza','₺700'],
+          ['Four Cheese Pizza ₺810','Four Cheese Pizza','₺810'],
+          ['Rustic Pizza ₺750','Rustic Pizza','₺750'],
+          ['Eggplant Pizza ₺750','Eggplant Pizza','₺750'],
+          ['Pepperoni Pizza ₺800','Pepperoni Pizza','₺800'],
+          ['Smoked Meat Pizza ₺980','Smoked Meat Pizza','₺980'],
+          ['Turkish Style Pizza ₺810','Turkish Style Pizza','₺810'],
+          ['Fungi Pizza ₺750','Fungi Pizza','₺750'],
+        ])
+      + cat('🍝 Fettuccine')
+      + rows([
+          ['Creamy Parmesan ₺510','Creamy Parmesan','₺510'],
+          ['Creamy Porcini ₺890','Creamy Porcini Mushroom','₺890'],
+          ['Creamy Truffle ₺1.100','Creamy Truffle Mushroom','₺1.100'],
+          ['Mac & Cheese ₺610','Mac & Cheese','₺610'],
+          ['Smoked Meat Demi Glace ₺930','Smoked Meat Demi Glace','₺930'],
+          ['Creamy Bolognese ₺600','Creamy Bolognese','₺600'],
+          ['Penne Arrabbiata ₺560','Penne Arrabbiata 🌶️','₺560'],
+          ['Spaghetti Bolognese ₺610','Spaghetti Bolognese','₺610'],
+          ['Carbonara Fettuccine ₺930','Carbonara Fettuccine','₺930'],
+          ['Creamy Mushroom Chicken ₺600','Creamy Mushroom Chicken','₺600'],
+          ['Curry Sauce Chicken ₺625','Curry Sauce Chicken','₺625'],
+          ['Osso Buco Fettuccine ₺1.250','Osso Buco Fettuccine 🆕','₺1.250'],
+        ])
+      + cat('🫕 Baked Pasta')
+      + rows([
+          ['Lasagna ₺680','Lasagna','₺680'],
+          ['Baked Penne Bolognese ₺640','Baked Penne Bolognese','₺640'],
+          ['Baked Chicken Alfredo ₺640','Baked Chicken Alfredo','₺640'],
+          ['Baked Pasta Meatballs ₺640','Baked Pasta with Meatballs 🆕','₺640'],
+          ['Baked Creamy Vegetables ₺610','Baked Creamy Vegetables 🆕','₺610'],
+          ['Baked Mexican Pasta ₺670','Baked Mexican Pasta 🆕','₺670'],
+        ])
+      + cat('🥟 Ravioli & Tortellini')
+      + rows([
+          ['Five Cheese Ravioli ₺645','Five Cheese Ravioli','₺645'],
+          ['Spinach Ravioli ₺625','Spinach Ravioli','₺625'],
+          ['Meat Tortellini ₺670','Meat Tortellini','₺670'],
+          ['Italian Tortellini ₺625','Italian Tortellini','₺625'],
+        ])
+      + cat('🥗 Salads')
+      + rows([
+          ['Quinoa Salad ₺600','Quinoa Salad','₺600'],
+          ['Chicken Caesar Salad ₺550','Chicken Caesar Salad','₺550'],
+          ['Italian Salad ₺540','Italian Salad','₺540'],
+          ['Energy Mix Salad ₺610','Energy Mix Salad','₺610'],
+          ['Mozzarella Grilled Mushroom ₺610','Mozzarella & Grilled Mushroom','₺610'],
+        ])
+      + cat('🍰 Desserts')
+      + rows([
+          ['Italian Tiramisu ₺460','Italian Tiramisu','₺460'],
+          ['Chocolate Penne ₺640','Chocolate Penne 🆕','₺640'],
+          ['Basil Panna Cotta ₺460','Basil Panna Cotta 🆕','₺460'],
+          ['White Chocolate Brownie ₺460','White Chocolate Brownie','₺460'],
+        ])
+      + cat('🥤 Beverages')
+      + rows([
+          ['Fresh Orange Juice ₺400','Fresh Orange Juice','₺400'],
+          ['Milky Lemonade ₺330','Milky Lemonade 🆕','₺330'],
+          ['Soft Drink ₺270','Coca-Cola / Sprite / Fanta','₺270'],
+          ['Mineral Water ₺240','Mineral Water','₺240'],
+          ['Turkish Coffee ₺260','Turkish Coffee','₺260'],
+          ['Brewed Tea ₺220','Brewed Tea','₺220'],
+        ])
+      + '</div>'
+      + '<button id="order-btn" onclick="sendOrderHRItaly()" style="margin-top:12px;width:100%;background:#a03020;color:#fff;border:none;border-radius:10px;padding:13px;font-family:Jost,sans-serif;font-size:12px;font-weight:500;letter-spacing:.08em;cursor:pointer;text-transform:uppercase;opacity:.4">Select Items to Order</button>'
+      + '<button class="modal-btn btn-outline" style="margin-top:8px" onclick="closeModal()">Close</button>';
+  },
+};
+
+function openModal(t) {
+  document.getElementById('modal-body').innerHTML = modals[t]();
+  document.getElementById('overlay').classList.add('open');
+  rating = 0;
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('overlay')) return;
+  document.getElementById('overlay').classList.remove('open');
+}
+
+function rate(n) {
+  rating = n;
+  document.querySelectorAll('.star-big').forEach((s,i) => s.classList.toggle('active', i < n));
+  document.getElementById('rtxt').classList.add('show');
+  document.getElementById('rbtn').classList.add('show');
+  const hint = document.getElementById('rhint');
+  hint.classList.add('show');
+  if (n >= 3) {
+    hint.textContent = '✦ Your review will be shared on Google. Thank you!';
+    hint.style.color = 'var(--gold)';
+    document.getElementById('rbtn').textContent = 'Share on Google →';
+    document.getElementById('rbtn').style.cssText = 'background:var(--gold);color:#07090a';
+  } else {
+    hint.textContent = 'We apologise. Your feedback goes directly to management.';
+    hint.style.color = 'var(--muted)';
+    document.getElementById('rbtn').textContent = 'Send to Management →';
+    document.getElementById('rbtn').style.cssText = 'background:rgba(192,112,96,.2);color:#e07070;border:1px solid rgba(224,112,112,.3)';
+  }
+}
+
+function submitReview() {
+  const text = document.getElementById('rtxt').value.trim();
+  if (rating >= 3) {
+    if (text) navigator.clipboard.writeText(text).catch(()=>{});
+    document.getElementById('modal-body').innerHTML = `
+      <div class="modal-title">⭐ Share Your Review</div>
+      <div class="modal-desc">Where would you like to share?</div>
+      <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+      <button class="modal-btn btn-gold" onclick="window.open('${H.google}','_blank')">Share on Google →</button>
+      <button class="modal-btn btn-outline" onclick="window.open('${H.tripadvisor}','_blank')">Share on TripAdvisor →</button>
+      <button class="modal-btn btn-outline" onclick="closeModal()">Close</button>`;
+  } else {
+    const msg = encodeURIComponent('Dear Management, feedback (' + rating + ' stars):\n\n' + (text || 'General feedback.'));
+    window.open('https://wa.me/' + H.whatsapp.replace(/\D/g,'') + '?text=' + msg, '_blank');
+  }
+}
+
+function goWA(msg) {
+  window.open('https://wa.me/' + H.whatsapp.replace(/\D/g,'') + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+function bookTour(tour) {
+  goWA('Hello, I would like to book: ' + tour);
+}
+
+// Menu order system
+const selectedItems = new Set();
+
+function toggleItem(el, item) {
+  if (selectedItems.has(item)) {
+    selectedItems.delete(item);
+    el.classList.remove('selected');
+  } else {
+    selectedItems.add(item);
+    el.classList.add('selected');
+  }
+  const btn = document.getElementById('order-btn');
+  if (!btn) return;
+  const count = selectedItems.size;
+  if (count === 0) {
+    btn.textContent = 'Select Items to Order';
+    btn.style.opacity = '.4';
+  } else {
+    btn.textContent = 'Send Order (' + count + ' item' + (count > 1 ? 's' : '') + ') →';
+    btn.style.opacity = '1';
+  }
+}
+
+
+function hrToggle(el) {
+  var item = el.getAttribute('data-item');
+  if (selectedItems.has(item)) {
+    selectedItems.delete(item);
+    el.classList.remove('selected');
+  } else {
+    selectedItems.add(item);
+    el.classList.add('selected');
+  }
+  var btn = document.getElementById('order-btn');
+  if (!btn) return;
+  var count = selectedItems.size;
+  btn.textContent = count === 0 ? 'Select Items to Order' : 'Send Order (' + count + ' item' + (count > 1 ? 's' : '') + ') →';
+  btn.style.opacity = count === 0 ? '.4' : '1';
+}
+
+function sendOrderGalatta() {
+  if (selectedItems.size === 0) return;
+  const items = Array.from(selectedItems).join('\n• ');
+  goWA('Hello, I would like to order from Galatta Karaköy 1950:\n\n• ' + items);
+  selectedItems.clear();
+  document.getElementById('overlay').classList.remove('open');
+}
+
+function sendOrderHRItaly() {
+  if (selectedItems.size === 0) return;
+  const items = Array.from(selectedItems).join('\n• ');
+  goWA('Hello, I would like to order from HR Italy:\n\n• ' + items);
+  selectedItems.clear();
+  document.getElementById('overlay').classList.remove('open');
+}
+
+// end
+</script>
+</body>
+</html>
+<!-- HOTEL SERVICES -->
+<div class="section-label">Hotel Services</div>
+<div class="grid-wrap">
+  <div class="grid-card" onclick="openModal('wifi')"><div class="card-emoji">📶</div><div><div class="card-label">Wi-Fi</div><div class="card-sub">One tap password</div></div></div>
+  <div class="grid-card" onclick="openModal('concierge')"><div class="card-emoji">🔔</div><div><div class="card-label">Concierge</div><div class="card-sub">WhatsApp · 24/7</div></div></div>
+  <div class="grid-card" onclick="openModal('spa')"><div class="card-emoji">🧖</div><div><div class="card-label">Spa & Wellness</div><div class="card-sub">Sauna · Hammam · Massage</div></div></div>
+  <div class="grid-card" onclick="openModal('taxi')"><div class="card-emoji">🚕</div><div><div class="card-label">Call a Taxi</div><div class="card-sub">Karaköy taxi service</div></div></div>
+  <div class="grid-card" onclick="openModal('checkout')"><div class="card-emoji">🗝️</div><div><div class="card-label">Check-Out</div><div class="card-sub">Express departure</div></div></div>
+  <div class="grid-card" onclick="openModal('laundry')"><div class="card-emoji">👔</div><div><div class="card-label">Laundry</div><div class="card-sub">Dry cleaning · Pressing</div></div></div>
+</div>
+
+<!-- TRAVEL SERVICES -->
+<div class="section-label">Travel Services</div>
+<div style="padding:0 20px 8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+  <a href="https://gettransfer.tpm.lv/NBrAKX9Z" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#1a1200,#201a00);border:1px solid rgba(201,169,110,.35);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">✈️</div>
+    <div style="font-size:12px;font-weight:500;color:var(--gold2)">Airport Transfer</div>
+    <div style="font-size:10px;color:var(--muted)">GetTransfer · Private</div>
+    <div style="margin-top:6px;font-size:9px;color:var(--gold);letter-spacing:.1em">BOOK →</div>
+  </a>
+
+  <a href="https://searadar.tpm.lv/PWK6nVgu" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#001a1a,#00201e);border:1px solid rgba(100,200,180,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">⛵</div>
+    <div style="font-size:12px;font-weight:500;color:#a0e0d0">Rent a Boat</div>
+    <div style="font-size:10px;color:var(--muted)">SeaRadar · Bosphorus</div>
+    <div style="margin-top:6px;font-size:9px;color:#64c8b4;letter-spacing:.1em">BOOK →</div>
+  </a>
+
+  <a href="https://getrentacar.tpm.lv/ugFB1gRr" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#001a08,#002010);border:1px solid rgba(80,180,120,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🚙</div>
+    <div style="font-size:12px;font-weight:500;color:#90d4a8">Rent a Car</div>
+    <div style="font-size:10px;color:var(--muted)">GetRentaCar · Turkey</div>
+    <div style="margin-top:6px;font-size:9px;color:#60b880;letter-spacing:.1em">BOOK →</div>
+  </a>
+
+  <a href="https://tr.intui.travel/?partnerID=287737&subID=f1e48175c1ff44a98a6e26bb1-644058&utm_source=travelpayouts" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#0d0d1a,#12122a);border:1px solid rgba(150,130,220,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🗺️</div>
+    <div style="font-size:12px;font-weight:500;color:#b8b0e8">City Tours</div>
+    <div style="font-size:10px;color:var(--muted)">Intui · Istanbul</div>
+    <div style="margin-top:6px;font-size:9px;color:#9688d4;letter-spacing:.1em">BOOK →</div>
+  </a>
+
+  <a href="https://airalo.tpm.lv/yei2FQyQ" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#0d1a1a,#0a1820);border:1px solid rgba(80,160,220,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">📱</div>
+    <div style="font-size:12px;font-weight:500;color:#90c8e8">eSIM Turkey</div>
+    <div style="font-size:10px;color:var(--muted)">Airalo · No roaming</div>
+    <div style="margin-top:6px;font-size:9px;color:#60a8d0;letter-spacing:.1em">GET →</div>
+  </a>
+
+  <a href="https://yesim.tpm.lv/8zzrhxsz" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#0d1a1a,#0a1820);border:1px solid rgba(80,200,200,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">📡</div>
+    <div style="font-size:12px;font-weight:500;color:#80e0e0">Global eSIM</div>
+    <div style="font-size:10px;color:var(--muted)">Yesim · Instant</div>
+    <div style="margin-top:6px;font-size:9px;color:#40c0c0;letter-spacing:.1em">GET →</div>
+  </a>
+
+  <a href="https://cherehapa.tpm.lv/IVW9ZLN2" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#1a0d0d,#201010);border:1px solid rgba(220,120,100,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🛡️</div>
+    <div style="font-size:12px;font-weight:500;color:#e8a898">Travel Insurance</div>
+    <div style="font-size:10px;color:var(--muted)">Cherehapa</div>
+    <div style="margin-top:6px;font-size:9px;color:#d07868;letter-spacing:.1em">GET →</div>
+  </a>
+
+  <a href="https://ektatraveling.tpm.lv/p86qXlje" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#1a0d0d,#201010);border:1px solid rgba(220,80,80,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🏥</div>
+    <div style="font-size:12px;font-weight:500;color:#f0a0a0">Medical Insurance</div>
+    <div style="font-size:10px;color:var(--muted)">EKTA</div>
+    <div style="margin-top:6px;font-size:9px;color:#d06060;letter-spacing:.1em">GET →</div>
+  </a>
+
+  <a href="https://tiqets.tpm.lv/aeOPm5g3" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#0d0d1a,#12122a);border:1px solid rgba(150,130,220,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🎟️</div>
+    <div style="font-size:12px;font-weight:500;color:#b8b0e8">Museum Tickets</div>
+    <div style="font-size:10px;color:var(--muted)">Tiqets · Skip line</div>
+    <div style="margin-top:6px;font-size:9px;color:#9688d4;letter-spacing:.1em">BOOK →</div>
+  </a>
+
+  <a href="https://aviasales.tpm.lv/WcCdXak3" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#0d0a1a,#15102a);border:1px solid rgba(160,120,220,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">✈️</div>
+    <div style="font-size:12px;font-weight:500;color:#c0a8e8">Flights</div>
+    <div style="font-size:10px;color:var(--muted)">Aviasales</div>
+    <div style="margin-top:6px;font-size:9px;color:#9070c8;letter-spacing:.1em">SEARCH →</div>
+  </a>
+
+  <a href="https://www.sputnik8.com/?utm_campaign=tpoid_644058&utm_content=tpoid_644058&utm_medium=affiliate&utm_source=affiliate_151-644058&utm_tpocontent=" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#1a0a00,#200d00);border:1px solid rgba(220,140,60,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🎭</div>
+    <div style="font-size:12px;font-weight:500;color:#e8c090">Local Experiences</div>
+    <div style="font-size:10px;color:var(--muted)">Sputnik8</div>
+    <div style="margin-top:6px;font-size:9px;color:#c09050;letter-spacing:.1em">BOOK →</div>
+  </a>
+
+  <a href="https://gettransfer.tpm.lv/NBrAKX9Z" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#1a1200,#201a00);border:1px solid rgba(201,169,110,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🚗</div>
+    <div style="font-size:12px;font-weight:500;color:var(--gold2)">GetTransfer</div>
+    <div style="font-size:10px;color:var(--muted)">Airport · Private</div>
+    <div style="margin-top:6px;font-size:9px;color:var(--gold);letter-spacing:.1em">BOOK →</div>
+  </a>
+
+  <a href="https://getrentacar.tpm.lv/ugFB1gRr" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#001a08,#002010);border:1px solid rgba(80,180,120,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🔑</div>
+    <div style="font-size:12px;font-weight:500;color:#90d4a8">GetRentaCar</div>
+    <div style="font-size:10px;color:var(--muted)">Turkey · Best price</div>
+    <div style="margin-top:6px;font-size:9px;color:#60b880;letter-spacing:.1em">RENT →</div>
+  </a>
+
+  <a href="https://searadar.tpm.lv/PWK6nVgu" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#001a1a,#00201e);border:1px solid rgba(100,200,180,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">⚓</div>
+    <div style="font-size:12px;font-weight:500;color:#a0e0d0">SeaRadar</div>
+    <div style="font-size:10px;color:var(--muted)">Boat rental</div>
+    <div style="margin-top:6px;font-size:9px;color:#64c8b4;letter-spacing:.1em">BOOK →</div>
+  </a>
+
+  <a href="https://kiwitaxi.tpm.lv/BGg4Z7QN" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#1a1200,#201a00);border:1px solid rgba(201,169,110,.2);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🚕</div>
+    <div style="font-size:12px;font-weight:500;color:var(--gold2)">KiwiTaxi</div>
+    <div style="font-size:10px;color:var(--muted)">Airport transfer</div>
+    <div style="margin-top:6px;font-size:9px;color:var(--gold);letter-spacing:.1em">BOOK →</div>
+  </a>
+
+  <a href="https://localrent.tpm.lv/FoOHn4AQ" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#001a08,#002010);border:1px solid rgba(80,180,120,.2);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🚗</div>
+    <div style="font-size:12px;font-weight:500;color:#90d4a8">Localrent</div>
+    <div style="font-size:10px;color:var(--muted)">Cars · Turkey</div>
+    <div style="margin-top:6px;font-size:9px;color:#60b880;letter-spacing:.1em">RENT →</div>
+  </a>
+
+  <a href="https://www.qeeq.com/?sub_id=a1210daf08d94389be33c6402-644058&utm_medium=&utm_source=travelpayouts" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#001a08,#002010);border:1px solid rgba(100,200,100,.2);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🔑</div>
+    <div style="font-size:12px;font-weight:500;color:#a0e0a0">QEEQ</div>
+    <div style="font-size:10px;color:var(--muted)">Car rental</div>
+    <div style="margin-top:6px;font-size:9px;color:#60c060;letter-spacing:.1em">RENT →</div>
+  </a>
+
+  <a href="https://radicalstorage.com/?track_id=7a8d0a27bce5448e8e24ddf29-644058&utm_term=travelpayouts" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#1a1500,#201a00);border:1px solid rgba(200,180,60,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🧳</div>
+    <div style="font-size:12px;font-weight:500;color:#d4c870">Luggage Storage</div>
+    <div style="font-size:10px;color:var(--muted)">Radical Storage</div>
+    <div style="margin-top:6px;font-size:9px;color:#b0a040;letter-spacing:.1em">FIND →</div>
+  </a>
+
+  <a href="https://tr.intui.travel/?partnerID=287737&subID=f1e48175c1ff44a98a6e26bb1-644058&utm_source=travelpayouts" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#0d0a1a,#15102a);border:1px solid rgba(140,120,220,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">🗺️</div>
+    <div style="font-size:12px;font-weight:500;color:#b0a0e0">Intui Tours</div>
+    <div style="font-size:10px;color:var(--muted)">Guided · Istanbul</div>
+    <div style="margin-top:6px;font-size:9px;color:#8060c0;letter-spacing:.1em">BOOK →</div>
+  </a>
+
+  <a href="https://www.compensair.com/tr/?sub_id=9d94ba888bbd42518f6acaddd-644058&utm_medium=affiliate&utm_source=travelpayouts" target="_blank" style="text-decoration:none;background:linear-gradient(135deg,#001a08,#002010);border:1px solid rgba(80,180,120,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:20px">💸</div>
+    <div style="font-size:12px;font-weight:500;color:#90d4a8">Compensair</div>
+    <div style="font-size:10px;color:var(--muted)">Flight delay</div>
+    <div style="margin-top:6px;font-size:9px;color:#60b880;letter-spacing:.1em">CLAIM →</div>
+  </a>
+
+</div>
+
