@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Flare Coffee Moda — Menü</title>
+<meta name="description" content="Flare Coffee Moda — Moon Society 🌒 Coffee & Breakfast & Dessert">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c130d;
+    --cream:#f4ecdf;
+    --moon:#e7d9c0;
+    --bark:#5c3a23;
+    --bark-deep:#3a2415;
+    --ember:#c2703a;
+    --gold:#cf9a4e;
+    --line: rgba(28,19,13,0.12);
+    --night: #14100c;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(207,154,78,0.16), transparent 60%),
+      var(--cream);
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+  }
+  a{color:inherit;}
+  img{display:block;max-width:100%;}
+
+  /* ===== Top nav (moon phase scrubber) ===== */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,236,223,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:920px; margin:0 auto;
+    display:flex; align-items:center; gap:14px;
+    padding:14px 20px;
+  }
+  .moon-mark{
+    width:30px;height:30px;border-radius:50%;
+    background:
+      radial-gradient(circle at 32% 32%, #fff7e6 0%, var(--moon) 45%, var(--bark) 100%);
+    box-shadow:0 0 0 1px var(--line), inset -6px -4px 10px rgba(60,36,18,0.35);
+    flex:none;
+  }
+  .topbar-name{font-size:15px; font-weight:800; letter-spacing:.02em;}
+  .topbar-tag{font-size:11px; color:var(--bark); opacity:.75; margin-left:auto; text-align:right; font-style:italic; font-family:'Cormorant Garamond', serif; font-size:14px;}
+
+  .navscroll{
+    display:flex; gap:8px; overflow-x:auto;
+    padding:0 20px 14px; max-width:920px; margin:0 auto;
+    scrollbar-width:none;
+  }
+  .navscroll::-webkit-scrollbar{display:none;}
+  .navscroll a{
+    flex:none;
+    font-size:12.5px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+    padding:7px 14px; border-radius:999px;
+    border:1px solid var(--line);
+    color:var(--bark-deep);
+    text-decoration:none;
+    white-space:nowrap;
+    background:rgba(255,255,255,0.4);
+  }
+  .navscroll a:hover{border-color:var(--ember); color:var(--ember);}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    max-width:920px; margin:0 auto;
+    padding:56px 24px 40px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle, rgba(92,58,35,0.5) 1px, transparent 1px);
+    background-size:22px 22px;
+    opacity:.18;
+    pointer-events:none;
+  }
+  .hero-eyebrow{
+    font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--ember); font-weight:700; margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(40px,8vw,64px);
+    line-height:1;
+    margin:0 0 14px;
+    color:var(--bark-deep);
+  }
+  .hero p.sub{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:clamp(17px,3vw,21px);
+    color:var(--bark);
+    margin:0 auto 28px;
+    max-width:480px;
+  }
+  .moon-phase-row{
+    display:flex; justify-content:center; gap:10px; margin-top:8px;
+  }
+  .moon-phase-row span{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--moon);
+    box-shadow: inset -2px -1px 2px rgba(60,36,18,0.45);
+  }
+  .moon-phase-row span:nth-child(4){background:var(--ember); box-shadow:0 0 0 3px rgba(194,112,58,0.18);}
+
+  /* ===== Category section ===== */
+  .category{
+    max-width:920px; margin:0 auto;
+    padding:28px 24px 6px;
+    scroll-margin-top:96px;
+  }
+  .category-head{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:20px;
+  }
+  .category-head h2{
+    font-size:clamp(22px,4vw,28px);
+    margin:0;
+    color:var(--bark-deep);
+  }
+  .category-head .rule{
+    flex:1; height:1px;
+    background:var(--line);
+  }
+  .category-head .count{
+    font-size:10.5px; letter-spacing:.1em; color:var(--bark); opacity:.55; font-weight:700;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+  }
+  @media (min-width:640px){
+    .grid{grid-template-columns:repeat(3,1fr);}
+  }
+
+  .item{
+    background:rgba(255,255,255,0.55);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .item:hover{border-color:var(--ember); transform:translateY(-2px);}
+  .item-photo{
+    width:100%; aspect-ratio:1/1;
+    background:var(--moon);
+    overflow:hidden;
+    position:relative;
+  }
+  .item-photo img{
+    width:100%; height:100%; object-fit:cover;
+  }
+  .item-photo.noimg{
+    display:flex; align-items:center; justify-content:center;
+  }
+  .item-photo.noimg::after{
+    content:"☾";
+    font-size:28px;
+    color:var(--bark);
+    opacity:.25;
+  }
+  .item-body{
+    padding:12px 13px 14px;
+    display:flex; flex-direction:column; gap:5px; flex:1;
+  }
+  .item-name{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:17px;
+    line-height:1.15;
+    color:var(--ink);
+  }
+  .item-desc{
+    font-size:11.5px;
+    line-height:1.4;
+    color:var(--bark);
+    opacity:.85;
+    flex:1;
+  }
+  .item-foot{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:4px;
+  }
+  .item-price{
+    font-size:13.5px; font-weight:800; color:var(--ember);
+    font-variant-numeric:tabular-nums;
+  }
+  .item-cal{
+    font-size:10px; color:var(--bark); opacity:.55; font-weight:600;
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    margin-top:70px;
+    padding:40px 24px 50px;
+    text-align:center;
+    background:var(--night);
+    color:var(--cream);
+  }
+  footer .moon-mark{margin:0 auto 14px;}
+  footer h3{
+    font-size:24px; margin:0 0 6px; color:var(--cream);
+  }
+  footer p{
+    font-size:12px; opacity:.6; margin:4px 0 0; letter-spacing:.04em;
+  }
+
+  ::selection{background:var(--ember); color:#fff;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .item{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="moon-mark"></div>
+    <div class="topbar-name">Flare Coffee Moda</div>
+    <div class="topbar-tag">Moon Society 🌒</div>
+  </div>
+  <nav class="navscroll" id="navscroll"></nav>
+</div>
+
+<section class="hero">
+  <div class="hero-eyebrow">@flaremoda · Moda, İstanbul</div>
+  <h1>Flare<br>Coffee Moda</h1>
+  <p class="sub">Coffee &amp; Breakfast &amp; Dessert — gece yarısına kadar açık bir kumsal kafe sessizliği</p>
+  <div class="moon-phase-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+</section>
+
+<main id="menu-root"></main>
+
+<footer>
+  <div class="moon-mark"></div>
+  <h3>Flare Coffee Moda</h3>
+  <p>@flaremoda — Moda, Kadıköy</p>
+</footer>
+
+<script>
+const MENU = [
+  {
+    cat: "Tatlılar",
+    items: [
+      {name:"Antepli San Sebastian", price:"350.00", desc:"Eritilmiş Antep fıstığı kreması, kadayıf ve Antep fıstığının enfes buluşması", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1734268212/product/images/r3rrjxifwxxchblvgkw2.jpg"},
+      {name:"Juliet", price:"350.00", desc:"Enfes Flare kreması, krep kırıkları, çilek ve eritilmiş Belçika çikolatası", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746528859/product/images/wloifhi71mix1g103k1w.jpg"},
+      {name:"Anteplim", price:"350.00", desc:"Antep fıstıkları, baklava parçacıkları, Antep fıstıklı Flare kremasıyla enfes birleşimi", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746528888/product/images/hnvzkmxeywx9x0ln78yk.jpg"},
+      {name:"Romeo", price:"350.00", desc:"Enfes Flare kreması, Oreo bisküvisi ve Eritilmiş Belçika çikolatasının bütünleşmesi", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746528979/product/images/zafhmxwxm11v2vw5jz8e.jpg"},
+      {name:"Flare Lotus (Special)", price:"350.00", desc:"Eritilmiş Lotus crunchy spread, Lotus bisküvi ve kremasıyla enfes lotus buluşması", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746529008/product/images/vcxlxcscfnts3kawigj3.jpg"},
+      {name:"Kadayıflı", price:"350.00", desc:"Enfes Flare muhallebisi, kadayıf parçacıkları, eritilmiş Belçika çikolatası, ve çikolata kaplı antep fıstıkları", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746529028/product/images/ndqjell6iu6kysczg8iv.jpg"},
+      {name:"Tiramisu De Français", price:"380.00", desc:"Klasik İtalyan tiramisunun Fransız dokunuşuyla yeniden yorumu. Mascarpone kreması, espressoyla ıslatılmış katmanlar", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746529167/product/images/jsa57tjx4w92vjxyfpjh.jpg"},
+      {name:"Flare Lime", price:"380.00", desc:"Lime'ın ferahlığıyla buluşan hafif dokusu, serinleten hafifliğiyle damakta iz bırakan rafine bir lezzet", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746529133/product/images/kdg2pw9dw8hj7yzckzr5.jpg"},
+      {name:"İbiza", price:"350.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1745147487/product/images/iuc7ingw3cvpt1smrmgf.jpg"},
+      {name:"Beyaz Çikolatalı Brownie", price:"340.00", desc:"İsteğe bağlı olarak sıcak servis edilir.", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746529249/product/images/mw62bbgrkdxljkl68qho.jpg"},
+      {name:"Lotus Cheesecake", price:"350.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1745147242/product/images/wwe9zgnlhugzgo4n3l1j.jpg"},
+      {name:"San Sebastian", price:"340.00", desc:"Extra Belçika Çikolatası +35₺", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746529055/product/images/q1jfhohddprospw6e80c.jpg"},
+      {name:"Flare Coconut (Glutensiz)", price:"380.00", desc:"Tropikal mango ve vişnenin zarif uyumu, ipeksi Hindistan cevizli krema ile birleşiyor. Glutensizdir.", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746539525/product/images/hs9ddjcyj7jrlogjxgeu.jpg"},
+      {name:"Dondurmalı Beyaz Çikolatalı Brownie", price:"380.00", desc:"Maraş kesme dondurma, Antep fıstıkları, beyaz çikolata ve yoğun browni çikolatasının enfes birleşimi", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1721501018/product/images/b3hvnxxzuyvvt1gbqgp6.jpg"},
+      {name:"Lemon Cheesecake", price:"350.00", desc:"", img:""},
+      {name:"Yaban Mersinli Flare Special", price:"350.00", desc:"", img:""},
+      {name:"Çilekli Magnolia", price:"300.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746529072/product/images/aqcg7ppkysbfap8y9m7z.jpg"},
+    ]
+  },
+  {
+    cat: "Coffees",
+    items: [
+      {name:"Coconut Latte", price:"250.00", desc:"", img:""},
+      {name:"Spanish Latte", price:"280.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746544100/product/images/dwubpcmxmcodfcy0pmmf.jpg"},
+      {name:"Filter Coffee", price:"170.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746539691/product/images/zuch62ky5ximmsfyrkmj.jpg"},
+      {name:"Americano", price:"190.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746543891/product/images/npda1pubddhinu6w2uid.jpg"},
+      {name:"Coffee Latte", price:"220.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746539612/product/images/zlds0aqsxm1ugyixglwb.jpg"},
+      {name:"Coffee Mocha", price:"240.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746544072/product/images/qyajx3teeca5lfwq41cf.jpg"},
+      {name:"Cortado", price:"190.00", desc:"", img:""},
+      {name:"Flat White", price:"230.00", desc:"", img:""},
+      {name:"Cafe Miel", price:"250.00", desc:"", img:""},
+      {name:"Cappucino", price:"220.00", desc:"", img:""},
+      {name:"White Chocolate Mocha", price:"240.00", desc:"", img:""},
+      {name:"Vegan Latte", price:"280.00", desc:"Yulaf ve Badem sütü seçenekleri ile servis edilir", img:""},
+      {name:"Lotus Biscuit Latte", price:"270.00", desc:"", img:""},
+      {name:"Dead Eye", price:"240.00", desc:"", img:""},
+      {name:"Red Eye", price:"220.00", desc:"", img:""},
+      {name:"Chai Tea Latte", price:"220.00", desc:"", img:""},
+      {name:"Sıcak Çikolata", price:"230.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746539633/product/images/uuxi77zf6vmtmkktd1oj.jpg"},
+      {name:"Espresso Macchiato", price:"180.00", desc:"", img:""},
+      {name:"Single Espresso", price:"150.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746552469/product/images/azxykbcdkaps4ir2nwc3.jpg"},
+      {name:"Double Espresso", price:"170.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746552481/product/images/cu1slkmuq7crbodeusd7.jpg"},
+      {name:"Türk Kahvesi", price:"160.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746539808/product/images/lrgy0dnoq6bfdf10elam.jpg"},
+      {name:"Double Türk Kahvesi", price:"180.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746539827/product/images/g8gjdbbwezafmj1mhk5z.jpg"},
+      {name:"Winter Latte", price:"240.00", desc:"", img:""},
+      {name:"Caramel Latte", price:"240.00", desc:"", img:""},
+    ]
+  },
+  {
+    cat: "Ice Coffees",
+    items: [
+      {name:"Ice Vegan Latte", price:"280.00", desc:"Badem ve Yulaf sütü seçenekleri mevcuttur", img:""},
+      {name:"Iced Spanish Latte", price:"250.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1753883566/product/images/xqqmexh1c9prrpi9cuww.jpg"},
+      {name:"Iced Coconut Latte", price:"270.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1753883456/product/images/bqgfjgmevww2vtajjzxd.jpg"},
+      {name:"Iced Filtre Kahve", price:"210.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746540329/product/images/biorjfzxvfl5dvnjwekq.jpg"},
+      {name:"Iced Americano", price:"230.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746540361/product/images/nu4nassjd0zfdzikb6gd.jpg"},
+      {name:"Iced Coffee Mocha", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746540078/product/images/aqrgwt5s9bf6xqgcnlsa.jpg"},
+      {name:"Iced Coffee Latte", price:"240.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746540305/product/images/sspwk3bo0avjku60kwij.jpg"},
+      {name:"Ice Macchiato Latte", price:"240.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746540259/product/images/dec5artck3bfyvmescge.jpg"},
+      {name:"Iced Biscuit Lotus Latte", price:"270.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541204/product/images/sosymeukicze0vws8eoz.jpg"},
+      {name:"Iced White Chocolate Mocha", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746540041/product/images/bj8r5qv1kaellr4b0f2b.jpg"},
+      {name:"Ice Chai Tea", price:"240.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541511/product/images/nnrnspvcq07pvoixqy8t.jpg"},
+      {name:"Iced Coffee Miel", price:"240.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746540834/product/images/lfnorpxp9dosllmbqzmv.jpg"},
+      {name:"Ice Dead Eye", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746540617/product/images/vjssmymmud3ui1wee8n7.jpg"},
+      {name:"Churchill", price:"170.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541240/product/images/x2d4m9uxhx6n8hbjsa3v.jpg"},
+      {name:"Soda", price:"100.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541268/product/images/ydvub1abqesnq2rprh5v.jpg"},
+      {name:"Su", price:"70.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541292/product/images/tw2ciwfrqi4kwdvwncgt.jpg"},
+      {name:"Extra Vegan Milk", price:"50.00", desc:"Fındık, badem, yulaf, soya", img:""},
+      {name:"Extra Shot", price:"50.00", desc:"", img:""},
+      {name:"Extra Syrup", price:"50.00", desc:"Vanilya, karamel, oreo, lotus", img:""},
+    ]
+  },
+  {
+    cat: "Breakfast",
+    items: [
+      {name:"Breakfast No.1", price:"500.00", desc:"Pesto soslu patates püresi, semizotu salatası, kızarmış nohut, avakadou püresi, bagel, çırpılmış yumurta, hindi füme, zeytin salatası", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1760990699/product/images/owvyqpvvtnl204vfdloe.jpg"},
+      {name:"Breakfast No.2", price:"500.00", desc:"Bagel, zeytin salatası, çırpılmış yumurta, fıstık ezmesi, muz & çilek", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1760990778/product/images/ashelrilvzybbyw2yqb2.jpg"},
+      {name:"Breakfast No.3", price:"500.00", desc:"Ekmek üstü ajvar sos, patates kavurması, zeytin salatası, cheddarlı dana sosis, pestolu sos, çırpılmış yumurta", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1760990917/product/images/kwyh5be9h6amgdphx7fg.jpg"},
+      {name:"Breakfast No.4", price:"500.00", desc:"Ekmek üstü ajvar sos, kızarmış dana sucuk, çırpılmış yumurta, kırmızı biber üzeri kızarmış nohut, zeytin salatası, taze peynir, patates kavurması", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1760991046/product/images/yy6lasjvkbkpwyfbjggk.jpg"},
+      {name:"Golden Bowl", price:"350.00", desc:"Sütlü Yulaf lapası, Muz, Çilek, Granola, Glütensiz Şekersiz Fıstık Ezmesi, chia tohumu (İsteğe bağlı Vegan Süt +45₺)", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1760990382/product/images/uv2sgsj0y5vzixy85sqx.jpg"},
+      {name:"Bowl", price:"350.00", desc:"Balla tatlandırılmış yoğurt, yulaf, granola, şekersiz glütensiz fıstık ezmesi, muz, çilek, chia tohumu", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1726996520/product/images/mdzrxevxiuzfhmvtkxps.jpg"},
+    ]
+  },
+  {
+    cat: "Milkshakes",
+    items: [
+      {name:"Kavun Milkshake", price:"280.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541671/product/images/ltsfmz93rcn1dz326ab8.jpg"},
+      {name:"Çilek Milkshake", price:"280.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541593/product/images/h5ebgfx9pqayy0kwaqdy.jpg"},
+      {name:"Lotus Milkshake", price:"280.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541631/product/images/b3oozcjn0spddx7fnmwg.jpg"},
+      {name:"Çikolatalı Milkshake", price:"280.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541557/product/images/kfwnuqjdek0q6djandce.jpg"},
+      {name:"Böğürtlenli Milkshake", price:"280.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541574/product/images/dhx27mzy3lggeswq3yrh.jpg"},
+      {name:"Caramel Milkshake", price:"280.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541707/product/images/s3kklevft2qpasfgligq.jpg"},
+    ]
+  },
+  {
+    cat: "Kokteyller",
+    items: [
+      {name:"Favela Signature", price:"280.00", desc:"Kavun püresi, lime, menta ve özel içeriklerle hazırlanır", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1713750744/product/images/dqglpkdpv4le5ga4go6y.jpg"},
+      {name:"Espresso Gigi", price:"280.00", desc:"Espresso, lime, vanilya", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1713749910/product/images/op5aikwcwppp6ngc6j9g.jpg"},
+      {name:"Mango Margarita", price:"280.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746541788/product/images/fga467blqqbvfx00damu.jpg"},
+      {name:"Strawberry Margarita", price:"280.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746542329/product/images/mt4rcvfcrlanuvdokodg.jpg"},
+      {name:"Berry Hibiscus", price:"270.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746542363/product/images/pyqfgeap53dj8u4xfppb.jpg"},
+      {name:"Blue Curacao", price:"290.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1685357330/product/images/zdtrppfbsgxdyjwulrtc.jpg"},
+      {name:"Ice Hibiscus", price:"230.00", desc:"Hibiscus çayı, vanilya", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746542382/product/images/ahaz0zqz8c5w7hg0czkq.jpg"},
+      {name:"Mojito", price:"280.00", desc:"Sprite, nane, lime, cuba de mente", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746542407/product/images/xgcvvkfaxv1ls15ttfgi.jpg"},
+      {name:"Cool Lime", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1713750049/product/images/k4nhrkxunzen43eus4ks.jpg"},
+    ]
+  },
+  {
+    cat: "Homemade İce Teas",
+    items: [
+      {name:"Peach Ice Tea", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1722691364/product/images/mpfb9zreecbpfk2hebv2.jpg"},
+      {name:"Berry Ice Tea", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1722691386/product/images/lmjgtxr6c9gxllvnrshd.jpg"},
+      {name:"Melon Ice Tea", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1722691616/product/images/mrimtf5dqhzkeswpo6nr.jpg"},
+      {name:"Strawberry Ice Tea", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1722691465/product/images/b2z0d9caf1lexdukc9go.jpg"},
+      {name:"Mango Ice Tea", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1722691483/product/images/tgiri4yne1evlqcf7tc0.jpg"},
+    ]
+  },
+  {
+    cat: "Çaylar",
+    items: [
+      {name:"Kış Çayı", price:"200.00", desc:"", img:""},
+      {name:"Ihlamur Çayı", price:"200.00", desc:"", img:""},
+      {name:"Nane Limon Çayı", price:"200.00", desc:"", img:""},
+      {name:"Hibiscus", price:"200.00", desc:"", img:""},
+      {name:"Çay", price:"60.00", desc:"", img:""},
+      {name:"Fincan Çay", price:"80.00", desc:"", img:""},
+      {name:"Yeşil Çay", price:"200.00", desc:"", img:""},
+      {name:"Ada Çayı", price:"200.00", desc:"", img:""},
+      {name:"Papatya Çayı", price:"200.00", desc:"", img:""},
+    ]
+  },
+  {
+    cat: "Frozenlar",
+    items: [
+      {name:"Strawberry Frozen", price:"260.00", desc:"Çilek, limonata, buz", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746542471/product/images/fih0uk30u6cmuq8edq6w.jpg"},
+      {name:"Kavun Frozen", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746542499/product/images/qe6aeo3zkaesjqxwmq8s.jpg"},
+      {name:"Peach Frozen", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746542787/product/images/ab57nzer0jfwhnorsdxo.jpg"},
+      {name:"Berry Frozen", price:"260.00", desc:"Böğürtlen, limonata, buz", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746542819/product/images/m9ev9x4ohdvqgegizm6s.jpg"},
+      {name:"Mango Frozen", price:"260.00", desc:"", img:"https://res.cloudinary.com/allzin/image/upload/c_fill,ar_1:1,w_600,f_auto/v1746542837/product/images/qoxvtqgunlxtbwi9tx93.jpg"},
+    ]
+  },
+];
+
+function slugify(s){
+  return s.toLowerCase()
+    .replace(/ı/g,'i').replace(/ş/g,'s').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ö/g,'o').replace(/ç/g,'c')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
+
+function fmtPrice(p){
+  return parseFloat(p).toFixed(0) + " ₺";
+}
+
+const nav = document.getElementById('navscroll');
+const root = document.getElementById('menu-root');
+
+MENU.forEach(section => {
+  const id = slugify(section.cat);
+
+  const navLink = document.createElement('a');
+  navLink.href = '#' + id;
+  navLink.textContent = section.cat;
+  nav.appendChild(navLink);
+
+  const cat = document.createElement('section');
+  cat.className = 'category';
+  cat.id = id;
+
+  cat.innerHTML = `
+    <div class="category-head">
+      <h2>${section.cat}</h2>
+      <div class="rule"></div>
+      <div class="count">${section.items.length} ÜRÜN</div>
+    </div>
+    <div class="grid"></div>
+  `;
+
+  const grid = cat.querySelector('.grid');
+  section.items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'item';
+    const photoHtml = item.img
+      ? `<div class="item-photo"><img src="${item.img}" alt="${item.name}" loading="lazy"></div>`
+      : `<div class="item-photo noimg"></div>`;
+    card.innerHTML = `
+      ${photoHtml}
+      <div class="item-body">
+        <div class="item-name">${item.name}</div>
+        ${item.desc ? `<div class="item-desc">${item.desc}</div>` : ''}
+        <div class="item-foot">
+          <div class="item-price">${fmtPrice(item.price)}</div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  root.appendChild(cat);
+});
+
+// Anchor linklerin sayfa navigasyonu tetiklemesini engelle, sadece sayfa içi kaydır
+document.addEventListener('click', function(e){
+  const link = e.target.closest('a[href^="#"]');
+  if(!link) return;
+  e.preventDefault();
+  const targetId = link.getAttribute('href').slice(1);
+  const target = document.getElementById(targetId);
+  if(target){
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+    history.replaceState(null, '', '#' + targetId);
+  }
+});
+</script>
+
+</body>
+</html>
