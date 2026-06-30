@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ada Palas Boutique Hotel — Büyükada</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080808;--surface:#111;--surface2:#181818;--gold:#c9a96e;--gold2:#e8c99a;--gold-dim:rgba(201,169,110,.1);--gold-border:rgba(201,169,110,.2);--white:#f0ece4;--muted:#6b6760}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Jost',sans-serif;min-height:100vh;overflow-x:hidden}
+.section-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);padding:18px 20px 10px;font-weight:300}
+.grid-wrap{padding:0 20px 8px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid-card{background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:14px;padding:16px 14px;cursor:pointer;transition:all .25s;display:flex;flex-direction:column;gap:8px}
+.grid-card:active{transform:scale(.97)}
+.card-emoji{font-size:22px;line-height:1}
+.card-label{font-size:13px;font-weight:400;color:var(--white)}
+.card-sub{font-size:11px;color:var(--muted);font-weight:300}
+.info-wrap{padding:0 20px 8px;display:flex;flex-direction:column;gap:6px}
+.info-card{background:var(--surface);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.info-label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.info-value{font-size:14px;color:var(--white);font-weight:300}
+.badge{font-size:10px;padding:3px 12px;border-radius:100px}
+.badge-gold{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.badge-dim{background:rgba(255,255,255,.04);color:var(--muted);border:1px solid rgba(255,255,255,.06)}
+.tour-card{background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:14px;padding:16px 18px;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;gap:14px}
+.tour-card:active{transform:scale(.99)}
+.tour-emoji{font-size:24px;flex-shrink:0}
+.tour-info{flex:1}
+.tour-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--white);margin-bottom:3px}
+.tour-desc{font-size:11px;color:var(--muted);font-weight:300;line-height:1.4}
+.tour-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--gold);flex-shrink:0;text-align:right}
+.tour-price small{display:block;font-size:10px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300}
+.gallery-grid{padding:0 20px 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.gallery-item{border-radius:10px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;position:relative}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:300;flex-direction:column;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:80vh;object-fit:contain;border-radius:4px}
+.lb-close{position:absolute;top:20px;right:20px;font-size:24px;color:white;cursor:pointer}
+.lb-prev{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:36px;color:white;cursor:pointer}
+.lb-next{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:36px;color:white;cursor:pointer}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(16px);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{width:100%;max-width:480px;background:#111;border:1px solid var(--gold-border);border-radius:28px 28px 0 0;padding:28px 24px 52px;transform:translateY(100%);transition:transform .45s cubic-bezier(.22,1,.36,1);max-height:88vh;overflow-y:auto}
+.overlay.open .modal{transform:translateY(0)}
+.modal-handle{width:36px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin:0 auto 22px}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--white);margin-bottom:6px}
+.modal-desc{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;font-weight:300}
+.modal-divider{display:flex;align-items:center;gap:10px;margin:4px 0 18px}
+.modal-line{flex:1;height:1px;background:rgba(255,255,255,.06)}
+.modal-gem{width:4px;height:4px;background:var(--gold);transform:rotate(45deg);opacity:.4}
+.modal-btn{width:100%;padding:15px;border-radius:12px;font-family:'Jost',sans-serif;font-size:13px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
+.btn-gold{background:var(--gold);color:#080808}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,.08);color:var(--muted)}
+.wifi-box{background:rgba(201,169,110,.05);border:1px solid var(--gold-border);border-radius:14px;padding:20px;margin-bottom:16px}
+.wifi-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.wifi-name{font-size:15px;color:var(--white);font-weight:400;margin-bottom:14px}
+.wifi-pass{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold2);font-weight:300;letter-spacing:.08em}
+.star-row{display:flex;gap:10px;justify-content:center;margin-bottom:20px}
+.star-big{font-size:32px;cursor:pointer;transition:transform .2s;filter:grayscale(1);opacity:.25}
+.star-big.active{filter:none;opacity:1;transform:scale(1.1)}
+.review-hint{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;display:none}
+.review-hint.show{display:block}
+.review-textarea{width:100%;min-height:80px;background:var(--surface2);border:1px solid var(--gold-border);border-radius:12px;padding:12px 14px;color:var(--white);font-family:'Jost',sans-serif;font-size:14px;font-weight:300;resize:none;outline:none;display:none;margin-bottom:12px}
+.review-textarea.show{display:block}
+.review-btn{display:none!important}
+.review-btn.show{display:flex!important}
+.menu-row{display:flex;justify-content:space-between;font-size:12px;padding:6px 8px;border-radius:8px;cursor:pointer;transition:background .2s;border:1px solid transparent}
+.menu-row.selected{background:rgba(201,169,110,.12);border-color:rgba(201,169,110,.3)}
+.menu-cat{font-size:10px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin:14px 0 8px}
+.menu-cat:first-child{margin-top:0}
+.room-card{background:linear-gradient(135deg,#1a1200,#181400);border:1px solid var(--gold-border);border-radius:16px;padding:16px;margin-bottom:10px}
+.room-name{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--white);margin-bottom:2px}
+.room-sub{font-size:11px;color:var(--muted);margin-bottom:12px}
+.room-prices{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px}
+.room-day{background:rgba(255,255,255,.03);border-radius:10px;padding:8px 6px;text-align:center}
+.room-day-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.room-day-price{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold2)}
+.room-day-price small{display:block;font-size:8px;color:var(--muted);font-family:'Jost',sans-serif}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="padding:44px 24px 36px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--gold-border);">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,#0f0c06,var(--bg))"></div>
+  <div style="position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(201,169,110,.1),transparent 70%);pointer-events:none"></div>
+  <div style="position:relative;z-index:2">
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border:1px solid var(--gold-border);border-radius:100px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-bottom:20px">
+      <div style="width:5px;height:5px;border-radius:50%;background:var(--gold);animation:blink 2s ease infinite"></div>
+      <span id="i18n-badge">Smart Guest Experience</span>
+    </div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--white);letter-spacing:.06em;line-height:1;margin-bottom:4px">ADA PALAS</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;margin-bottom:6px" id="i18n-boutique">Boutique Hotel</div>
+    <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:300">Büyükada · İstanbul</div>
+    <!-- LANGUAGE SWITCHER -->
+    <div style="margin-top:16px;display:flex;justify-content:center;gap:8px" dir="ltr">
+      <button onclick="setLang('tr')" id="lang-tr" style="background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:11px;letter-spacing:.12em;padding:5px 14px;border-radius:100px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:400;transition:all .2s">🇹🇷 TR</button>
+      <button onclick="setLang('en')" id="lang-en" style="background:transparent;border:1px solid rgba(201,169,110,.3);color:var(--muted);font-size:11px;letter-spacing:.12em;padding:5px 14px;border-radius:100px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:400;transition:all .2s">🇬🇧 EN</button>
+    </div>
+  </div>
+</div>
+<style>@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}</style>
+
+<!-- QUICK ACTIONS -->
+<div class="grid-wrap" style="margin-top:14px">
+  <div class="grid-card" onclick="openModal('review')">
+    <div class="card-emoji">⭐</div>
+    <div><div class="card-label" id="i18n-rate">Rate Your Stay</div><div class="card-sub" id="i18n-rate-sub">Share your experience</div></div>
+  </div>
+  <div class="grid-card" onclick="document.getElementById('rooms-section').scrollIntoView({behavior:'smooth'})">
+    <div class="card-emoji">🛏️</div>
+    <div><div class="card-label" id="i18n-rooms">Our Rooms</div><div class="card-sub" id="i18n-rooms-sub">Rates & availability</div></div>
+  </div>
+</div>
+
+<div style="padding:0 20px 8px">
+  <a href="tel:+905423821444" style="width:100%;background:transparent;border:1px solid rgba(201,169,110,.35);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none">
+    <div style="font-size:22px;flex-shrink:0">📞</div>
+    <div style="flex:1">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold2);margin-bottom:2px" id="i18n-reservation">Reservation</div>
+      <div style="font-size:11px;color:var(--muted);font-weight:300">0542 382 14 44</div>
+    </div>
+    <div style="color:var(--gold);font-size:18px">›</div>
+  </a>
+  <div onclick="document.getElementById('restaurant-section').scrollIntoView({behavior:'smooth'})" style="margin-top:10px;width:100%;background:transparent;border:1px solid rgba(201,169,110,.35);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer">
+    <div style="font-size:22px;flex-shrink:0">🍽️</div>
+    <div style="flex:1">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold2);margin-bottom:2px" id="i18n-order-food">Order Food</div>
+      <div style="font-size:11px;color:var(--muted);font-weight:300">Secret Garden Restaurant</div>
+    </div>
+    <div style="color:var(--gold);font-size:18px">›</div>
+  </div>
+</div>
+
+<!-- HOTEL SERVICES -->
+<div class="section-label" id="i18n-hotel-services">Hotel Services</div>
+<div class="grid-wrap">
+  <div class="grid-card" onclick="openModal('wifi')"><div class="card-emoji">📶</div><div><div class="card-label" id="i18n-wifi">Wi-Fi</div><div class="card-sub" id="i18n-wifi-sub">One tap password</div></div></div>
+  <div class="grid-card" onclick="openModal('concierge')"><div class="card-emoji">🔔</div><div><div class="card-label" id="i18n-concierge">Concierge</div><div class="card-sub" id="i18n-concierge-sub">WhatsApp · 24/7</div></div></div>
+  <div class="grid-card" onclick="openModal('breakfast')"><div class="card-emoji">🍳</div><div><div class="card-label" id="i18n-breakfast-card">Breakfast</div><div class="card-sub" id="i18n-breakfast-card-sub">08:30 – 11:00</div></div></div>
+  <div class="grid-card" onclick="openModal('checkout')"><div class="card-emoji">🗝️</div><div><div class="card-label" id="i18n-checkout">Check-Out</div><div class="card-sub" id="i18n-checkout-sub">Express departure</div></div></div>
+  <div class="grid-card" onclick="document.getElementById('gallery-section').scrollIntoView({behavior:'smooth'})"><div class="card-emoji">📸</div><div><div class="card-label" id="i18n-gallery">Photo Gallery</div><div class="card-sub" id="i18n-gallery-sub">Explore our hotel</div></div></div>
+  <div class="grid-card" onclick="openModal('romantic')"><div class="card-emoji">🌹</div><div><div class="card-label" id="i18n-romantic">Romantic Setup</div><div class="card-sub" id="i18n-romantic-sub">Room & table decor</div></div></div>
+</div>
+
+<!-- HOTEL INFO -->
+<div class="section-label" id="i18n-hotel-info">Hotel Information</div>
+<div class="info-wrap">
+  <div class="info-card"><div><div class="info-label" id="i18n-breakfast">Breakfast</div><div class="info-value">08:30 – 11:00</div></div><span class="badge badge-gold" id="i18n-included">Included</span></div>
+  <div class="info-card"><div><div class="info-label" id="i18n-checkin">Check-In / Check-Out</div><div class="info-value">14:00 / 12:00</div></div></div>
+  <div class="info-card" style="cursor:pointer" onclick="window.open('tel:+905423821444')"><div><div class="info-label" id="i18n-reception2">Reception</div><div class="info-value">0542 382 14 44</div></div><span class="badge badge-gold" id="i18n-call">Call</span></div>
+  <div class="info-card"><div><div class="info-label" id="i18n-address">Address</div><div class="info-value">Maden Mah. Çiçekli Yalı Sk. No:24, Büyükada</div></div></div>
+  <div class="info-card"><div><div class="info-label" id="i18n-smoking">Smoking</div><div class="info-value" id="i18n-smoking-val">Not allowed in rooms</div></div><span class="badge badge-dim" id="i18n-policy">Policy</span></div>
+</div>
+
+<!-- ROOMS -->
+<div class="section-label" id="rooms-section">Our Rooms</div>
+<div style="padding:0 20px 8px">
+
+  <div class="room-card">
+    <div class="room-name" id="i18n-room-standard">Standard Room</div>
+    <div class="room-sub" id="i18n-room-standard-sub">Lower Floor · h:2.40m</div>
+    <div class="room-prices">
+      <div class="room-day"><div class="room-day-label" id="i18n-day-weekday">Weekday</div><div class="room-day-price">5.000₺<small id="i18n-room-only">room only</small></div></div>
+      <div class="room-day"><div class="room-day-label">Cuma</div><div class="room-day-price">6.000₺<small id="i18n-room-only2">room only</small></div></div>
+      <div class="room-day"><div class="room-day-label">Cumartesi</div><div class="room-day-price">7.000₺<small id="i18n-room-only3">room only</small></div></div>
+    </div>
+    <div class="room-prices">
+      <div class="room-day"><div class="room-day-label" id="i18n-breakfast-incl">With Breakfast</div><div class="room-day-price" style="color:var(--gold)">6.500₺</div></div>
+      <div class="room-day"><div class="room-day-label" id="i18n-breakfast-incl2">With Breakfast</div><div class="room-day-price" style="color:var(--gold)">7.500₺</div></div>
+      <div class="room-day"><div class="room-day-label" id="i18n-breakfast-incl3">With Breakfast</div><div class="room-day-price" style="color:var(--gold)">8.500₺</div></div>
+    </div>
+    <button class="modal-btn btn-gold" style="margin-top:4px" onclick="goWA('Hello, I would like to inquire about the Standard Room.')" id="i18n-room-inquire-btn1">Inquire via WhatsApp →</button>
+  </div>
+
+  <div class="room-card">
+    <div class="room-name" id="i18n-room-deluxe">Deluxe Room</div>
+    <div class="room-sub" id="i18n-room-deluxe-sub">Middle Floor · h:3.90m</div>
+    <div class="room-prices">
+      <div class="room-day"><div class="room-day-label" id="i18n-day-weekday2">Weekday</div><div class="room-day-price">6.500₺<small id="i18n-room-only4">room only</small></div></div>
+      <div class="room-day"><div class="room-day-label">Cuma</div><div class="room-day-price">7.000₺<small id="i18n-room-only5">room only</small></div></div>
+      <div class="room-day"><div class="room-day-label">Cumartesi</div><div class="room-day-price">8.500₺<small id="i18n-room-only6">room only</small></div></div>
+    </div>
+    <div class="room-prices">
+      <div class="room-day"><div class="room-day-label" id="i18n-breakfast-incl4">With Breakfast</div><div class="room-day-price" style="color:var(--gold)">8.000₺</div></div>
+      <div class="room-day"><div class="room-day-label" id="i18n-breakfast-incl5">With Breakfast</div><div class="room-day-price" style="color:var(--gold)">8.500₺</div></div>
+      <div class="room-day"><div class="room-day-label" id="i18n-breakfast-incl6">With Breakfast</div><div class="room-day-price" style="color:var(--gold)">10.000₺</div></div>
+    </div>
+    <button class="modal-btn btn-gold" style="margin-top:4px" onclick="goWA('Hello, I would like to inquire about the Deluxe Room.')" id="i18n-room-inquire-btn2">Inquire via WhatsApp →</button>
+  </div>
+
+  <div class="room-card">
+    <div class="room-name" id="i18n-room-premium">Premium Room</div>
+    <div class="room-sub" id="i18n-room-premium-sub">Upper Floor · h:4.00m</div>
+    <div class="room-prices">
+      <div class="room-day"><div class="room-day-label" id="i18n-day-weekday3">Weekday</div><div class="room-day-price">7.500₺<small id="i18n-room-only7">room only</small></div></div>
+      <div class="room-day"><div class="room-day-label">Cuma</div><div class="room-day-price">7.750₺<small id="i18n-room-only8">room only</small></div></div>
+      <div class="room-day"><div class="room-day-label">Cumartesi</div><div class="room-day-price">9.500₺<small id="i18n-room-only9">room only</small></div></div>
+    </div>
+    <div class="room-prices">
+      <div class="room-day"><div class="room-day-label" id="i18n-breakfast-incl7">With Breakfast</div><div class="room-day-price" style="color:var(--gold)">9.000₺</div></div>
+      <div class="room-day"><div class="room-day-label" id="i18n-breakfast-incl8">With Breakfast</div><div class="room-day-price" style="color:var(--gold)">9.250₺</div></div>
+      <div class="room-day"><div class="room-day-label" id="i18n-breakfast-incl9">With Breakfast</div><div class="room-day-price" style="color:var(--gold)">11.000₺</div></div>
+    </div>
+    <button class="modal-btn btn-gold" style="margin-top:4px" onclick="goWA('Hello, I would like to inquire about the Premium Room.')" id="i18n-room-inquire-btn3">Inquire via WhatsApp →</button>
+  </div>
+
+  <div style="font-size:10px;color:var(--muted);text-align:center;margin-top:6px;line-height:1.6" id="i18n-room-amenities">All rooms include: A/C · TV · Minibar · Safe · Kettle · Private bathroom with shower</div>
+</div>
+
+<!-- RESTAURANT -->
+<div class="section-label" id="restaurant-section">Secret Garden Restaurant</div>
+<div style="padding:0 20px 8px">
+  <div style="background:linear-gradient(135deg,#1a0a00,#200d00);border:1px solid rgba(201,169,110,.3);border-radius:16px;overflow:hidden">
+    <div style="padding:16px 18px 12px;border-bottom:1px solid rgba(201,169,110,.15)">
+      <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;font-weight:300" id="i18n-recommended">🍽️ In the Hotel Garden</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--white);margin-bottom:2px">Secret Garden Restaurant</div>
+      <div style="font-size:11px;color:var(--muted)" id="i18n-restaurant-sub">19th-century mansion garden · Traditional Turkish & seafood cuisine</div>
+    </div>
+    <div style="padding:12px 18px">
+      <div id="menu-items"></div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery-section" class="section-label">Our Hotel</div>
+<div class="gallery-grid" id="gallery-grid"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)this.classList.remove('open')">
+  <span class="lb-close" onclick="document.getElementById('lightbox').classList.remove('open')">✕</span>
+  <span class="lb-prev" onclick="prevPhoto()">‹</span>
+  <img id="lb-img" src="">
+  <span class="lb-next" onclick="nextPhoto()">›</span>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal"><div class="modal-handle"></div><div id="modal-body"></div></div>
+</div>
+
+<div style="padding:30px 20px 50px;text-align:center">
+  <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);letter-spacing:.15em;margin-bottom:6px">ADA PALAS BOUTIQUE HOTEL</div>
+  <div style="font-size:10px;color:var(--muted);font-weight:300;line-height:1.6">Maden Mah. Çiçekli Yalı Sokak No:24<br>Büyükada — İstanbul</div>
+</div>
+
+<script>
+const H = {
+  whatsapp: '905423821444',
+  google: 'https://search.google.com/local/writereview?placeid=ChIJ_ada_palas_buyukada',
+  tripadvisor: 'https://www.tripadvisor.com.tr/UserReviewEdit-g293975-d1234567-Ada_Palas_Boutique_Hotel-Buyukada_Princes_Islands_Istanbul.html'
+};
+const ROOM_LABEL = (function(){ const p = new URLSearchParams(location.search); return p.get('room') ? 'Room ' + p.get('room') : 'Guest Request'; })();
+
+const T = {
+  tr: {
+    badge: 'Akıllı Misafir Deneyimi', boutique: 'Butik Otel',
+    rate: '⭐ Konaklamanı Değerlendir', rateSub: 'Deneyimini paylaş',
+    rooms: 'Odalarımız', roomsSub: 'Fiyat & uygunluk',
+    reservation: 'Rezervasyon',
+    orderFood: 'Yemek Söyle', orderFoodSub: 'Secret Garden Restaurant',
+    hotelServices: 'Otel Hizmetleri',
+    wifi: 'Wi-Fi', wifiSub: 'Tek dokunuşla şifre',
+    concierge: 'Concierge', conciergeSub: 'WhatsApp · 7/24',
+    breakfastCard: 'Kahvaltı', breakfastCardSub: '08:30 – 11:00',
+    checkout: 'Check-Out', checkoutSub: 'Hızlı çıkış',
+    gallery: 'Fotoğraf Galerisi', gallerySub: 'Oteli keşfedin',
+    romantic: 'Romantik Düzenleme', romanticSub: 'Oda & masa süslemesi',
+    hotelInfo: 'Otel Bilgileri',
+    breakfast: 'Kahvaltı', included: 'Dahil',
+    checkin: 'Giriş / Çıkış',
+    reception2: 'Resepsiyon', call: 'Ara',
+    address: 'Adres',
+    smoking: 'Sigara', smokingVal: 'Odalarda yasaktır', policy: 'Politika',
+    roomStandard: 'Standart Oda', roomStandardSub: 'Alt Kat · h:2.40m',
+    roomDeluxe: 'Deluxe Oda', roomDeluxeSub: 'Orta Kat · h:3.90m',
+    roomPremium: 'Premium Oda', roomPremiumSub: 'Üst Kat · h:4.00m',
+    dayWeekday: 'Hafta İçi', breakfastIncl: 'Kahvaltı Dahil', roomOnly: 'sadece oda',
+    roomInquireBtn: 'WhatsApp ile Sor →',
+    roomAmenities: 'Tüm odalarda: Klima · TV · Minibar · Kasa · Su Isıtıcı · Duşlu Özel Banyo',
+    recommended: '🍽️ Otel Bahçesinde', restaurantSub: '19. yüzyıl köşk bahçesi · Geleneksel Türk mutfağı ve deniz ürünleri',
+    menuTitle: '📋 Tam Menü', orderBtn: 'WhatsApp ile Sipariş Ver', selectItems: 'Sipariş İçin Ürün Seç',
+    ourHotel: 'Otelimiz',
+    googleReview: 'Google\'da Paylaş →', tripReview: 'TripAdvisor\'da Paylaş →',
+    thankYou: '✦ Yorumunuz Google\'da paylaşılacak. Teşekkürler!',
+    sorryMsg: 'Özür dileriz. Geri bildiriminiz doğrudan yönetime iletilecek.',
+    callReception: '📞 Resepsiyonu Ara',
+    reviewTitle: 'Konaklamanı Değerlendir', reviewDesc: 'Ada Palas\'taki deneyimin nasıldı?',
+    reviewShareTitle: '⭐ Yorumunu Paylaş', reviewShareDesc: 'Nerede paylaşmak istersin?',
+    continueBtn: 'Devam Et →', sendMgmtBtn: 'Yönetime Gönder →', perhapsLater: 'Belki Sonra',
+    ratePlaceholder: 'Deneyimini paylaş...',
+    wifiTitle: '📶 Wi-Fi Erişimi', wifiDesc: 'Ada Palas genelinde iki ağ kullanılabilir.',
+    roomNetwork: 'Oda Ağı', lobbyNetwork: 'Lobi Ağı', password: 'Şifre',
+    copyPassword: 'Şifreyi Kopyala', copied: '✓ Kopyalandı!', close: 'Kapat', cancel: 'Vazgeç',
+    conciergeDesc: 'Ekibimiz her türlü talebiniz için 7/24 hizmetinizde.',
+    contactWA: 'WhatsApp ile İletişime Geç →',
+    conciergeMsg: 'Merhaba, yardıma ihtiyacım var.',
+    checkoutDesc: 'Lütfen ayrılmadan önce resepsiyonu bilgilendirin. Bagaj saklama hizmeti mevcuttur.',
+    notifyReception: 'Resepsiyonu Bilgilendir →',
+    checkoutMsg: 'Merhaba, check-out yapmak istiyorum. Teşekkürler!',
+    breakfastModalTitle: '🍳 Kahvaltı', breakfastModalDesc: 'Sınırsız serpme geleneksel Türk kahvaltısı, her sabah 08:30 – 11:00 arası servis edilir.',
+    breakfastNote: 'Kişi başı standart fiyat 1.350₺\'dir. Otel misafirlerimize özel: 2 kişilik 2.700₺ yerine sadece 1.500₺.',
+    askReception: 'Resepsiyona Sor →',
+    romanticModalTitle: '🌹 Romantik Düzenleme', romanticModalDesc: 'Özel anlarınız için üç seçenek:',
+    romTable: 'Masa Süslemesi (Taze Gül & Mum)', romTablePrice: '1.250₺',
+    romCake: 'Çift Kişilik Sürpriz Pasta', romCakePrice: '1.200₺',
+    romRoom: 'Oda Süslemesi (30+ Gül Yaprağı)', romRoomPrice: '2.750₺',
+    romanticMsg: 'Merhaba, romantik düzenleme hakkında bilgi almak istiyorum.',
+    requestWA: 'WhatsApp ile Talep Et →',
+  },
+  en: {
+    badge: 'Smart Guest Experience', boutique: 'Boutique Hotel',
+    rate: '⭐ Rate Your Stay', rateSub: 'Share your experience',
+    rooms: 'Our Rooms', roomsSub: 'Rates & availability',
+    reservation: 'Reservation',
+    orderFood: 'Order Food', orderFoodSub: 'Secret Garden Restaurant',
+    hotelServices: 'Hotel Services',
+    wifi: 'Wi-Fi', wifiSub: 'One tap password',
+    concierge: 'Concierge', conciergeSub: 'WhatsApp · 24/7',
+    breakfastCard: 'Breakfast', breakfastCardSub: '08:30 – 11:00',
+    checkout: 'Check-Out', checkoutSub: 'Express departure',
+    gallery: 'Photo Gallery', gallerySub: 'Explore our hotel',
+    romantic: 'Romantic Setup', romanticSub: 'Room & table decor',
+    hotelInfo: 'Hotel Information',
+    breakfast: 'Breakfast', included: 'Included',
+    checkin: 'Check-In / Check-Out',
+    reception2: 'Reception', call: 'Call',
+    address: 'Address',
+    smoking: 'Smoking', smokingVal: 'Not allowed in rooms', policy: 'Policy',
+    roomStandard: 'Standard Room', roomStandardSub: 'Lower Floor · h:2.40m',
+    roomDeluxe: 'Deluxe Room', roomDeluxeSub: 'Middle Floor · h:3.90m',
+    roomPremium: 'Premium Room', roomPremiumSub: 'Upper Floor · h:4.00m',
+    dayWeekday: 'Weekday', breakfastIncl: 'With Breakfast', roomOnly: 'room only',
+    roomInquireBtn: 'Inquire via WhatsApp →',
+    roomAmenities: 'All rooms include: A/C · TV · Minibar · Safe · Kettle · Private bathroom with shower',
+    recommended: '🍽️ In the Hotel Garden', restaurantSub: '19th-century mansion garden · Traditional Turkish & seafood cuisine',
+    menuTitle: '📋 Full Menu', orderBtn: 'Order via WhatsApp', selectItems: 'Select Items to Order',
+    ourHotel: 'Our Hotel',
+    googleReview: 'Share on Google →', tripReview: 'Share on TripAdvisor →',
+    thankYou: '✦ Your review will be shared on Google. Thank you!',
+    sorryMsg: 'We apologise. Your feedback goes directly to management.',
+    callReception: '📞 Call Reception',
+    reviewTitle: 'Rate Your Stay', reviewDesc: 'How was your experience at Ada Palas?',
+    reviewShareTitle: '⭐ Share Your Review', reviewShareDesc: 'Where would you like to share?',
+    continueBtn: 'Continue →', sendMgmtBtn: 'Send to Management →', perhapsLater: 'Perhaps Later',
+    ratePlaceholder: 'Share your experience...',
+    wifiTitle: '📶 Wi-Fi Access', wifiDesc: 'Two networks available throughout Ada Palas.',
+    roomNetwork: 'Room Network', lobbyNetwork: 'Lobby Network', password: 'Password',
+    copyPassword: 'Copy Password', copied: '✓ Copied!', close: 'Close', cancel: 'Cancel',
+    conciergeDesc: 'Our team is available 24/7 for any request.',
+    contactWA: 'Contact via WhatsApp →',
+    conciergeMsg: 'Hello, I need assistance.',
+    checkoutDesc: 'Please notify reception before departure. Luggage storage available.',
+    notifyReception: 'Notify Reception →',
+    checkoutMsg: 'Hello, I am ready to check out. Thank you!',
+    breakfastModalTitle: '🍳 Breakfast', breakfastModalDesc: 'Unlimited traditional Turkish breakfast spread, served daily 08:30 – 11:00.',
+    breakfastNote: 'Standard price is 1,350₺ per person. Special for hotel guests: only 1,500₺ for 2 people instead of 2,700₺.',
+    askReception: 'Ask Reception →',
+    romanticModalTitle: '🌹 Romantic Setup', romanticModalDesc: 'Three options for your special moment:',
+    romTable: 'Table Decoration (Fresh Roses & Candles)', romTablePrice: '1,250₺',
+    romCake: 'Surprise Celebration Cake for Two', romCakePrice: '1,200₺',
+    romRoom: 'Room Decoration (30+ Rose Petals)', romRoomPrice: '2,750₺',
+    romanticMsg: 'Hello, I would like information about the romantic setup options.',
+    requestWA: 'Request via WhatsApp →',
+  }
+};
+
+let currentLang = 'tr';
+function setById(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = T[lang];
+  document.getElementById('lang-tr').style.cssText = lang==='tr' ? "background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:11px;letter-spacing:.12em;padding:5px 14px;border-radius:100px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:400" : "background:transparent;border:1px solid rgba(201,169,110,.3);color:var(--muted);font-size:11px;letter-spacing:.12em;padding:5px 14px;border-radius:100px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:400";
+  document.getElementById('lang-en').style.cssText = lang==='en' ? "background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:11px;letter-spacing:.12em;padding:5px 14px;border-radius:100px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:400" : "background:transparent;border:1px solid rgba(201,169,110,.3);color:var(--muted);font-size:11px;letter-spacing:.12em;padding:5px 14px;border-radius:100px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:400";
+
+  setById('i18n-badge', t.badge); setById('i18n-boutique', t.boutique);
+  setById('i18n-rate', t.rate); setById('i18n-rate-sub', t.rateSub);
+  setById('i18n-rooms', t.rooms); setById('i18n-rooms-sub', t.roomsSub);
+  setById('i18n-reservation', t.reservation);
+  setById('i18n-order-food', t.orderFood);
+  setById('i18n-hotel-services', t.hotelServices);
+  setById('i18n-wifi', t.wifi); setById('i18n-wifi-sub', t.wifiSub);
+  setById('i18n-concierge', t.concierge); setById('i18n-concierge-sub', t.conciergeSub);
+  setById('i18n-breakfast-card', t.breakfastCard); setById('i18n-breakfast-card-sub', t.breakfastCardSub);
+  setById('i18n-checkout', t.checkout); setById('i18n-checkout-sub', t.checkoutSub);
+  setById('i18n-gallery', t.gallery); setById('i18n-gallery-sub', t.gallerySub);
+  setById('i18n-romantic', t.romantic); setById('i18n-romantic-sub', t.romanticSub);
+  setById('i18n-hotel-info', t.hotelInfo);
+  setById('i18n-breakfast', t.breakfast); setById('i18n-included', t.included);
+  setById('i18n-checkin', t.checkin);
+  setById('i18n-reception2', t.reception2); setById('i18n-call', t.call);
+  setById('i18n-address', t.address);
+  setById('i18n-smoking', t.smoking); setById('i18n-smoking-val', t.smokingVal); setById('i18n-policy', t.policy);
+
+  setById('i18n-room-standard', t.roomStandard); setById('i18n-room-standard-sub', t.roomStandardSub);
+  setById('i18n-room-deluxe', t.roomDeluxe); setById('i18n-room-deluxe-sub', t.roomDeluxeSub);
+  setById('i18n-room-premium', t.roomPremium); setById('i18n-room-premium-sub', t.roomPremiumSub);
+  ['1','2','3'].forEach(n => setById('i18n-day-weekday'+(n==='1'?'':n), t.dayWeekday));
+  for (let i=1;i<=9;i++) setById('i18n-breakfast-incl'+(i===1?'':i), t.breakfastIncl);
+  for (let i=1;i<=9;i++) setById('i18n-room-only'+(i===1?'':i), t.roomOnly);
+  setById('i18n-room-inquire-btn1', t.roomInquireBtn); setById('i18n-room-inquire-btn2', t.roomInquireBtn); setById('i18n-room-inquire-btn3', t.roomInquireBtn);
+  setById('i18n-room-amenities', t.roomAmenities);
+
+  setById('i18n-recommended', t.recommended); setById('i18n-restaurant-sub', t.restaurantSub);
+  const ofb = document.getElementById('order-btn'); if (ofb && ofb.disabled) ofb.textContent = t.selectItems;
+
+  renderMenu(lang);
+}
+
+// ===== ROOMS =====
+const ROOMS = {
+  standard: { en: 'Standard Room', tr: 'Standart Oda' },
+  deluxe: { en: 'Deluxe Room', tr: 'Deluxe Oda' },
+  premium: { en: 'Premium Room', tr: 'Premium Oda' }
+};
+
+// ===== RESTAURANT MENU =====
+const MENU = {
+  tr: [
+    { cat: '🥗 Soğuk Mezeler', items: [
+      ['Kavun','350'],['Beyaz Peynir','480'],['Cunda Ezmesi','450'],['Levrek Marin','590'],['Atom Salatası','400'],
+      ['Pastırmalı Humus','400'],['Deniz Mahsulleri','850'],['Fava','400'],['Acılı Ezme','400'],['Bombay Fasulye Pilaki','400'],
+      ['Patlıcan Soslu','400'],['Köpoğlu','400'],['Patlıcan Salatası','400'],['Semizotlu Salata','250'],
+      ['Haydari','250'],['Havuç Tarator','250'],['Deniz Börülcesi','400'],['Pazı Kavurması','400'],
+      ['Girit Ezmesi','450'],['Avokado Cips','500'],['Atatürk Mezesi','400'],['Urla Ezme','450'],['Fesleğenli Levrek','600'],
+    ]},
+    { cat: '🥬 Salatalar', items: [
+      ['Mevsim Salata','550'],['Roka Salatası','575'],['Gavurdağı Salata','675'],['Çoban Salata','550'],
+      ['Karides Salatası','800'],['Tablacı Salatası','550'],
+    ]},
+    { cat: '🔥 Ara Sıcaklar', items: [
+      ['Jumbo Karides (4 Adet)','2.100'],['Sigara Böreği','420'],['Paçanga Böreği','480'],['Kalamar Tava','990'],
+      ['Ahtapot Izgara','1.800'],['Enginar Kalbi','675'],['Ayvalık Lokması','1.100'],["Yunus Şef'in Okyanus Lokumu",'1.050'],
+      ['Güveçte Saganaki','700'],['İstiridye Mantarı','750'],['Karides Güveç','985'],['Kalamar Izgara','1.050'],
+      ['Somonlu Ege Dolması','1.050'],['Patlıcanlı Balık Kebabı','1.050'],['Levrek Cümbüş','1.050'],['Beğendili Şefin Özel Speciali','1.050'],
+      ['Kaşarlı Çıtır Levrek','975'],['Tereyağında Karides','975'],['Parmak Patates','480'],['Çıtır Kabak','590'],['Peynir Kroket','560'],
+    ]},
+    { cat: '🐟 Balıklar (mevsime göre)', items: [
+      ['Levrek Izgara','775'],['Çipura Izgara','775'],['Somon Izgara','890'],
+      ['Deniz Levreği (kg ile)','—'],['Hamsi Tava','—'],['İstavrit','—'],['Tekir','—'],['Palamut','—'],
+    ]},
+    { cat: '🥩 Izgara Etler', items: [
+      ['Kuzu Pirzola','1.450'],['Karışık Izgara','1.650'],['Güveçte Et Sote','1.425'],['Tavuk Pirzola','800'],['Izgara Köfte','875'],
+    ]},
+    { cat: '🍮 Tatlılar', items: [
+      ['Fırın Helva','625'],['Sufle','750'],['Dondurmalı İrmik Helvası','700'],['Mevsim Meyve Sepeti','975'],['Çift Kişilik Sürpriz Pasta','1.200'],
+    ]},
+    { cat: '☕ Sıcak İçecekler', items: [
+      ['Çay Bardağı','100'],['Çay Fincan','125'],['Türk Kahvesi','150'],['Türk Kahvesi Duble','200'],
+      ['Espresso','150'],['Espresso Duble','200'],['Caramel Macchiato','200'],['Filtre Kahve','175'],
+      ['Americano','175'],['Caffe Latte','200'],['Cortado','175'],['Flat White','200'],
+      ['Mocha Bitter / White Chocolate','230'],['Hot Chocolate','200'],['Salep','200'],
+    ]},
+    { cat: '🧊 Soğuk Kahveler & İçecekler', items: [
+      ['Frappe Caramel / Vanilya','250'],['Ice Cafe Latte','250'],['Cold Brew','225'],['Ice Americano','225'],
+      ['Ice Mocha','250'],['Affogato','250'],['Frozen with Fruits','290'],['Milkshake (Çikolata/Vanilya/Çilek)','350'],
+      ['Milky Ice White Chocolate','250'],['Coca Cola / Zero','175'],['Fanta / Sprite','175'],['Ice Tea','175'],
+      ['Ayran','175'],['Soda','125'],['Taze Portakal Suyu','275'],['Ev Yapımı Limonata','250'],['Su (33cl)','50'],
+    ]},
+    { cat: '🍸 Kokteyller', items: [
+      ['Margarita','850'],['Negroni','850'],['Esp. Martini','750'],['Aperol Spritz','850'],['Hugo Spritz','850'],
+      ['Mojito','850'],['Whiskey Sour','750'],['Bellini','750'],['Martini (Votka/Gin)','850'],
+      ['Velvet','800'],['Ada Secret','800'],['Secret Spice','800'],['Garden Whisper','800'],
+    ]},
+    { cat: '🍕 Pizza & Burger (Öğle Keyfi 12:00–18:00)', items: [
+      ['Margherita Pizza','700'],['Pepperoni Pizza','800'],['Karışık Pizza','850'],['4 Peynirli Pizza','825'],
+      ['Mantarlı Pizza','775'],['Vejetaryen Pizza','800'],['BBQ Tavuklu Pizza','950'],['Napoli Pizza','700'],
+      ['Hamburger','475'],['Cheese Burger','525'],['Double Burger','600'],
+    ]},
+    { cat: '🍷 Şaraplar', items: [
+      ['Kavaklıdere Angora (Beyaz/Kırmızı) 75cl','1.975'],['Kavaklıdere Çankaya 75cl','2.125'],
+      ['Vin Art Sauvignon Blanc 75cl','2.650'],['Angora Rose 75cl','2.000'],['Pinot Grigio Italia 75cl','2.750'],
+    ]},
+  ],
+  en: [
+    { cat: '🥗 Cold Starters', items: [
+      ['Melon','350'],['White Cheese','480'],['Cunda Spread','450'],['Sea Bass with Mustard','590'],['Atomic Salad','400'],
+      ['Pastırma Hummus','400'],['Seafood Cocktail','850'],['Dried Bean Paste','400'],['Pepper with Tomato','400'],['Baked Beans','400'],
+      ['Aubergine with Tomato','400'],['Köpoğlu','400'],['Aubergine Salad','400'],['Yoghurt with Purslane','250'],
+      ['Yoghurt with Garlic','250'],['Carrot Tarator','250'],['Purslane Salad','400'],['Chard Sauté','400'],
+      ['Cretan Salad','450'],['Avocado with Chips','500'],['Atatürk Mezze','400'],['Cheese & Pistachio Spread','450'],['Sea Bass with Basil Sauce','600'],
+    ]},
+    { cat: '🥬 Salads', items: [
+      ['Seasonal Salad','550'],['Rocket Salad','575'],['Gavurdağı Salad','675'],['Shepherd Salad','550'],
+      ['Shrimp Salad','800'],['Tablacı Salad','550'],
+    ]},
+    { cat: '🔥 Hot Starters', items: [
+      ['Jumbo Shrimp (4 pcs)','2,100'],['Rolled Pastry with Cheese','420'],['Pastry with Cow Bacon','480'],['Fried Calamari','990'],
+      ['Octopus Grill','1,800'],['Fried Artichoke Heart','675'],["Secret Garden's Chef Special",'1,100'],['Ocean Delight by Chef Yunus','1,050'],
+      ['Saganaki Cheese','700'],['Oyster Mushroom','750'],['Shrimp Casserole','985'],['Grilled Calamari','1,050'],
+      ['Creamed Salmon with Shrimp','1,050'],['Aubergine with Fish Kebab','1,050'],['Sea Bass, Cheese, Café de Paris','1,050'],['Octopus & Shrimps & Cheese','1,050'],
+      ['Fried Sea Bass with Cheese','975'],['Butter Shrimp','975'],['French Fries','480'],['Fried Courgette','590'],['Cheese Balls','560'],
+    ]},
+    { cat: '🐟 Fish (seasonal)', items: [
+      ['Grilled Sea Bass','775'],['Grilled Chipura','775'],['Grilled Salmon','890'],
+      ['Sea Bass (by kg)','—'],['Anchovy Pan','—'],['Horse Mackerel','—'],['Red Mullet','—'],['Bonito','—'],
+    ]},
+    { cat: '🥩 Grilled Meat', items: [
+      ['Lamb Chops','1,450'],['Mixed Grill','1,650'],['Sautéed Meat in Casserole','1,425'],['Chicken Chops','800'],['Grilled Meatballs','875'],
+    ]},
+    { cat: '🍮 Desserts', items: [
+      ['Oven-baked Halva','625'],['Soufflé','750'],['Semolina Halva with Ice Cream','700'],['Seasonal Fruit Plate','975'],['Surprise Cake for Two','1,200'],
+    ]},
+    { cat: '☕ Hot Drinks', items: [
+      ['Tea (Glass)','100'],['Tea (Cup)','125'],['Turkish Coffee','150'],['Turkish Coffee Double','200'],
+      ['Espresso','150'],['Espresso Double','200'],['Caramel Macchiato','200'],['Filter Coffee','175'],
+      ['Americano','175'],['Caffe Latte','200'],['Cortado','175'],['Flat White','200'],
+      ['Mocha Bitter / White Chocolate','230'],['Hot Chocolate','200'],['Salep','200'],
+    ]},
+    { cat: '🧊 Cold Coffees & Drinks', items: [
+      ['Frappe Caramel / Vanilla','250'],['Ice Cafe Latte','250'],['Cold Brew','225'],['Ice Americano','225'],
+      ['Ice Mocha','250'],['Affogato','250'],['Frozen with Fruits','290'],['Milkshake (Chocolate/Vanilla/Strawberry)','350'],
+      ['Milky Ice White Chocolate','250'],['Coca Cola / Zero','175'],['Fanta / Sprite','175'],['Ice Tea','175'],
+      ['Ayran','175'],['Soda','125'],['Fresh Orange Juice','275'],['Homemade Lemonade','250'],['Water (33cl)','50'],
+    ]},
+    { cat: '🍸 Cocktails', items: [
+      ['Margarita','850'],['Negroni','850'],['Esp. Martini','750'],['Aperol Spritz','850'],['Hugo Spritz','850'],
+      ['Mojito','850'],['Whiskey Sour','750'],['Bellini','750'],['Martini (Vodka/Gin)','850'],
+      ['Velvet','800'],['Ada Secret','800'],['Secret Spice','800'],['Garden Whisper','800'],
+    ]},
+    { cat: '🍕 Pizza & Burger (Happy Hours 12:00–18:00)', items: [
+      ['Margherita Pizza','700'],['Pepperoni Pizza','800'],['Mixed Pizza','850'],['Quattro Formaggi Pizza','825'],
+      ['Mushroom Pizza','775'],['Vegetarian Pizza','800'],['BBQ Chicken Pizza','950'],['Napoletana Pizza','700'],
+      ['Hamburger','475'],['Cheese Burger','525'],['Double Burger','600'],
+    ]},
+    { cat: '🍷 Wines', items: [
+      ['Kavaklıdere Angora (White/Red) 75cl','1,975'],['Kavaklıdere Çankaya 75cl','2,125'],
+      ['Vin Art Sauvignon Blanc 75cl','2,650'],['Angora Rose 75cl','2,000'],['Pinot Grigio Italia 75cl','2,750'],
+    ]},
+  ]
+};
+
+let selectedItems = [];
+
+function renderMenu(lang) {
+  const container = document.getElementById('menu-items');
+  if (!container) return;
+  const data = MENU[lang] || MENU.en;
+  let html = '';
+  data.forEach((section) => {
+    html += `<div class="menu-cat">${section.cat}</div>`;
+    section.items.forEach(([name, price]) => {
+      const display = price === '—' ? '' : '₺' + price;
+      const key = name + (price !== '—' ? ' ₺' + price.replace('.','') : '');
+      const clickable = price !== '—';
+      html += `<div class="menu-row" ${clickable ? `onclick="toggleItem(this,'${key.replace(/'/g,"\\'")}')"` : 'style="opacity:.5;cursor:default"'}><span style="color:var(--white)">${name}</span><span style="color:var(--gold)">${display}</span></div>`;
+    });
+  });
+  container.innerHTML = html;
+  selectedItems = [];
+  updateOrderBtn();
+}
+
+function toggleItem(el, key) {
+  el.classList.toggle('selected');
+  if (selectedItems.includes(key)) selectedItems = selectedItems.filter(i => i !== key);
+  else selectedItems.push(key);
+  updateOrderBtn();
+}
+
+function updateOrderBtn() {
+  const btn = document.getElementById('order-btn');
+  const t = T[currentLang];
+  if (selectedItems.length === 0) {
+    btn.textContent = t.selectItems;
+    btn.style.opacity = '.4';
+    btn.disabled = true;
+  } else {
+    btn.textContent = t.orderBtn + ' (' + selectedItems.length + ')';
+    btn.style.opacity = '1';
+    btn.disabled = false;
+  }
+}
+
+function sendOrder() {
+  if (selectedItems.length === 0) return;
+  const msg = 'Hello, I would like to order from Secret Garden Restaurant:\n\n• ' + selectedItems.join('\n• ') + '\n\n[' + ROOM_LABEL + ']';
+  goWA(msg);
+}
+
+function goWA(msg) {
+  window.open('https://wa.me/' + H.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ===== MODALS =====
+let rating = 0;
+
+const modals = {
+  review: () => { const t = T[currentLang]; return `
+    <div class="modal-title">⭐ ${t.reviewTitle}</div>
+    <div class="modal-desc">${t.reviewDesc}</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div class="star-row">${[1,2,3,4,5].map(n=>`<span class="star-big" onclick="rate(${n})">⭐</span>`).join('')}</div>
+    <textarea class="review-textarea" id="rtxt" placeholder="${t.ratePlaceholder}"></textarea>
+    <div class="review-hint" id="rhint"></div>
+    <button class="modal-btn btn-gold review-btn" id="rbtn" onclick="submitReview()">${t.continueBtn}</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">${t.perhapsLater}</button>`; },
+  wifi: () => { const t = T[currentLang]; return `
+    <div class="modal-title">${t.wifiTitle}</div>
+    <div class="modal-desc">${t.wifiDesc}</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div class="wifi-box" style="margin-bottom:10px">
+      <div class="wifi-label">${t.roomNetwork}</div><div class="wifi-name">ADA PALAS</div>
+      <div class="wifi-label">${t.password}</div><div class="wifi-pass">adapalas24</div>
+    </div>
+    <div class="wifi-box">
+      <div class="wifi-label">${t.lobbyNetwork}</div><div class="wifi-name">SECRET GARDEN</div>
+      <div class="wifi-label">${t.password}</div><div class="wifi-pass">adapalas24</div>
+    </div>
+    <button class="modal-btn btn-gold" onclick="navigator.clipboard.writeText('adapalas24').then(()=>{this.textContent='${t.copied}';setTimeout(()=>this.textContent='${t.copyPassword}',2000)})">${t.copyPassword}</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">${t.close}</button>`; },
+  concierge: () => { const t = T[currentLang]; return `
+    <div class="modal-title">🔔 ${t.concierge}</div>
+    <div class="modal-desc">${t.conciergeDesc}</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('${t.conciergeMsg} [${ROOM_LABEL}]')">${t.contactWA}</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">${t.close}</button>`; },
+  breakfast: () => { const t = T[currentLang]; return `
+    <div class="modal-title">${t.breakfastModalTitle}</div>
+    <div class="modal-desc">${t.breakfastModalDesc}</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div style="font-size:12px;color:var(--gold2);line-height:1.6;margin-bottom:16px;background:rgba(201,169,110,.06);border:1px solid var(--gold-border);border-radius:12px;padding:14px">${t.breakfastNote}</div>
+    <button class="modal-btn btn-gold" onclick="goWA('Hello, I would like to ask about breakfast. [${ROOM_LABEL}]')">${t.askReception}</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">${t.close}</button>`; },
+  checkout: () => { const t = T[currentLang]; return `
+    <div class="modal-title">🗝️ ${t.checkout}</div>
+    <div class="modal-desc">${t.checkoutDesc}</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <button class="modal-btn btn-gold" onclick="goWA('${t.checkoutMsg} [${ROOM_LABEL}]')">${t.notifyReception}</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">${t.cancel}</button>`; },
+  romantic: () => { const t = T[currentLang]; return `
+    <div class="modal-title">${t.romanticModalTitle}</div>
+    <div class="modal-desc">${t.romanticModalDesc}</div>
+    <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(201,169,110,.05);border:1px solid var(--gold-border);border-radius:12px;padding:12px 14px"><span style="font-size:12px;color:var(--white)">${t.romTable}</span><span style="font-family:'Cormorant Garamond',serif;color:var(--gold2);font-size:16px">${t.romTablePrice}</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(201,169,110,.05);border:1px solid var(--gold-border);border-radius:12px;padding:12px 14px"><span style="font-size:12px;color:var(--white)">${t.romCake}</span><span style="font-family:'Cormorant Garamond',serif;color:var(--gold2);font-size:16px">${t.romCakePrice}</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(201,169,110,.05);border:1px solid var(--gold-border);border-radius:12px;padding:12px 14px"><span style="font-size:12px;color:var(--white)">${t.romRoom}</span><span style="font-family:'Cormorant Garamond',serif;color:var(--gold2);font-size:16px">${t.romRoomPrice}</span></div>
+    </div>
+    <button class="modal-btn btn-gold" onclick="goWA('${t.romanticMsg} [${ROOM_LABEL}]')">${t.requestWA}</button>
+    <button class="modal-btn btn-outline" onclick="closeModal()">${t.close}</button>`; },
+};
+
+function openModal(t) {
+  document.getElementById('modal-body').innerHTML = modals[t]();
+  document.getElementById('overlay').classList.add('open');
+  rating = 0;
+}
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('overlay')) return;
+  document.getElementById('overlay').classList.remove('open');
+}
+function rate(n) {
+  rating = n;
+  document.querySelectorAll('.star-big').forEach((s,i) => s.classList.toggle('active', i < n));
+  document.getElementById('rtxt').classList.add('show');
+  document.getElementById('rbtn').classList.add('show');
+  const hint = document.getElementById('rhint');
+  const t = T[currentLang];
+  hint.classList.add('show');
+  if (n >= 3) {
+    hint.textContent = t.thankYou;
+    hint.style.color = 'var(--gold)';
+    document.getElementById('rbtn').textContent = t.googleReview;
+    document.getElementById('rbtn').style.cssText = 'background:var(--gold);color:#080808';
+  } else {
+    hint.textContent = t.sorryMsg;
+    hint.style.color = 'var(--muted)';
+    document.getElementById('rbtn').textContent = t.sendMgmtBtn;
+    document.getElementById('rbtn').style.cssText = 'background:rgba(192,112,96,.2);color:#e07070;border:1px solid rgba(224,112,112,.3)';
+  }
+}
+function submitReview() {
+  const text = document.getElementById('rtxt').value.trim();
+  const t = T[currentLang];
+  if (rating >= 3) {
+    if (text) navigator.clipboard.writeText(text).catch(()=>{});
+    document.getElementById('modal-body').innerHTML = `
+      <div class="modal-title">${t.reviewShareTitle}</div>
+      <div class="modal-desc">${t.reviewShareDesc}</div>
+      <div class="modal-divider"><div class="modal-line"></div><div class="modal-gem"></div><div class="modal-line"></div></div>
+      <button class="modal-btn btn-gold" onclick="window.open('${H.google}','_blank')">${t.googleReview}</button>
+      <button class="modal-btn btn-outline" onclick="window.open('${H.tripadvisor}','_blank')">${t.tripReview}</button>
+      <button class="modal-btn btn-outline" onclick="closeModal()">${t.close}</button>`;
+  } else {
+    const msg = encodeURIComponent('Dear Management, feedback (' + rating + ' stars):\n\n' + (text || 'General feedback.'));
+    window.open('https://wa.me/' + H.whatsapp + '?text=' + msg, '_blank');
+  }
+}
+
+// ===== GALLERY =====
+const GALLERY = [
+  { src: 'https://adapalas.com.tr/uploads/2024/07/buyukada-otel-ada-palas-7.webp', label: 'Ada Palas' },
+  { src: 'https://adapalas.com.tr/uploads/2024/07/ada-palas-otel-2.webp', label: 'Ada Palas' },
+  { src: 'https://adapalas.com.tr/uploads/2024/07/ada-palas-restoran-2.webp', label: 'Secret Garden Restaurant' },
+  { src: 'https://adapalas.com.tr/uploads/2024/07/ada-palas-secret-garden-2.webp', label: 'Secret Garden' },
+  { src: 'https://adapalas.com.tr/uploads/2024/07/buyukada-otel-davet-organizasyon-1-1.webp', label: 'Davet & Organizasyon' },
+  { src: 'https://adapalas.com.tr/uploads/2024/07/buyukada-otel-toplanti-4.webp', label: 'Toplantı Alanı' },
+  { src: 'https://adapalas.com.tr/uploads/2024/07/buyukada-otel-ada-palas-8.webp', label: 'Ada Palas' },
+  { src: 'https://adapalas.com.tr/uploads/2024/07/ada-palas-butik-otel-3-jpg.webp', label: 'Ada Palas' },
+];
+let currentPhoto = 0;
+
+window.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('gallery-grid');
+  GALLERY.forEach((photo, i) => {
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    div.innerHTML = '<img src="' + photo.src + '" alt="' + photo.label + '" loading="lazy">';
+    div.onclick = () => openLightbox(i);
+    grid.appendChild(div);
+  });
+  setLang('tr');
+});
+
+function openLightbox(i) {
+  currentPhoto = i;
+  document.getElementById('lb-img').src = GALLERY[i].src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function prevPhoto() { currentPhoto = (currentPhoto - 1 + GALLERY.length) % GALLERY.length; document.getElementById('lb-img').src = GALLERY[currentPhoto].src; }
+function nextPhoto() { currentPhoto = (currentPhoto + 1) % GALLERY.length; document.getElementById('lb-img').src = GALLERY[currentPhoto].src; }
+</script>
+
+</body>
+</html>
+
